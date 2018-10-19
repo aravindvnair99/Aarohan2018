@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link typr="text/css" rel="stylesheet" href="css/home.css">
+    <title>Aarohan Registration</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="favicon.ico" />
+
+    <!-- ............................................................................................................ -->
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script type="text/javascript" src="js/auth.js"></script>
+    <script type="text/javascript">
+        
+        function signOut(){
+            firebase.auth().signOut();
+        }
+        
+        function initApp() {
+          firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+               var uid = user.uid;
+
+               var a = document.getElementById('uiads');
+               a.href="/notif?uid="+uid;
+              document.getElementById("accountName").innerHTML = email;             
+            } else {
+              // User is signed out.
+              alert("Signed Out");
+            window.location="/login";  
+            }
+           
+        });
+    }
+
+    window.onpaint = initApp();
+
+
+      </script>
+
+    <!-- ............................................................................................................ -->
+
+
+
+</head>
+<body>
+<header>
+    <nav>
+
+            
+         <ul id="slide-out" class="side-nav">
+             <li><img class="responsive-img" src="images/logo.jpg"></li>
+             
+             <li><a id="accountName" class="waves-effect"></a></li>
+             <li><div class="divider"></div></li>
+             
+             <li><a class="waves-effect" href="/" style="height: 120px"><h4 style="color: #3eaca8; padding: 1px; text-align: center">Aarohan Registration</h4></a></li>
+             
+            <li><a class="waves-effect" href="/school_reg"><i class="material-icons">account_balance</i>School Registration</a></li>
+             
+            <li><a class="waves-effect" href="/student_reg"><i class="material-icons">people</i>Student Registration</a></li>
+             
+            <li><a class="waves-effect" href="/event_reg"><i class="material-icons">local_play</i>Event Registration</a></li>
+             
+            <li><a class="waves-effect" href="/schools"><i class="material-icons">school</i>Schools</a></li>
+            
+             
+            <li><a class="waves-effect" href="/edit"><i class="material-icons">settings</i>Edit Student</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="waves-effect" href="#"><i class="material-icons">developer_mode</i>Developers</a></li>
+            <li><a class="waves-effect" onclick="signOut()"><i class="material-icons">arrow_back</i>signOut</a></li>
+            
+        </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+    </nav>
+</header>
+    
+    
+    

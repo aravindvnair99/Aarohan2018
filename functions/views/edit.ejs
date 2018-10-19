@@ -1,0 +1,45 @@
+<% include nav.ejs%>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 l6">
+            <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <i class="large material-icons" style="padding: 15px">account_balance</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Edit Schools<i class="material-icons right">chevron_right</i></span>
+              <p style="display:none; "><a href="/edit_school">Click here!</a></p>
+                <p>Register Schools for Aarohan!</p>
+            </div>
+            </div>    
+        
+        </div>
+        <div class="col s12 m6 l6">
+            <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <i class="large material-icons" style="padding: 15px">people</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Edit Student<i class="material-icons right">chevron_right</i></span>
+              <p style="display:none; "><a href="/edit_student">Click here!</a></p>
+                <p>Edit Students for Aarohan!</p>
+            </div>
+            </div> 
+        </div>
+        
+    </div>
+    
+</div>
+<% include foot.ejs%>
+<script>
+$(document).ready(function(){
+
+    $(".card").click(function() {
+      window.location = $(this).find("a").attr("href"); 
+      return false;
+    });
+    
+});
+</script>
+    
+    

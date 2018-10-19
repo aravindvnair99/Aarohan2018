@@ -1,0 +1,119 @@
+<% include nav.ejs %>
+<div class="container">
+<div class="row"></div>
+<div class="row">
+    <div class="col s12 l4">
+    <div class="card">
+        <form onsubmit="" action="/return_school" method="POST">
+            <div class="card-content">
+                    <h4>View School Details</h4><br>
+                    <div class="input-field">
+                    <select name="school" required>
+                        <option value="" disabled selected></option>
+                        <% for(var i=0;i<Object.keys(schools).length;i++) { %>
+                        <option><%= schools[i] %></option>
+                        <% }%>
+                    </select>
+                    <label>School</label>
+                    </div>
+            </div>    
+            <div class="card-action">
+                    <button class="btn -waves-effect waves-light" type="submit" name="action">View School Details
+                        <i class="material-icons right">send</i>
+                    </button>
+            </div>
+        </form>
+    </div>
+    </div>
+    
+    <div class="col s12 l4">
+        <div class="card">
+        <div class="card-content">
+        <h4>Student Details</h4>
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <% if(editschool.schoolname!=null) { %>
+              <span class="title"><%= editschool.schoolname %></span>
+                        <h6><%= editschool.facultyname %></h6>
+                        <h6><%= editschool.facultyphonono %></h6>
+                        <h6><%= editschool.facultyemail %></h6>
+                        <h6><%=editschool.chequename%></h6>
+                            <% } else { %>
+            <h6><%="No Details Found" %></h6>
+            <% } %>
+            </li>
+        </ul>
+            
+
+        </div>
+        </div>
+    
+    </div>
+    
+    <div class="col s12 l4">
+    <div class="card">
+        <form onsubmit="return isValidForm()" action="/school_edit" method="POST">
+            <div class="card-content">
+            <h4>Edit School</h4><br>
+                    <div class="input-field">
+                    <select name="school_name" required>
+                        <option value="" disabled selected></option>
+                        <% for(var i=0;i<Object.keys(schools).length;i++) { %>
+                        <option><%= schools[i] %></option>
+                        <% }%>
+                    </select>
+                    <label>School</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="icon_prefix" name="faculty_name" type="text" class="validate" required>
+                      <label for="icon_prefix">Faculty Name</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="icon_prefix" name="faculty_phoneno" type="tel" class="validate" required>
+                      <label for="icon_prefix">Faculty Number</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="icon_prefix" name="faculty_email" type="email" class="validate" required>
+                      <label for="icon_prefix">Faculty email</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="icon_prefix" name="cheque_name" type="text" class="validate">
+                      <label for="icon_prefix">Cheque Name</label>
+                    </div>
+            </div>
+            <div class="card-action">
+            <button class="btn -waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+    </div>
+<script>
+    function isValidForm() {
+    var school = document.getElementById("t1").value;
+    school = school.replace(/^\s+|\s+$/g, "");
+    school = capitalize(school);
+    console.log(school);
+    <% for(var i=0;i<schools.length;i++) { %>
+                console.log("<%= schools[i] %>")
+                if(school=="<%= schools[i] %>") {
+                Materialize.toast('School already exists',1000);
+                return false;
+                }
+            <% } %>
+    Materialize.toast("School Registered",400);
+            return true;
+    }
+    function capitalize(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+
+</script>
+
+
+<%include foot.ejs %>

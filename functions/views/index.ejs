@@ -1,0 +1,124 @@
+<% include nav.ejs%>
+<div class="container">
+    <div class="row"></div>
+    <div class="row">
+        
+        <div class="col s12 m12 l4">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <i class="large material-icons" style="padding: 15px">account_balance</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">School Registration<i class="material-icons right">chevron_right</i></span>
+              <p style="display:none; "><a href="/school_reg">Click here!</a></p>
+                <p>Register Schools for Aarohan!</p>
+            </div>
+        </div>
+        </div>
+        
+        <div class="col s12 m12 l4">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <i class="large material-icons" style="padding: 15px">people</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title grey-text text-darken-4">Student Registration<i class="material-icons right">chevron_right</i></span>
+              <a style="display:none;" href="/student_reg"></a>
+               <p>Register Students for Aarohan!</p>
+            </div>
+        </div>
+        </div>
+        
+        <div class="col s12 m12 l4">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <i class="large material-icons" style="padding: 15px">local_play</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Event Registration<i class="material-icons right">chevron_right</i></span>
+              <p>Register Events for Aarohan!</p>
+              <a href="/event_reg"></a>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Event Registration<i class="material-icons right">close</i></span>
+              
+            </div>
+        </div>
+        </div>
+    </div>
+        
+
+    
+    <div class="row">
+            
+        
+
+        <div class="col s12 m12 l4">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <i class="large material-icons" style="padding: 15px">school</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">All Schools<i class="material-icons right">chevron_right</i></span>
+              <p><a href="/schools"></a></p>
+              <p>View Schools registered for Aarohan!</p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Schools<i class="material-icons right">close</i></span>
+              
+            </div>
+        </div>
+        </div>
+            
+        <div class="col s12 m12 l4">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <i class="large material-icons" style="padding: 15px">notifications</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title grey-text text-darken-4">Notification<i class="material-icons right">chevron_right</i></span>
+              <a style="display:none;" id="uiads" ></a>
+              
+              
+               <p>Send Notifications</p>
+            </div>
+        </div>
+        </div>
+        
+            
+        <div class="col s12 m12 l4">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <i class="large material-icons" style="padding: 15px">settings</i>
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Edit Student<i class="material-icons right">chevron_right</i></span>
+              <a href="/edit"></a>
+              <p>Edit Student details of registered Students</p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Edit students & Schools<i class="material-icons right">close</i></span>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+<%include foot.ejs%>
+<script>
+
+
+$(document).ready(function(){
+
+    $(".card").click(function() {
+      window.location = $(this).find("a").attr("href"); 
+      return false;
+    });
+    
+});
+
+
+</script>
+<script type="text/javascript"> 
+  function submitform() {   document.myform.submit(); } 
+</script> 

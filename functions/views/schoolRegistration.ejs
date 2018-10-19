@@ -1,0 +1,70 @@
+<% include nav.ejs %>
+<div class="container">
+<div class="row"></div>
+<div class="row">
+    <div class="col l3"></div>
+    <div class="col s12 l6">
+    <div class="card">
+        <form action="/reg_school" method="POST" onsubmit="return isValidForm()">
+            <div class="card-content">
+            <h4 style="color: #faae29">School Registration</h4><br>
+                    <div class="input-field">
+                      <input id="t1" name="school_name" type="text" class="validate" required>
+                      <label for="t1">School Name</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="icon_prefix" name="faculty_name" type="text" class="validate" required>
+                      <label for="icon_prefix">Faculty Name</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="icon_prefix" name="faculty_phoneno" type="tel" class="validate" required>
+                      <label for="icon_prefix">Faculty Number</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="icon_prefix" name="faculty_email" type="email" class="validate" required>
+                      <label for="icon_prefix">Faculty email</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="icon_prefix" name="cheque_name" type="text" class="validate">
+                      <label for="icon_prefix">Cheque Name</label>
+                    </div>
+                    
+                    
+            
+            </div>
+            <div class="card-action">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+<script>
+    function isValidForm() {
+        
+    var school = document.getElementById("t1").value;
+    school = school.replace(/^\s+|\s+$/g, "");
+    school = capitalize(school);
+    console.log(school);
+    <% for(var i=0;i<schools.length;i++) { %>
+                console.log("<%= schools[i] %>")
+                if(school=="<%= schools[i] %>") {
+                Materialize.toast('School already exists',1000);
+                return false;
+                }
+            <% } %>
+    Materialize.toast("School Registered",400);
+            return true;
+    }
+    function capitalize(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
+    
+</script>
+
+<%include foot.ejs %>
