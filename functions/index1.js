@@ -7,7 +7,10 @@ var express = require("express"),
 	admin = require("firebase-admin"),
 	functions = require('firebase-functions');
 
+
+
 var serviceAccount = require("./aarohan-reg-firebase-adminsdk-punrx-1fdff1663c.json");
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: false
@@ -15,10 +18,13 @@ app.use(bodyParser.urlencoded({
 app.set('port', (process.env.PORT || 8000));
 app.use(express.static(__dirname + '/public'));
 
+
+
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 	databaseURL: "https://aarohan-reg.firebaseio.com"
 });
+
 
 var schooldetails = {
 	schoolname: null,
@@ -57,7 +63,9 @@ var eventdetails = {
 };
 
 var ips = new Array();
+
 var database = admin.database();
+
 var ref = database.ref("Schools/");
 schools = new Array();
 ref.once("value").then(function (snapshot) {

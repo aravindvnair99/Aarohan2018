@@ -1,10 +1,10 @@
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyC-Sd37f6e6Ml6ymgy40dgB9y9G3gywu-g",
-    authDomain: "aarohan2017-61ac6.firebaseapp.com",
-    databaseURL: "https://aarohan2017-61ac6.firebaseio.com",
-    projectId: "aarohan2017-61ac6",
-    storageBucket: "aarohan2017-61ac6.appspot.com",
-    messagingSenderId: "1003513797717"
-  };
-  firebase.initializeApp(config);
+// Initialize Firebase
+var config = {
+	apiKey: "AIzaSyD9EwdILSj0JwZKd5Yq_hh8iB_8P-cyg_E",
+	authDomain: "aarohan-reg.firebaseapp.com",
+	databaseURL: "https://aarohan-reg.firebaseio.com",
+	projectId: "aarohan-reg",
+	storageBucket: "aarohan-reg.appspot.com",
+	messagingSenderId: "176714020985"
+};
+firebase.initializeApp(config);
