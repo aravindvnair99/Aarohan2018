@@ -4,7 +4,8 @@ var express = require("express"),
     router = express.Router(),
     bodyParser = require('body-parser'),
     firebase = require('firebase'),
-    admin = require("firebase-admin");
+    admin = require("firebase-admin"),
+    functions = require('firebase-functions');
 
 
   
@@ -21,7 +22,7 @@ app.use(express.static(__dirname + '/public'));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://aarohan2017-61ac6.firebaseio.com" 
+  databaseURL: "https://aarohan-reg.firebaseio.com" 
 });
 
 
