@@ -1,9 +1,7 @@
 var express = require("express"),
 	app = express(),
 	path = __dirname + '/views/',
-	router = express.Router(),
 	bodyParser = require('body-parser'),
-	firebase = require('firebase'),
 	admin = require("firebase-admin"),
 	functions = require('firebase-functions');
 
@@ -12,7 +10,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
-app.set('port', (process.env.PORT || 8000));
 app.use(express.static(__dirname + '/public'));
 
 admin.initializeApp({
@@ -425,8 +422,6 @@ function writeSchoolData(schooldetails) {
 	});
 }
 
-
-
 function writeStudentData(studentdetails) {
 	database.ref('Students/' + studentdetails.id).set({
 		stdName: studentdetails.name,
@@ -474,7 +469,6 @@ function readOneStudent(editId, callb) {
 				editstudent.gender = temp.gender;
 				console.log("true");
 				callb();
-
 			}
 			//console.log(childSnapshot.val());
 		});
@@ -520,7 +514,6 @@ function getPrevilage(callb) {
 			uids.push(childSnapshot.key);
 		});
 		callb(uids);
-
 	}).catch(function (err) {
 		if (err) {
 			callb(uids);
@@ -529,10 +522,7 @@ function getPrevilage(callb) {
 			callb(uids);
 		}
 	});
-
 }
-
-
 
 function getAllSchools(cb) {
 	var refri = database.ref("Schools/");
