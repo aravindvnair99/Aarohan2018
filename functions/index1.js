@@ -57,8 +57,8 @@ var ips = new Array();
 var database = admin.database();
 var ref = database.ref("Schools/");
 schools = new Array();
-ref.once("value").then(function (snapshot) {
-	snapshot.forEach(function (childSnapshot) {
+ref.once("value").then((snapshot) => {
+	snapshot.forEach((childSnapshot) => {
 		var key = childSnapshot.key;
 		var childData = childSnapshot.val();
 		schools.push(key);
@@ -67,8 +67,8 @@ ref.once("value").then(function (snapshot) {
 
 ref = database.ref("Students/");
 studentsid = new Array();
-ref.once("value").then(function (snapshot) {
-	snapshot.forEach(function (childSnapshot) {
+ref.once("value").then((snapshot) => {
+	snapshot.forEach((childSnapshot) => {
 		var key = childSnapshot.key;
 		studentsid.push(key);
 	});
@@ -79,8 +79,8 @@ ref.once("value").then(function (snapshot) {
 app.set('views', path);
 app.set('view engine', 'ejs');
 
-app.get("/login", function (req, res) {
-	checkInternet(function (isThere) {
+app.get("/login", (req, res) => {
+	checkInternet((isThere) => {
 		if (isThere) {
 			res.render("login.ejs");
 
@@ -92,7 +92,7 @@ app.get("/login", function (req, res) {
 
 });
 
-app.post("/login_post", function (req, res) {
+app.post("/login_post", (req, res) => {
 	console.log("Before GO");
 	if (req.body.passkey == "GO") {
 		console.log("GO");
@@ -101,19 +101,19 @@ app.post("/login_post", function (req, res) {
 	res.redirect("/");
 });
 
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
 	res.render('index');
 });
 
 
 
 
-app.get("/schools", function (req, res, next) {
-	checkInternet(function (isThere) {
+app.get("/schools", (req, res, next) => {
+	checkInternet((isThere) => {
 		if (isThere) {
 			console.log("isThere")
 			var viewschools = new Array();
-			getAllSchools(function (viewschools) {
+			getAllSchools((viewschools) => {
 				res.render('viewSchools.ejs', {
 					viewschools
 				});
@@ -129,8 +129,8 @@ app.get("/schools", function (req, res, next) {
 
 
 
-app.get("/school_reg", function (req, res) {
-	checkInternet(function (isThere) {
+app.get("/school_reg", (req, res) => {
+	checkInternet((isThere) => {
 		if (isThere) {
 			schooldetails = {
 				schoolname: null,
@@ -138,7 +138,7 @@ app.get("/school_reg", function (req, res) {
 				facultyemail: null,
 				facultyphonono: null
 			};
-			setTimeout(function () {
+			setTimeout(() => {
 				res.render('schoolRegistration', {
 					schools
 				});
@@ -153,8 +153,8 @@ app.get("/school_reg", function (req, res) {
 
 });
 
-app.get("/student_reg", function (req, res) {
-	checkInternet(function (isThere) {
+app.get("/student_reg", (req, res) => {
+	checkInternet((isThere) => {
 		if (isThere) {
 			studentdetails = {
 				id: null,
@@ -177,8 +177,8 @@ app.get("/student_reg", function (req, res) {
 
 });
 
-app.get("/event_reg", function (req, res) {
-	checkInternet(function (isThere) {
+app.get("/event_reg", (req, res) => {
+	checkInternet((isThere) => {
 		if (isThere) {
 			eventdetails = {
 				name: null,
@@ -195,14 +195,14 @@ app.get("/event_reg", function (req, res) {
 
 });
 
-app.get("/edit", function (req, res) {
+app.get("/edit", (req, res) => {
 	res.render("edit.ejs");
 
 
 });
 
-app.get("/edit_student", function (req, res) {
-	checkInternet(function (isThere) {
+app.get("/edit_student", (req, res) => {
+	checkInternet((isThere) => {
 		if (isThere) {
 			res.render('editStudent', {
 				schools,
@@ -224,8 +224,8 @@ app.get("/edit_student", function (req, res) {
 
 });
 
-app.get("/edit_school", function (req, res) {
-	checkInternet(function (isThere) {
+app.get("/edit_school", (req, res) => {
+	checkInternet((isThere) => {
 		if (isThere) {
 			res.render('editSchool', {
 				schools,
@@ -250,12 +250,12 @@ app.get("/edit_school", function (req, res) {
 
 
 
-app.get("/notif", function (req, res) {
-	checkInternet(function (isThere) {
+app.get("/notif", (req, res) => {
+	checkInternet((isThere) => {
 		if (isThere) {
 			var uids = new Array();
 			var id = req.query.uid;
-			getPrevilage(function (uids) {
+			getPrevilage((uids) => {
 				var arrayLength = uids.length;
 				for (var i = 0; i < arrayLength; i++) {
 					if (uids[i] == id) {
@@ -273,7 +273,7 @@ app.get("/notif", function (req, res) {
 
 });
 
-app.post("/send_notification", function (req, res) {
+app.post("/send_notification", (req, res) => {
 
 	var title = req.body.Title;
 	var message = req.body.Message;
@@ -294,7 +294,7 @@ app.post("/send_notification", function (req, res) {
 
 
 
-app.post("/reg_school", function (req, res) {
+app.post("/reg_school", (req, res) => {
 	var sch = req.body.school_name;
 	var faq = req.body.faculty_name;
 	sch = sch.replace(/^\s+|\s+$/g, "");
@@ -313,7 +313,7 @@ app.post("/reg_school", function (req, res) {
 	res.redirect('/school_reg');
 });
 
-app.post("/reg_student", function (req, res) {
+app.post("/reg_student", (req, res) => {
 	var uid = req.body.uid;
 	var str = req.body.name;
 	var str1 = capitalize(str);
@@ -329,7 +329,7 @@ app.post("/reg_student", function (req, res) {
 	res.redirect('/student_reg');
 });
 
-app.post("/reg_event", function (req, res) {
+app.post("/reg_event", (req, res) => {
 	eventdetails = {
 		name: req.body.name,
 		category: req.body.category,
@@ -337,14 +337,14 @@ app.post("/reg_event", function (req, res) {
 	};
 	console.log(eventdetails);
 	writeEventdata();
-	setTimeout(function () {
+	setTimeout(() => {
 		res.redirect('/event_reg');
 	}, 500);
 
 
 });
 
-app.post("/student_edit", function (req, res) {
+app.post("/student_edit", (req, res) => {
 	var uid = req.body.uid;
 	var str = req.body.name;
 	var str1 = capitalize(str);
@@ -359,7 +359,7 @@ app.post("/student_edit", function (req, res) {
 	res.redirect('/edit_student');
 });
 
-app.post("/school_edit", function (req, res) {
+app.post("/school_edit", (req, res) => {
 	var sch = req.body.school_name;
 	var faq = req.body.faculty_name;
 	sch = sch.replace(/^\s+|\s+$/g, "");
@@ -379,30 +379,30 @@ app.post("/school_edit", function (req, res) {
 });
 
 
-app.post("/return_student", function (req, res) {
+app.post("/return_student", (req, res) => {
 	var id = req.body.uid;
-	readOneStudent(id, function () {
+	readOneStudent(id, () => {
 
 		res.redirect("/edit_student");
 	});
 
 });
 
-app.post("/return_school", function (req, res) {
+app.post("/return_school", (req, res) => {
 	var school = req.body.school;
-	readOneSchool(school, function () {
+	readOneSchool(school, () => {
 
 		res.redirect("/edit_school");
 	});
 
 });
 
-app.listen(app.get('port'), function () {
+app.listen(app.get('port'), () => {
 	console.log('Node app is running on port', app.get('port'));
 });
 
 function capitalize(str) {
-	return str.replace(/\w\S*/g, function (txt) {
+	return str.replace(/\w\S*/g, (txt) => {
 		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	});
 }
@@ -415,7 +415,7 @@ function writeSchoolData(schooldetails) {
 			phoneno: schooldetails.facultyphonono
 		},
 		chequename: schooldetails.chequename
-	}, function (error) {
+	}, (error) => {
 		if (error) {
 			console.log("school Registration failed");
 		}
@@ -455,8 +455,8 @@ function writeEventdata() {
 
 function readOneStudent(editId, callb) {
 	ref = database.ref("Students/");
-	ref.once("value").then(function (snapshot) {
-		snapshot.forEach(function (childSnapshot) {
+	ref.once("value").then((snapshot) => {
+		snapshot.forEach((childSnapshot) => {
 			var key = childSnapshot.key;
 			if (key == editId) {
 				temp = childSnapshot.val();
@@ -474,7 +474,7 @@ function readOneStudent(editId, callb) {
 		});
 		console.log("end foreach");
 		callb();
-	}).catch(function (err) {
+	}).catch((err) => {
 		console.log("firebase error");
 		callb();
 	});
@@ -482,8 +482,8 @@ function readOneStudent(editId, callb) {
 
 function readOneSchool(editId, callb) {
 	ref = database.ref("Schools/");
-	ref.once("value").then(function (snapshot) {
-		snapshot.forEach(function (childSnapshot) {
+	ref.once("value").then((snapshot) => {
+		snapshot.forEach((childSnapshot) => {
 			var key = childSnapshot.key;
 			if (key == editId) {
 				temp = childSnapshot.val();
@@ -500,7 +500,7 @@ function readOneSchool(editId, callb) {
 		});
 		console.log("end foreach");
 		callb();
-	}).catch(function (err) {
+	}).catch((err) => {
 		console.log("firebase error");
 		callb();
 	});
@@ -509,12 +509,12 @@ function readOneSchool(editId, callb) {
 function getPrevilage(callb) {
 	var refri = database.ref("Notification/");
 	var uids = new Array();
-	refri.once("value").then(function (snapshot) {
-		snapshot.forEach(function (childSnapshot) {
+	refri.once("value").then((snapshot) => {
+		snapshot.forEach((childSnapshot) => {
 			uids.push(childSnapshot.key);
 		});
 		callb(uids);
-	}).catch(function (err) {
+	}).catch((err) => {
 		if (err) {
 			callb(uids);
 		}
@@ -528,8 +528,8 @@ function getAllSchools(cb) {
 	var refri = database.ref("Schools/");
 	viewschools = new Array();
 	console.log("here 0");
-	refri.once("value").then(function (snapshot) {
-		snapshot.forEach(function (childSnapshot) {
+	refri.once("value").then((snapshot) => {
+		snapshot.forEach((childSnapshot) => {
 			var key = childSnapshot.key;
 			var childData = childSnapshot.val();
 			viewschools.push({
@@ -539,7 +539,7 @@ function getAllSchools(cb) {
 		});
 		console.log("here 1");
 		cb(viewschools);
-	}).catch(function (err) {
+	}).catch((err) => {
 		if (err) {
 			console.log("Here it comes 2" + err);
 			cb(viewschools);
@@ -551,7 +551,7 @@ function getAllSchools(cb) {
 }
 
 function checkInternet(cb) {
-	require('dns').lookup('google.com', function (err) {
+	require('dns').lookup('google.com', (err) => {
 		if (err && err.code == "ENOTFOUND") {
 			cb(false);
 		} else {
@@ -575,14 +575,14 @@ var sendNotification = function (data) {
 	};
 
 	var https = require('https');
-	var req = https.request(options, function (res) {
-		res.on('data', function (data) {
+	var req = https.request(options, (res) => {
+		res.on('data', (data) => {
 			console.log("Response:");
 			console.log(JSON.parse(data));
 		});
 	});
 
-	req.on('error', function (e) {
+	req.on('error', (e) => {
 		console.log("ERROR:");
 		console.log(e);
 	});
