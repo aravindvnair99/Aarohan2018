@@ -65,6 +65,18 @@ app.get("/notif", (req, res) => {
 	});
 });
 
+app.get('/viewSchools', (req,res) =>{
+	var schoolName = new Array();
+	db.collection("Schools").get().then((querySnapshot) => {
+		querySnapshot.forEach((doc) => {
+			schoolName = doc.data();
+			console.log(schoolName);
+			console.log("Hey");
+			console.log(doc.id, " => ", doc.data());
+		});
+	});
+});
+
 app.post('/onSubmit', (req, res) => {
 	console.log(req.body);
 	var schoolId = req.body.schoolId;
