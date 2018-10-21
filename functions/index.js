@@ -121,9 +121,9 @@ app.post('/onStudentReg', (req, res) => {
 	var ch = sch.collection("Students").doc(uid);
 	sch.get().then((doc) => {
 		if(doc.exists){
-			checkuid();
 			return(doc);
 		}else{
+			alertfunc();
 			throw new Error("School does not exist");
 		}
 	}).catch((err)=>{
@@ -133,7 +133,7 @@ app.post('/onStudentReg', (req, res) => {
 	function checkuid(){
 		ch.get().then((doc1)=>{
 			if(doc1.exists){
-				console.log("UID already exists");
+//				console.log("UID already exists");
 				return(doc1);
 			}else{
 				db.collection("Schools").doc(schoolId).collection("Students").doc(uid).set(ob);
