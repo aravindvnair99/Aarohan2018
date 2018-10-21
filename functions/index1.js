@@ -482,7 +482,7 @@ function readOneStudent(editId, callb) {
 		callb()
 		throw new ("Dummy throw");
 	}).catch((err) => {
-		console.log("firebase error");
+		console.log("firebase error: " + err);
 		callb();
 	});
 }
@@ -509,7 +509,7 @@ function readOneSchool(editId, callb) {
 		callb()
 		throw new ("Dummy throw");
 	}).catch((err) => {
-		console.log("firebase error");
+		console.log("firebase error: " + err);
 		callb();
 	});
 }
@@ -547,14 +547,17 @@ function getAllSchools(cb) {
 			});
 		});
 		console.log("here 1");
-		cb(viewschools);
+		cb(viewschools)
+		return;
 	}).catch((err) => {
 		if (err) {
 			console.log("Here it comes 2" + err);
 			cb(viewschools);
+			return;
 		}
 		else {
 			cb(viewschools);
+			return;
 		}
 	});
 }
@@ -563,8 +566,10 @@ function checkInternet(cb) {
 	require('dns').lookup('google.com', (err) => {
 		if (err && err.code === "ENOTFOUND") {
 			cb(false);
+			return;
 		} else {
 			cb(true);
+			return;
 		}
 	})
 }
