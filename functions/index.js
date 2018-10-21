@@ -27,8 +27,8 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
 	res.render('login');
 });
-app.get("/reg", (req, res) => {
-	res.render('registration');
+app.get("/schoolReg", (req, res) => {
+	res.render('schoolReg');
 });
 app.get("/studentReg", (req, res) => {
 	res.render('studentReg');
@@ -70,7 +70,7 @@ app.get('/viewSchools', (req, res) => {
 	});
 });
 
-app.post('/onSubmit', (req, res) => {
+app.post('/onSchoolReg', (req, res) => {
 	console.log(req.body);
 	var schoolId = req.body.schoolId;
 	var schoolName = req.body.schoolName;
@@ -100,17 +100,7 @@ app.post('/onSubmit', (req, res) => {
 	}).catch((err) => {
 		console.log(err);
 	});
-
-	// db.ref('Schools/'+schoolId).set({
-	// 	cheque : cheque,
-	// 	schoolName: schoolName,
-	// 	Faculty: {
-	// 		ContactNo: mobile, 
-	// 		EmailID: email,
-	// 		Name: facultyName,
-	// 	}
-	// })
-	res.render('registration');
+	res.redirect('/schoolReg');
 });
 
 app.post('/onStudentReg', (req, res) => {
@@ -139,17 +129,15 @@ app.post('/onStudentReg', (req, res) => {
 		if (doc.exists) {
 			return (doc);
 		} else {
-			alertfunc();
 			throw new Error("School does not exist");
 		}
 	}).catch((err) => {
 		console.log(err);
 	});
-
 	function checkuid() {
 		ch.get().then((doc1) => {
 			if (doc1.exists) {
-				//				console.log("UID already exists");
+				console.log("UID already exists");
 				return (doc1);
 			} else {
 				db.collection("Schools").doc(schoolId).collection("Students").doc(uid).set(ob);
@@ -159,16 +147,7 @@ app.post('/onStudentReg', (req, res) => {
 			console.log(err);
 		});
 	}
-	// if(schoolId.exists){
-	// 	if(ch.exists){
-	// 		console.log("Student with this id already exists");
-	// 	}else{
-	// 		db.collection("Schools").doc(schoolId).collection("Students").doc(uid).set(ob);
-	// 	}
-	// }else{
-	// 	console.log("The school is not registered")
-	// }
-	res.render('studentReg');
+	res.redirect('/studentReg');
 });
 
 app.post('/onEventReg', (req, res) => {
@@ -188,7 +167,6 @@ app.post('/onEventReg', (req, res) => {
 						Student3: req.body.Student3
 					}
 					break;
-
 				default:
 					console.log("Error in switch case.");
 					break;
