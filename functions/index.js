@@ -22,6 +22,21 @@ app.set('view engine', 'ejs');
 var db = admin.firestore();
 var ref = admin.app().database().ref();
 
+app.get("/", (req, res) => {
+	res.render('index');
+});
+app.get("/login", (req, res) => {
+	res.render('login');
+});
+app.get("/reg", (req, res) => {
+	res.render('registration');
+});
+app.get("/studentReg", (req, res) => {
+	res.render('studentReg');
+});
+app.get("/eventReg", (req, res) => {
+	res.render('eventReg');
+});
 
 app.post('/onSubmit', (req, res) => {
 	console.log(req.body);
@@ -137,14 +152,8 @@ app.post('/onEventReg', (req, res) => {
 	res.render('eventReg');
 });
 
-app.get("/reg", (req, res) => {
-	res.render('registration');
-});
-app.get("/studentReg", (req, res) => {
-	res.render('studentReg');
-});
-app.get("/eventReg", (req, res) => {
-	res.render('eventReg');
+app.use((req, res, next) => {
+	res.status(404).render('404');
 });
 
 exports.app = functions.https.onRequest(app);
