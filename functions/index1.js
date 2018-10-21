@@ -1,6 +1,6 @@
 var express = require("express"),
 	app = express(),
-	path = __dirname + '/views/',
+	path = __dirname,
 	bodyParser = require('body-parser'),
 	admin = require("firebase-admin"),
 	functions = require('firebase-functions');
@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(public)));
 
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
@@ -62,7 +62,10 @@ ref.once("value").then((snapshot) => {
 		var key = childSnapshot.key;
 		var childData = childSnapshot.val();
 		schools.push(key);
-	});
+	})
+	throw new ("Dummy throw");
+}).catch(error => {
+	console.log("Error: " + error);
 });
 
 ref = database.ref("Students/");
@@ -71,12 +74,15 @@ ref.once("value").then((snapshot) => {
 	snapshot.forEach((childSnapshot) => {
 		var key = childSnapshot.key;
 		studentsid.push(key);
-	});
+	})
+	throw new ("Dummy throw");
+}).catch(error => {
+	console.log("Error: " + error);
 });
 
 
 
-app.set('views', path);
+app.set('views', path.join('views'));
 app.set('view engine', 'ejs');
 
 app.get("/login", (req, res) => {
@@ -94,7 +100,7 @@ app.get("/login", (req, res) => {
 
 app.post("/login_post", (req, res) => {
 	console.log("Before GO");
-	if (req.body.passkey == "GO") {
+	if (req.body.passkey === "GO") {
 		console.log("GO");
 		ips.push(req.ip);
 	}
@@ -258,7 +264,7 @@ app.get("/notif", (req, res) => {
 			getPrevilage((uids) => {
 				var arrayLength = uids.length;
 				for (var i = 0; i < arrayLength; i++) {
-					if (uids[i] == id) {
+					if (uids[i] === id) {
 						res.render('notification');
 					}
 				}
@@ -276,12 +282,12 @@ app.get("/notif", (req, res) => {
 app.post("/send_notification", (req, res) => {
 
 	var title = req.body.Title;
-	var message = req.body.Message;
+	var msg = req.body.Message;
 
 	var message = {
 		app_id: "460f102c-2f26-4316-b72d-9218696829eb",
 		headings: { "en": title },
-		contents: { "en": message },
+		contents: { "en": msg },
 		priority: 10,
 		included_segments: ["All"]
 	};
@@ -458,7 +464,7 @@ function readOneStudent(editId, callb) {
 	ref.once("value").then((snapshot) => {
 		snapshot.forEach((childSnapshot) => {
 			var key = childSnapshot.key;
-			if (key == editId) {
+			if (key === editId) {
 				temp = childSnapshot.val();
 				console.log(temp);
 				console.log("category " + temp.category)
@@ -473,7 +479,8 @@ function readOneStudent(editId, callb) {
 			//console.log(childSnapshot.val());
 		});
 		console.log("end foreach");
-		callb();
+		callb()
+		throw new ("Dummy throw");
 	}).catch((err) => {
 		console.log("firebase error");
 		callb();
@@ -485,7 +492,7 @@ function readOneSchool(editId, callb) {
 	ref.once("value").then((snapshot) => {
 		snapshot.forEach((childSnapshot) => {
 			var key = childSnapshot.key;
-			if (key == editId) {
+			if (key === editId) {
 				temp = childSnapshot.val();
 				editschool = {
 					schoolname: key,
@@ -499,7 +506,8 @@ function readOneSchool(editId, callb) {
 			//console.log(childSnapshot.val());
 		});
 		console.log("end foreach");
-		callb();
+		callb()
+		throw new ("Dummy throw");
 	}).catch((err) => {
 		console.log("firebase error");
 		callb();
@@ -513,7 +521,8 @@ function getPrevilage(callb) {
 		snapshot.forEach((childSnapshot) => {
 			uids.push(childSnapshot.key);
 		});
-		callb(uids);
+		callb(uids)
+		throw new ("Dummy throw");
 	}).catch((err) => {
 		if (err) {
 			callb(uids);
@@ -552,7 +561,7 @@ function getAllSchools(cb) {
 
 function checkInternet(cb) {
 	require('dns').lookup('google.com', (err) => {
-		if (err && err.code == "ENOTFOUND") {
+		if (err && err.code === "ENOTFOUND") {
 			cb(false);
 		} else {
 			cb(true);
