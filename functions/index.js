@@ -127,6 +127,7 @@ app.post('/onStudentReg', (req, res) => {
 	var ch = sch.collection("Students").doc(uid);
 	sch.get().then((doc) => {
 		if (doc.exists) {
+			checkuid();
 			return (doc);
 		} else {
 			throw new Error("School does not exist");
