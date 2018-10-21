@@ -26,16 +26,7 @@ app.get("/", (req, res) => {
 	res.render('index');
 });
 app.get("/login", (req, res) => {
-	checkInternet((isThere) => {
-		if (isThere) {
-			res.render("login");
-
-		} else {
-			res.render('schoolError');
-		}
-	});
-
-
+	res.render('login');
 });
 app.get("/reg", (req, res) => {
 	res.render('registration');
@@ -190,18 +181,6 @@ app.post('/onEventReg', (req, res) => {
 	});
 	res.render('eventReg');
 });
-
-function checkInternet(cb) {
-	require('dns').lookup('google.com', (err) => {
-		if (err && err.code === "ENOTFOUND") {
-			cb(false);
-			return;
-		} else {
-			cb(true);
-			return;
-		}
-	})
-}
 
 app.use((req, res, next) => {
 	res.status(404).render('404');
