@@ -1,4 +1,3 @@
-// Initialize Firebase
 var config = {
 	apiKey: "AIzaSyD9EwdILSj0JwZKd5Yq_hh8iB_8P-cyg_E",
 	authDomain: "aarohan-reg.firebaseapp.com",

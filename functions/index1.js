@@ -251,11 +251,6 @@ app.get("/edit_school", (req, res) => {
 
 });
 
-
-
-
-
-
 app.get("/notif", (req, res) => {
 	checkInternet((isThere) => {
 		if (isThere) {
@@ -269,14 +264,10 @@ app.get("/notif", (req, res) => {
 					}
 				}
 			});
-
 		} else {
 			res.render('schoolError');
 		}
 	});
-
-
-
 });
 
 app.post("/send_notification", (req, res) => {

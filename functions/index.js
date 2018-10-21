@@ -46,6 +46,24 @@ app.get("/studentReg", (req, res) => {
 app.get("/eventReg", (req, res) => {
 	res.render('eventReg');
 });
+app.get("/notif", (req, res) => {
+	checkInternet((isThere) => {
+		if (isThere) {
+			var uids = new Array();
+			var id = req.query.uid;
+			getPrevilage((uids) => {
+				var arrayLength = uids.length;
+				for (var i = 0; i < arrayLength; i++) {
+					if (uids[i] === id) {
+						res.render('notification');
+					}
+				}
+			});
+		} else {
+			res.render('schoolError');
+		}
+	});
+});
 
 app.post('/onSubmit', (req, res) => {
 	console.log(req.body);
