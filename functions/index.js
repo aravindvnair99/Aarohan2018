@@ -4,7 +4,7 @@ const functions = require('firebase-functions'),
 	bodyParser = require('body-parser'),
 	admin = require('firebase-admin');
 
-var serviceAccount = require("./aarohan-reg-firebase-adminsdk-punrx-1fdff1663c.json");
+var serviceAccount = require("./aarohan-reg-firebase-adminsdk-punrx-f96ce46066.json");
 
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount)
@@ -22,10 +22,10 @@ var db = admin.firestore();
 
 app.post('/onSubmit', (req, res) => {
 	var ob = {
-		cheque : req.body.cheque,
+		cheque: req.body.cheque,
 		schoolName: req.body.schoolName,
 		faculty: {
-			ContactNo: req.body.mobile, 
+			ContactNo: req.body.mobile,
 			EmailID: req.body.email,
 			Name: req.body.facultyName,
 		}

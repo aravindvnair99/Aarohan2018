@@ -5,7 +5,7 @@ var express = require("express"),
 	admin = require("firebase-admin"),
 	functions = require('firebase-functions');
 
-var serviceAccount = require("./aarohan-reg-firebase-adminsdk-punrx-1fdff1663c.json");
+var serviceAccount = require("./aarohan-reg-firebase-adminsdk-punrx-f96ce46066.json");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: false
