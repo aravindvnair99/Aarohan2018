@@ -80,17 +80,28 @@ app.post('/onSubmit', (req, res) => {
 	var mobile = req.body.mobile;
 	var cheque = req.body.cheque;
 	console.log(schoolName + " " + facultyName + " " + email + " " + mobile);
-	var ob = {
-		cheque : cheque,
-		schoolName: schoolName,
-		Faculty: {
-			ContactNo: mobile, 
-			EmailID: email,
-			Name: facultyName,
+	var sch = db.collection("Schools").doc(schoolId);
+	sch.get().then((doc) => {
+		if(doc.exists){
+			return(doc);
+		}else{
+			var ob = {
+				cheque : cheque,
+				schoolName: schoolName,
+				Faculty: {
+					ContactNo: mobile, 
+					EmailID: email,
+					Name: facultyName,
+				}
+				
+			};
+			db.collection("Schools").doc(schoolId).set(ob);
+			throw new Error("School does not exist");
 		}
-		
-	};
-	db.collection("Schools").doc(schoolId).set(ob);
+	}).catch((err)=>{
+		console.log(err);
+	});
+	
 	// db.ref('Schools/'+schoolId).set({
 	// 	cheque : cheque,
 	// 	schoolName: schoolName,
