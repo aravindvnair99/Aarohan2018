@@ -1,0 +1,52 @@
+<% include nav.ejs %>
+<div class="container">
+<div class="row"></div>
+<div class="row">
+    <div class="col l3"></div>
+    <div class="col s12 l6">
+    <div class="card">
+        <form action="/reg_event" method="POST">
+            <div class="card-content">
+            <h4 style="color: #faae29">Event Registration</h4><br>
+                    <div class="input-field">
+                      <input id="t1" name="name" type="text" class="validate" required>
+                      <label for="t1">Event Name</label>
+                    </div>
+                    <div class="input-field">
+                    <select name="category" required>
+                      <option disabled selected></option>
+                      <option>Junior</option>
+                      <option>Senior</option>
+                    </select>
+                    <label>Category</label>
+                    </div>
+                    <div class="input-field">
+                    <select name="grpcount" required>
+                      <option disabled selected></option>
+                      <option value="1">Individual Event</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                    </select>
+                    <label>Group Count</label>
+                    </div>
+                    
+                    
+            
+            </div>
+            <div class="card-action">
+            <button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
+                <i class="material-icons right">send</i>
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+<script>
+
+</script>
+<%include foot.ejs %>

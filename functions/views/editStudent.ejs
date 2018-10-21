@@ -1,0 +1,146 @@
+<% include nav.ejs %>
+<div class="container">
+<div class="row"></div>
+<div class="row">
+    <div class="col s12 l4">
+    <div class="card">
+        <form onsubmit="return isValidForm()" action="/return_student" method="POST">
+            <div class="card-content">
+                    <h4>View Student Details</h4><br>
+                    <div class="input-field">
+                      <input name="uid" placeholder="ARHNXXXX" onclick="putARHN(uid)" id="uid" type="text" class="validate" required>
+                      <label class="active" for="uid">Aaorhan ID</label>
+                    </div>
+            </div>    
+            <div class="card-action">
+                    <button class="btn -waves-effect waves-light" type="submit" name="action">View Student Details
+                        <i class="material-icons right">send</i>
+                    </button>
+            </div>
+        </form>
+    </div>
+    </div>
+    
+    <div class="col s12 l4">
+        <div class="card">
+        <div class="card-content">
+        <h4>Student Details</h4>
+        <ul class="collection">
+            <li class="collection-item avatar">
+                <% if(editstudent.uid!=null) { %>
+              <span class="title"><%= editstudent.uid %></span>
+                        <h6><%= editstudent.name %></h6>
+                        <h6><%= editstudent.gender %></h6>
+                        <h6><%= editstudent.category %></h6>
+                        <h6><%= editstudent.school %></h6>
+                            <% } else { %>
+            <h6><%="No Details Found" %></h6>
+            <% } %>
+            </li>
+        </ul>
+            
+
+        </div>
+        </div>
+    
+    </div>
+    
+    <div class="col s12 l4">
+    <div class="card">
+        <form onsubmit="return isValidForm1()" action="/student_edit" method="POST">
+            <div class="card-content">
+            <h4>Edit Student</h4><br>
+                    <div class="input-field">
+                      <input name="uid" placeholder="ARHNXXXX" onclick="putARHN()" id="uid1" type="text" class="validate" required>
+                      <label class="active" for="uid">Aaorhan ID</label>
+                    </div>
+                    <div class="input-field">
+                      <input  value="" id="t1" name="name" type="text" class="validate" required>
+                      <label class="active" for="t1">Student Name</label>
+                    </div>
+                
+                    <div class="input-field">
+                    <select name="gender" required>
+                      <option disabled selected></option>
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                    <label>Gender</label>
+                    </div>
+                
+                    <div class="input-field">
+                    <select name="category" required>
+                      <option disabled selected></option>
+                      <option>Junior</option>
+                      <option>Senior</option>
+                    </select>
+                    <label>Category</label>
+                    </div>
+                
+                    <div class="input-field">
+                    <select name="school" required>
+                        <option value="" disabled selected></option>
+                        <% for(var i=0;i<Object.keys(schools).length;i++) { %>
+                        <option><%= schools[i] %></option>
+                        <% }%>
+                    </select>
+                    <label>School</label>
+                    </div>
+            </div>
+            <div class="card-action">
+            <button class="btn -waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+    </div>
+<script>
+    function isValidForm() {
+        var id = document.getElementById("uid").value;
+        id = id.toUpperCase();
+        var arhn = id.substring(0,4);
+        var code = id.substring(4,8);
+        if (id.length != 8 || arhn != "ARHN")  {
+            Materialize.toast('Invalid ID',4000);
+            return false;
+        }
+        if(isNaN(code)) {
+            Materialize.toast('Invalid ID',4000);
+            return false;
+        }
+        <% for(var i=0;i<studentsid.length;i++) { %>
+            console.log("<%= studentsid[i] %>"+" "+id)
+            if(id=="<%= studentsid[i] %>") {
+            Materialize.toast('Aarohan ID exists',6000);
+            return true;
+            }
+        <% } %>
+        Materialize.toast("Aarohan ID doesnt exist",6000);
+        return false;
+    }
+    function isValidForm1() {
+        var id = document.getElementById("uid1").value;
+        id = id.toUpperCase();
+        var arhn = id.substring(0,4);
+        var code = id.substring(4,8);
+        if (id.length != 8 || arhn != "ARHN")  {
+            Materialize.toast('Invalid ID',4000);
+            return false;
+        }
+        if(isNaN(code)) {
+            Materialize.toast('Invalid ID',4000);
+            return false;
+        }
+        return true;
+    }
+    function putARHN(id) {
+        document.getElementById("uid").value = "ARHN";
+        document.getElementById("uid1").value = "ARHN";
+    }
+</script>
+
+
+<%include foot.ejs %>

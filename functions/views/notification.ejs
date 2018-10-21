@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link typr="text/css" rel="stylesheet" href="css/home.css">
+    <title>Aarohan Registration</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="favicon.ico" />
+
+    <!-- ............................................................................................................ -->
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script type="text/javascript" src="js/auth.js"></script>
+    <script type="text/javascript">
+        
+        function signOut(){
+            firebase.auth().signOut();
+        }
+        
+        function initApp() {
+          firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+               var uid = user.uid;
+
+               var url = document.URL;
+                var id = url.substring(url.lastIndexOf('=') + 1);
+                if(id!=uid){
+                    alert("UID Does not match!");
+                    window.location="/";  
+                }
+
+
+              document.getElementById("accountName").innerHTML = email;             
+            } else {
+              // User is signed out.
+              alert("Signed Out");
+            window.location="/login";  
+            }
+           
+        });
+    }
+
+    window.onpaint = initApp();
+
+
+      </script>
+
+    <!-- ............................................................................................................ -->
+
+
+
+</head>
+<body>
+<header>
+    <nav>
+
+            
+         <ul id="slide-out" class="side-nav">
+             <li><img class="responsive-img" src="images/logo.jpg"></li>
+             
+             <li><a id="accountName" class="waves-effect"></a></li>
+             <li><div class="divider"></div></li>
+             
+             <li><a class="waves-effect" href="/" style="height: 120px"><h4 style="color: #3eaca8; padding: 1px; text-align: center">Aarohan Registration</h4></a></li>
+             
+            <li><a class="waves-effect" href="/school_reg"><i class="material-icons">account_balance</i>School Registration</a></li>
+             
+            <li><a class="waves-effect" href="/student_reg"><i class="material-icons">people</i>Student Registration</a></li>
+             
+            <li><a class="waves-effect" href="/event_reg"><i class="material-icons">local_play</i>Event Registration</a></li>
+             
+            <li><a class="waves-effect" href="/schools"><i class="material-icons">school</i>Schools</a></li>
+            
+             
+            <li><a class="waves-effect" href="/edit_student"><i class="material-icons">settings</i>Edit Student</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="waves-effect" href="#"><i class="material-icons">developer_mode</i>Developers</a></li>
+            <li><a class="waves-effect" onclick="signOut()"><i class="material-icons">arrow_back</i>signOut</a></li>
+            
+        </ul>
+          <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+    </nav>
+</header>
+    
+    
+    
+
+
+<div class="container">
+<div class="row"></div>
+<div class="row">
+    <div class="col l3"></div>
+    <div class="col s12 l6">
+    <div class="card">
+
+        <form id="notifForm" action="/send_notification" method="POST">
+            <div class="card-content">
+            <h4 style="color: #faae29">Notifications</h4><br>
+
+
+                    <div class="input-field">
+                      <input id="titleNotif" name="Title" type="text">
+                      <label for="Title">Title</label>
+                    </div>
+                    
+                    
+                    <div class="input-field">
+                            <input id="messageNotif" name="Message" type="text">
+                            <label for="Title">Message</label>
+                          </div>
+                          
+
+            
+            </div>
+            <div class="card-action">
+            <button class="btn waves-effect waves-light" type="submit" onclick="event.preventDefault(); validateNotif(this);" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+
+
+
+
+
+function validateNotif(form){
+    var title = document.getElementById("titleNotif").value;
+    var message = document.getElementById("messageNotif").value;
+    if (confirm("The Message You are about to Broadcast is\n"+title+"\n"+message+"\n Are you sure you want to send It?")) {
+        Materialize.toast('Notification has been Broadcasted', 4000);
+        document.getElementById("notifForm").submit();
+            } else {
+        return false;
+     }
+    
+}
+
+</script>
+<%include foot.ejs %>
