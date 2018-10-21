@@ -20,7 +20,6 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 var db = admin.firestore();
-var ref = admin.app().database().ref();
 
 app.get("/", (req, res) => {
 	res.render('index');
@@ -56,7 +55,7 @@ app.get("/notif", (req, res) => {
 	});
 });
 
-app.get('/viewSchools', (req,res) =>{
+app.get('/viewSchools', (req, res) => {
 	var schoolName = new Array();
 	db.collection("Schools").get().then((querySnapshot) => {
 		querySnapshot.forEach((doc) => {
@@ -66,7 +65,7 @@ app.get('/viewSchools', (req,res) =>{
 			console.log(doc.id, " => ", doc.data());
 		});
 		return;
-	}).catch((err)=>{
+	}).catch((err) => {
 		console.log(err);
 	});
 });
@@ -82,28 +81,26 @@ app.post('/onSubmit', (req, res) => {
 	console.log(schoolName + " " + facultyName + " " + email + " " + mobile);
 	var sch = db.collection("Schools").doc(schoolId);
 	sch.get().then((doc) => {
-		if(doc.exists){
+		if (doc.exists) {
 			console.log("School already exists");
-			return(doc);
-			
-		}else{
+			return (doc);
+		} else {
 			var ob = {
-				cheque : cheque,
+				cheque: cheque,
 				schoolName: schoolName,
 				Faculty: {
-					ContactNo: mobile, 
+					ContactNo: mobile,
 					EmailID: email,
 					Name: facultyName,
 				}
-				
 			};
 			db.collection("Schools").doc(schoolId).set(ob);
 			throw new Error("School does not exist");
 		}
-	}).catch((err)=>{
+	}).catch((err) => {
 		console.log(err);
 	});
-	
+
 	// db.ref('Schools/'+schoolId).set({
 	// 	cheque : cheque,
 	// 	schoolName: schoolName,
@@ -125,42 +122,42 @@ app.post('/onStudentReg', (req, res) => {
 	var category = req.body.category;
 	var schoolId = req.body.schoolId;
 	console.log(uid + " " + name + " " + gender + " " + category);
-	if(category==="Junior"){
+	if (category === "Junior") {
 		one = "1";
 		console.log(one);
-	}else if(category === "Senior"){
+	} else if (category === "Senior") {
 		one = "2";
 	}
 	var ob = {
 		studentName: name,
-		gender : gender,
-		category : category,
+		gender: gender,
+		category: category,
 	};
 	var sch = db.collection("Schools").doc(schoolId);
 	var ch = sch.collection("Students").doc(uid);
 	sch.get().then((doc) => {
-		if(doc.exists){
-			return(doc);
-		}else{
+		if (doc.exists) {
+			return (doc);
+		} else {
 			alertfunc();
 			throw new Error("School does not exist");
 		}
-	}).catch((err)=>{
+	}).catch((err) => {
 		console.log(err);
 	});
-	
-	function checkuid(){
-		ch.get().then((doc1)=>{
-			if(doc1.exists){
-//				console.log("UID already exists");
-				return(doc1);
-			}else{
+
+	function checkuid() {
+		ch.get().then((doc1) => {
+			if (doc1.exists) {
+				//				console.log("UID already exists");
+				return (doc1);
+			} else {
 				db.collection("Schools").doc(schoolId).collection("Students").doc(uid).set(ob);
 				throw new Error("What's up?");
 			}
-		}).catch((err)=>{
+		}).catch((err) => {
 			console.log(err);
-			});
+		});
 	}
 	// if(schoolId.exists){
 	// 	if(ch.exists){
@@ -173,29 +170,38 @@ app.post('/onStudentReg', (req, res) => {
 	// }
 	res.render('studentReg');
 });
-                                                                                       
+
 app.post('/onEventReg', (req, res) => {
 	console.log(req.body);
-	var i,j;
+	var i, j;
 	var eventName = req.body.nameEvent;
 	console.log(eventName);
-	db.collection("events").doc(eventName).get().then((doc)=>{
-		if(doc.exists){
-			var eve = new Array();
+	db.collection("events").doc(eventName).get().then((doc) => {
+		if (doc.exists) {
+			var eve;
 			i = doc.data().Max;
-			for(j=1;j<=i;j++){
-				eve[j] = req.body.j;
-				console.log(eve[j]);
-				//db.collection("events").doc(eventName).collection("Groups").doc(1).set(student[]);
+			switch (i) {
+				case "3":
+					eve = {
+						Student1: req.body.Student1,
+						Student2: req.body.Student2,
+						Student3: req.body.Student3
+					}
+					break;
+
+				default:
+					console.log("Error in switch case.");
+					break;
 			}
-			return(doc.data());
-		}else{
+			db.collection("events").doc(eventName).collection("Groups").doc("1").set(eve);
+			return (doc.data());
+		} else {
 			throw new Error(err);
 		}
 	}).catch((err) => {
 		console.log(err);
 	});
-	res.render('eventReg');
+	res.redirect('/eventReg');
 });
 
 app.use((req, res, next) => {
