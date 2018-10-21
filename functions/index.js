@@ -83,7 +83,9 @@ app.post('/onSubmit', (req, res) => {
 	var sch = db.collection("Schools").doc(schoolId);
 	sch.get().then((doc) => {
 		if(doc.exists){
+			console.log("School already exists");
 			return(doc);
+			
 		}else{
 			var ob = {
 				cheque : cheque,
