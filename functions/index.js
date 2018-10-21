@@ -64,7 +64,10 @@ app.get('/viewSchools', (req,res) =>{
 			console.log(schoolName);
 			console.log("Hey");
 			console.log(doc.id, " => ", doc.data());
+			return;
 		});
+	}).catch((err)=>{
+		console.log(err);
 	});
 });
 
