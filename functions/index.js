@@ -37,22 +37,20 @@ app.get("/eventReg", (req, res) => {
 	res.render('eventReg');
 });
 app.get("/notif", (req, res) => {
-	checkInternet((isThere) => {
-		if (isThere) {
-			var uids = new Array();
-			var id = req.query.uid;
-			getPrevilage((uids) => {
-				var arrayLength = uids.length;
-				for (var i = 0; i < arrayLength; i++) {
-					if (uids[i] === id) {
-						res.render('notification');
-					}
+	if (isThere) {
+		var uids = new Array();
+		var id = req.query.uid;
+		getPrevilage((uids) => {
+			var arrayLength = uids.length;
+			for (var i = 0; i < arrayLength; i++) {
+				if (uids[i] === id) {
+					res.render('notification');
 				}
-			});
-		} else {
-			res.render('schoolError');
-		}
-	});
+			}
+		});
+	} else {
+		res.render('schoolError');
+	}
 });
 
 app.get('/viewSchools', (req, res) => {
@@ -71,19 +69,17 @@ app.get('/viewSchools', (req, res) => {
 });
 
 app.post('/onSchoolReg', (req, res) => {
-	console.log(req.body);
 	var schoolId = req.body.schoolId;
 	var schoolName = req.body.schoolName;
 	var facultyName = req.body.facultyName;
 	var email = req.body.email;
 	var mobile = req.body.mobile;
 	var cheque = req.body.cheque;
-	console.log(schoolName + " " + facultyName + " " + email + " " + mobile);
 	var sch = db.collection("Schools").doc(schoolId);
 	sch.get().then((doc) => {
 		if (doc.exists) {
-			console.log("School already exists");
-			return (doc);
+			console.warn(schoolName + " already exists.");
+			return;
 		} else {
 			var ob = {
 				cheque: cheque,
@@ -95,7 +91,7 @@ app.post('/onSchoolReg', (req, res) => {
 				}
 			};
 			db.collection("Schools").doc(schoolId).set(ob);
-			throw new Error("School does not exist");
+			return;
 		}
 	}).catch((err) => {
 		console.log(err);
@@ -104,17 +100,14 @@ app.post('/onSchoolReg', (req, res) => {
 });
 
 app.post('/onStudentReg', (req, res) => {
-	console.log(req.body);
 	var one;
 	var uid = req.body.uid;
 	var name = req.body.studentName;
 	var gender = req.body.gender;
 	var category = req.body.category;
 	var schoolId = req.body.schoolId;
-	console.log(uid + " " + name + " " + gender + " " + category);
 	if (category === "Junior") {
 		one = "1";
-		console.log(one);
 	} else if (category === "Senior") {
 		one = "2";
 	}
@@ -133,27 +126,25 @@ app.post('/onStudentReg', (req, res) => {
 			throw new Error("School does not exist");
 		}
 	}).catch((err) => {
-		console.log(err);
+		console.error(err);
 	});
 	function checkuid() {
 		ch.get().then((doc1) => {
 			if (doc1.exists) {
-				console.log("UID already exists");
 				return (doc1);
 			} else {
 				db.collection("Schools").doc(schoolId).collection("Students").doc(uid).set(ob);
 				throw new Error("What's up?");
 			}
 		}).catch((err) => {
-			console.log(err);
+			console.error(err);
 		});
 	}
 	res.redirect('/studentReg');
 });
 
 app.post('/onEventReg', (req, res) => {
-	console.log(req.body);
-	var i, j;
+	var i;
 	var eventName = req.body.nameEvent;
 	console.log(eventName);
 	db.collection("events").doc(eventName).get().then((doc) => {
@@ -161,7 +152,7 @@ app.post('/onEventReg', (req, res) => {
 			var eve;
 			i = doc.data().Max;
 			switch (i) {
-				case "3":
+				case 3:
 					eve = {
 						Student1: req.body.Student1,
 						Student2: req.body.Student2,
@@ -178,7 +169,7 @@ app.post('/onEventReg', (req, res) => {
 			throw new Error(err);
 		}
 	}).catch((err) => {
-		console.log(err);
+		console.error(err);
 	});
 	res.redirect('/eventReg');
 });
