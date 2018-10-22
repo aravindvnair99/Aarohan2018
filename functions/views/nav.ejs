@@ -18,6 +18,11 @@
 		function initApp() {
 			firebase.auth().onAuthStateChanged(function (user) {
 				if (user) {
+					var d = new Date();
+					if ((d.getTime() - Date.parse(user.metadata.lastSignInTime)) > 900000) {
+						alert("Please login again. Session expired.")
+						firebase.auth().signOut();
+					}
 					var displayName = user.displayName;
 					var email = user.email;
 					var uid = user.uid;
