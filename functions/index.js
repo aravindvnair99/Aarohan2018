@@ -146,6 +146,8 @@ app.post('/onStudentReg', (req, res) => {
 app.post('/onEventReg', (req, res) => {
 	var i;
 	var eventName = req.body.nameEvent;
+	var count = req.body.count;
+	console.log(count);
 	console.log(eventName);
 	db.collection("events").doc(eventName).get().then((doc) => {
 		if (doc.exists) {
@@ -201,7 +203,7 @@ app.post('/onEventReg', (req, res) => {
 					console.log("Error in switch case.");
 					break;
 			}
-			db.collection("events").doc(eventName).collection("Groups").doc("1").set(eve);
+			db.collection("events").doc(eventName).collection("Groups").doc(count).set(eve);
 			return (doc.data());
 		} else {
 			throw new Error(err);

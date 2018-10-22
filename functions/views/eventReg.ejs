@@ -11,7 +11,7 @@
 		<div class="col l3"></div>
 		<div class="col s12 l6">
 			<div class="card">
-				<form action="/onEventReg" method="POST">
+				<form action="/onEventReg" method="POST" id="form">
 					<div class="card-content">
 						<h4 style="color: #faae29">Event Registration</h4><br>
 						<div class="input-field">
@@ -45,6 +45,11 @@
 								<i class="material-icons right">send</i>
 							</button>
 						</div>
+						
+			<div class="input-field">
+					<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
+					<label class="active" for="t1"></label>
+				</div>
 						<div id="container" />
 				</form>
 			</div>
@@ -65,6 +70,7 @@
 			if (doc.exists) {
 				max = doc.data().Max;
 				min = doc.data().Min;
+				count = doc.data().count;
 				console.log(max);
 				if (max == min) {
 					while (container.hasChildNodes()) {
@@ -101,6 +107,13 @@
 			console.log(err);
 		});
 	}
+	$('#form').on('keyup keypress', function(e) {
+          var keyCode = e.keyCode || e.which;
+          if (keyCode === 13) { 
+            e.preventDefault();
+            return false;
+          }
+        });
 </script>
 
 <%include foot.ejs %>
