@@ -152,11 +152,49 @@ app.post('/onEventReg', (req, res) => {
 			var eve;
 			i = doc.data().Max;
 			switch (i) {
+				case 1:
+					eve = {
+						Student1: req.body.Student1
+					}
+					break;
+				case 2:
+					eve = {
+						Student1: req.body.Student1,
+						Student2: req.body.Student2,
+					}
+					break;
 				case 3:
 					eve = {
 						Student1: req.body.Student1,
 						Student2: req.body.Student2,
 						Student3: req.body.Student3
+					}
+					break;
+				case 4:
+					eve = {
+						Student1: req.body.Student1,
+						Student2: req.body.Student2,
+						Student3: req.body.Student3,
+						Student4: req.body.Student4
+					}
+					break;
+				case 5:
+					eve = {
+						Student1: req.body.Student1,
+						Student2: req.body.Student2,
+						Student3: req.body.Student3,
+						Student4: req.body.Student4,
+						Student5: req.body.Student5
+					}
+					break;
+				case 6:
+					eve = {
+						Student1: req.body.Student1,
+						Student2: req.body.Student2,
+						Student3: req.body.Student3,
+						Student4: req.body.Student4,
+						Student5: req.body.Student5,
+						student6: req.body.student6
 					}
 					break;
 				default:
