@@ -67,6 +67,10 @@ app.get('/viewSchools', (req, res) => {
 	});
 });
 
+app.get("/beingPoirot", (req, res) => {
+	res.render('beingPoirot');
+});
+
 app.post('/onEventSelect', (req, res) => {
 	var event = req.body.eventName;
 	switch (event) {
@@ -80,13 +84,12 @@ app.post('/onEventSelect', (req, res) => {
 });
 
 app.post('/onSchoolReg', (req, res) => {
-	var schoolId = req.body.schoolId;
 	var schoolName = req.body.schoolName;
 	var facultyName = req.body.facultyName;
 	var email = req.body.email;
 	var mobile = req.body.mobile;
 	var cheque = req.body.cheque;
-	var sch = db.collection("Schools").doc(schoolId);
+	var sch = db.collection("Schools").doc(schoolName);
 	sch.get().then((doc) => {
 		if (doc.exists) {
 			console.warn(schoolName + " already exists.");
@@ -101,7 +104,7 @@ app.post('/onSchoolReg', (req, res) => {
 					Name: facultyName,
 				}
 			};
-			db.collection("Schools").doc(schoolId).set(ob);
+			db.collection("Schools").doc(schoolName).set(ob);
 			return;
 		}
 	}).catch((err) => {
@@ -208,7 +211,7 @@ app.post('/onEventReg', (req, res) => {
 					console.log("Error in switch case.");
 					break;
 			}
-			db.collection("events").doc(eventName).collection("Groups").doc(count).set(eve);
+			db.collection("events").doc(eventName).collection("Groups").set(eve);
 			return (doc.data());
 		} else {
 			throw new Error(err);
