@@ -153,7 +153,7 @@ app.post('/onStudentReg', (req, res) => {
 
 app.post('/onEventReg', (req, res) => {
 	var i;
-	var eventName = req.body.nameEvent;
+	var eventName = req.body.eventName;
 	var count = req.body.count;
 	console.log(count);
 	console.log(eventName);
@@ -204,7 +204,7 @@ app.post('/onEventReg', (req, res) => {
 						Student3: req.body.Student3,
 						Student4: req.body.Student4,
 						Student5: req.body.Student5,
-						student6: req.body.student6
+						Student6: req.body.Student6
 					}
 					break;
 				default:
