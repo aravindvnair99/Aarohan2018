@@ -34,6 +34,25 @@
 		</div>
 	</div>
 </div>
+<script defer src="/__/firebase/5.5.5/firebase-app.js"></script>
+<script defer src="/__/firebase/5.5.5/firebase-firestore.js"></script>
+<script defer src="/__/firebase/init.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+	var db = firebase.firestore();
+	var query = db.collection("Schools").limit(50);
+	query.onSnapshot(function(snapshot) {
+    if (!snapshot.size) return renderer.empty(); // Display "There are no restaurants".
+
+    snapshot.docChanges().forEach(function(change) {
+      if (change.type === 'removed') {
+        renderer.remove(change.doc);
+      } else {
+        renderer.display(change.doc);
+      }
+    });
+  });
+</script>
 
 
 <%include foot.ejs %>
