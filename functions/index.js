@@ -137,7 +137,7 @@ app.post('/onStudentReg', (req, res) => {
 				return;
 			} else {
 				db.collection("Schools").doc(schoolName).collection("Students").doc(uid).set(ob);
-				return;
+				throw new ("Added");
 			}
 		}).catch((err) => {
 			console.error(err);
