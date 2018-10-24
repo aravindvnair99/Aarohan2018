@@ -115,7 +115,7 @@ app.post('/onStudentReg', (req, res) => {
 	var name = req.body.studentName;
 	var gender = req.body.gender;
 	var category = req.body.category;
-	var schoolName = "Delhi Public School";
+	var schoolName = "St. Josephs Pre University College";
 	var ob = {
 		studentName: name,
 		gender: gender,
@@ -126,7 +126,10 @@ app.post('/onStudentReg', (req, res) => {
 	sch.get().then((doc) => {
 		if (doc.exists) {
 			checkuid();
-			return;
+			console.log("one");
+			return("Not working");
+		}else{
+			throw new (err);
 		}
 	}).catch((err) => {
 		console.error(err);
@@ -134,8 +137,10 @@ app.post('/onStudentReg', (req, res) => {
 	function checkuid() {
 		ch.get().then((doc1) => {
 			if (doc1.exists) {
+				console.log("two");
 				return;
 			} else {
+				console.log("three");
 				db.collection("Schools").doc(schoolName).collection("Students").doc(uid).set(ob);
 				throw new ("Added");
 			}
