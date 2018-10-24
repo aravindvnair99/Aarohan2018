@@ -45,11 +45,11 @@
 								<i class="material-icons right">send</i>
 							</button>
 						</div>
-						
-			<div class="input-field">
-					<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
-					<label class="active" for="t1"></label>
-				</div>
+
+						<div class="input-field">
+							<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
+							<label class="active" for="t1"></label>
+						</div>
 						<div id="container" />
 				</form>
 			</div>
@@ -107,13 +107,13 @@
 			console.log(err);
 		});
 	} */
-	$('#form').on('keyup keypress', function(e) {
-          var keyCode = e.keyCode || e.which;
-          if (keyCode === 13) { 
-            e.preventDefault();
-            return false;
-          }
-        });
+	$('#form').on('keyup keypress', function (e) {
+		var keyCode = e.keyCode || e.which;
+		if (keyCode === 13) {
+			e.preventDefault();
+			return false;
+		}
+	});
 </script>
 
 <%include foot.ejs %>
