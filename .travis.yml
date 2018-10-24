@@ -1,3 +1,5 @@
+before_install:
+- npm --prefix ./functions install
 language: node_js
 node_js:
 - '6.11.5'
