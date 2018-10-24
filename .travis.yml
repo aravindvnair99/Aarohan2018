@@ -1,9 +1,0 @@
-before_install:
-- npm --prefix ./functions install
-language: node_js
-node_js:
-- '6.11.5'
-- '8'
-- stable
-sudo: false
-script: node ./functions/index.js
