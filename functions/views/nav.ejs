@@ -12,17 +12,41 @@
 	<script src="/__/firebase/5.5.5/firebase-auth.js"></script>
 	<script src="/__/firebase/init.js"></script>
 	<script type="text/javascript">
+		var IdealTimeOut = 10; //10 seconds
+		var idleSecondsTimer = null;
+		var idleSecondsCounter = 0;
+		document.onclick = function () { idleSecondsCounter = 0; };
+		document.onmousemove = function () { idleSecondsCounter = 0; };
+		document.onkeypress = function () { idleSecondsCounter = 0; };
+		idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
+
+		function CheckIdleTime() {
+			idleSecondsCounter++;
+			var oPanel = document.getElementById("timeOut");
+			if (oPanel) {
+				oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
+			}
+			if (idleSecondsCounter >= IdealTimeOut) {
+				window.clearInterval(idleSecondsTimer);
+				alert("Your Session has expired. Please login again.");
+				firebase.auth().signOut();
+			}
+		}
 		function signOut() {
 			firebase.auth().signOut();
 		}
 		function initApp() {
 			firebase.auth().onAuthStateChanged(function (user) {
 				if (user) {
-					var d = new Date();
-					if ((d.getTime() - Date.parse(user.metadata.lastSignInTime)) > 900000) {
-						alert("Please login again. Session expired.")
-						firebase.auth().signOut();
-					}
+					if ( CheckIdleTime() > 900000) {
+					 alert("Please login again. Session expired.")
+					 firebase.auth().signOut();
+					 }
+					//var d = new Date();
+					// if ((d.getTime() - Date.parse(user.metadata.lastSignInTime)) > 900000) {
+					// alert("Please login again. Session expired.")
+					// firebase.auth().signOut();
+					// }
 					var displayName = user.displayName;
 					var email = user.email;
 					var uid = user.uid;
