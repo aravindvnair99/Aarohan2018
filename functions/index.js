@@ -136,7 +136,7 @@ app.post('/onStudentReg', (req, res) => {
 			if (doc1.exists) {
 				return;
 			} else {
-				db.collection("Schools").doc(schoolId).collection("Students").doc(uid).set(ob);
+				db.collection("Schools").doc(schoolName).collection("Students").doc(uid).set(ob);
 				return;
 			}
 		}).catch((err) => {
