@@ -59,13 +59,24 @@ app.get('/viewSchools', (req, res) => {
 		querySnapshot.forEach((doc) => {
 			schoolName = doc.data();
 			console.log(schoolName);
-			console.log("Hey");
 			console.log(doc.id, " => ", doc.data());
 		});
 		return;
 	}).catch((err) => {
 		console.log(err);
 	});
+});
+
+app.post('/onEventSelect', (req, res) => {
+	var event = req.body.eventName;
+	switch (event) {
+		case "beingPoirot":
+			
+			break;
+	
+		default:
+			break;
+	}
 });
 
 app.post('/onSchoolReg', (req, res) => {
@@ -100,30 +111,22 @@ app.post('/onSchoolReg', (req, res) => {
 });
 
 app.post('/onStudentReg', (req, res) => {
-	var one;
-	var uid = req.body.uid;
+	var uid = "ARHN" + req.body.uid;
 	var name = req.body.studentName;
 	var gender = req.body.gender;
 	var category = req.body.category;
-	var schoolId = req.body.schoolId;
-	if (category === "Junior") {
-		one = "1";
-	} else if (category === "Senior") {
-		one = "2";
-	}
+	var schoolName = "Delhi Public School";
 	var ob = {
 		studentName: name,
 		gender: gender,
 		category: category,
 	};
-	var sch = db.collection("Schools").doc(schoolId);
+	var sch = db.collection("Schools").doc(schoolName);
 	var ch = sch.collection("Students").doc(uid);
 	sch.get().then((doc) => {
 		if (doc.exists) {
 			checkuid();
-			return (doc);
-		} else {
-			throw new Error("School does not exist");
+			return;
 		}
 	}).catch((err) => {
 		console.error(err);
@@ -131,10 +134,10 @@ app.post('/onStudentReg', (req, res) => {
 	function checkuid() {
 		ch.get().then((doc1) => {
 			if (doc1.exists) {
-				return (doc1);
+				return;
 			} else {
 				db.collection("Schools").doc(schoolId).collection("Students").doc(uid).set(ob);
-				throw new Error("What's up?");
+				return;
 			}
 		}).catch((err) => {
 			console.error(err);

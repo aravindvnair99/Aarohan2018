@@ -1,12 +1,7 @@
 <% include nav.ejs %>
-
 <head>
 	<title>Student Registration Form</title>
-
 </head>
-
-<h3>SCHOOL REGISTRATION FORM</h3>
-
 <div class="container">
 	<div class="row"></div>
 	<div class="row">
@@ -23,26 +18,26 @@
 							</div>
 						</div>
 						<div class="input-field">
-							<input value="" id="t1" name="name" type="text" class="validate" required>
-							<label class="active" for="t1">Student Name</label>
+							<input value="" id="name" name="name" type="text" class="validate" required>
+							<label class="active" for="name">Student Name</label>
 						</div>
 
 						<div class="input-field">
-							<select name="gender" required>
+							<select id="gender" name="gender" required>
 								<option disabled selected></option>
 								<option>Male</option>
 								<option>Female</option>
 							</select>
-							<label>Gender</label>
+							<label for="gender">Gender</label>
 						</div>
 
 						<div class="input-field">
-							<select name="category" required>
+							<select id="category" name="category" required>
 								<option disabled selected></option>
 								<option>Junior</option>
 								<option>Senior</option>
 							</select>
-							<label>Category</label>
+							<label for="category">Category</label>
 						</div>
 						<div class="card-action">
 							<button class="btn -waves-effect waves-light" type="submit" name="action">Submit
