@@ -1,44 +1,49 @@
 <% include nav.ejs %>
 
 <head>
-    <title>Event Registration Form</title>
+	<title>Event Registration Form</title>
 
 </head>
 
 <div class="container">
-    <div class="row"></div>
-    <div class="row">
-        <div class="col l3"></div>
-        <div class="col s12 l6">
-            <div class="card">
-                <form action="/onEventReg" method="POST" id="form">
-                    <div class="card-content">
-                        <h4 style="color: #faae29">Event Registration</h4><br>
-                        <div class="input-field">
-                            <input id="t1" name="Student3" type="text" class="validate" required>
-                            <label for="t1">Student 1</label>
-                        </div>
-                        <div class="input-field">
-                            <input id="t1" name="Student2" type="text" class="validate" required>
-                            <label for="t1">Student 2<label>
-                        </div>
-                        </div>
-                        <!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
-                        <div class="card-action">
-                            <button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
+	<div class="row"></div>
+	<div class="row">
+		<div class="col l3"></div>
+		<div class="col s12 l6">
+			<div class="card">
+				<form action="/onEventReg" method="POST" id="form">
+					<div class="card-content">
+						<h4 style="color: #faae29">Event Registration</h4><br>
+						<div class="input-field">
+							<input id="t1" name="Kerbal space program" type="text" class="hidden" required>
+							<label for="t1">Kerbal space program
+							</label>
+						</div>
+						<div class="input-field">
+							<input id="t1" name="Student3" type="text" class="validate" required>
+							<label for="t1">Student 1</label>
+						</div>
+						<div class="input-field">
+							<input id="t1" name="Student2" type="text" class="validate" required>
+							<label for="t1">Student 2<label>
+						</div>
+					</div>
+					<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
+					<div class="card-action">
+						<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
+							<i class="material-icons right">send</i>
+						</button>
+					</div>
 
-                        <div class="input-field">
-                            <input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
-                            <label class="active" for="t1"></label>
-                        </div>
-                        <div id="container" />
-                </form>
-            </div>
-        </div>
-    </div>
+					<div class="input-field">
+						<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
+						<label class="active" for="t1"></label>
+					</div>
+					<div id="container" />
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 <script defer src="/__/firebase/5.5.5/firebase-app.js"></script>
 <script defer src="/__/firebase/5.5.5/firebase-firestore.js"></script>
@@ -91,13 +96,13 @@
 			console.log(err);
 		});
 	} */
-    $('#form').on('keyup keypress', function (e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13) {
-            e.preventDefault();
-            return false;
-        }
-    });
+	$('#form').on('keyup keypress', function (e) {
+		var keyCode = e.keyCode || e.which;
+		if (keyCode === 13) {
+			e.preventDefault();
+			return false;
+		}
+	});
 </script>
 
 <%include foot.ejs %>
