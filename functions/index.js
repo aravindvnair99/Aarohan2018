@@ -222,6 +222,7 @@ app.post('/onEventReg', (req, res) => {
 					break;
 			}
 			console.log(eve);
+			console.log(eventName);
 			db.collection("events").doc(eventName).collection("Groups").add(eve);
 			return (doc.data());
 		} else {
