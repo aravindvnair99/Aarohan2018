@@ -70,9 +70,62 @@ app.get('/viewSchools', (req, res) => {
 app.get("/beingPoirot", (req, res) => {
 	res.render('beingpoirot');
 });
-
+app.get("/circuitrix", (req, res) => {
+	res.render('circuitrix');
+});
+app.get("/codeBound", (req, res) => {
+	res.render('codeBound');
+});
+app.get("/espritDeCorps", (req, res) => {
+	res.render('espritDeCorps');
+});
+app.get("/finalDestination", (req, res) => {
+	res.render('finalDestination');
+});
+app.get("/kerbalSpaceProgram", (req, res) => {
+	res.render('kerbalSpaceProgram');
+});
+app.get("/lakshya", (req, res) => {
+	res.render('lakshya');
+});
+app.get("/letsRingItUp", (req, res) => {
+	res.render('letsRingItUp');
+});
+app.get("/mathementumContour", (req, res) => {
+	res.render('mathementumContour');
+});
+app.get("/mechathalon", (req, res) => {
+	res.render('mechathalon');
+});
+app.get("/mindsweeper", (req, res) => {
+	res.render('mindsweeper');
+});
+app.get("/omniumArtiumMagister", (req, res) => {
+	res.render('omniumArtiumMagister');
+});
 app.get("/projectExhibition", (req, res) => {
 	res.render('projectExhibition');
+});
+app.get("/raceForGlory", (req, res) => {
+	res.render('raceForGlory');
+});
+app.get("/roboCup", (req, res) => {
+	res.render('roboCup');
+});
+app.get("/schoolDuels", (req, res) => {
+	res.render('schoolDuels');
+});
+app.get("/sherlocked", (req, res) => {
+	res.render('sherlocked');
+});
+app.get("/targo", (req, res) => {
+	res.render('targo');
+});
+app.get("/techRoadies", (req, res) => {
+	res.render('techRoadies');
+});
+app.get("/theSphinxQuiz", (req, res) => {
+	res.render('theSphinxQuiz');
 });
 
 app.post('/onEventSelect', (req, res) => {
@@ -81,8 +134,62 @@ app.post('/onEventSelect', (req, res) => {
 		case "beingPoirot":
 			res.redirect('/beingPoirot');
 			break;
+		case "circuitrix":
+			res.redirect('/circuitrix');
+			break;
+		case "codeBound":
+			res.redirect('/codeBound');
+			break;
+		case "espritDeCorps":
+			res.redirect('/espritDeCorps');
+			break;
+		case "finalDestination":
+			res.redirect('/finalDestination');
+			break;
+		case "kerbalSpaceProgram":
+			res.redirect('/kerbalSpaceProgram');
+			break;
+		case "lakshya":
+			res.redirect('/lakshya');
+			break;
+		case "letsRingItUp":
+			res.redirect('/letsRingItUp');
+			break;
+		case "mathementumContour":
+			res.redirect('/mathementumContour');
+			break;
+		case "mechathalon":
+			res.redirect('/mechathalon');
+			break;
+		case "mindsweeper":
+			res.redirect('/mindsweeper');
+			break;
+		case "omniumArtiumMagister":
+			res.redirect('/omniumArtiumMagister');
+			break;
 		case "projectExhibition":
 			res.redirect('/projectExhibition');
+			break;
+		case "raceForGlory":
+			res.redirect('/raceForGlory');
+			break;
+		case "roboCup":
+			res.redirect('/roboCup');
+			break;
+		case "schoolDuels":
+			res.redirect('/schoolDuels');
+			break;
+		case "sherlocked":
+			res.redirect('/sherlocked');
+			break;
+		case "targo":
+			res.redirect('/targo');
+			break;
+		case "techRoadies":
+			res.redirect('/techRoadies');
+			break;
+		case "theSphinxQuiz":
+			res.redirect('/theSphinxQuiz');
 			break;
 		default:
 			res.redirect('/eventReg');
@@ -159,15 +266,10 @@ app.post('/onStudentReg', (req, res) => {
 });
 
 app.post('/eventRegistration', (req, res) => {
-
-
 })
 
 app.post('/onEventReg', (req, res) => {
-	var i;
-	var eve;
-	var eventName = req.body.eventName;
-	console.log(eventName);
+	var i, eve, eventName = req.body.eventName;
 	db.collection("events").doc(eventName).get().then((doc) => {
 		if (doc.exists) {
 			i = doc.data().Max;
@@ -221,8 +323,6 @@ app.post('/onEventReg', (req, res) => {
 					console.log("Error in switch case.");
 					break;
 			}
-			console.log(eve);
-			console.log(eventName);
 			db.collection("events").doc(eventName).collection("Groups").add(eve);
 			return (doc.data());
 		} else {
@@ -231,10 +331,72 @@ app.post('/onEventReg', (req, res) => {
 	}).catch((err) => {
 		console.error(err);
 	});
-	res.redirect('/eventReg');
+	switch (eventName) {
+		case "Being poirot":
+			res.redirect('/beingPoirot');
+			break;
+		case "Circuitrix":
+			res.redirect('/circuitrix');
+			break;
+		case "Code bound":
+			res.redirect('/codeBound');
+			break;
+		case "Esprit de corps":
+			res.redirect('/espritDeCorps');
+			break;
+		case "Final destination":
+			res.redirect('/finalDestination');
+			break;
+		case "Kerbal space program":
+			res.redirect('/kerbalSpaceProgram');
+			break;
+		case "Lakshya":
+			res.redirect('/lakshya');
+			break;
+		case "Let's ring it up":
+			res.redirect('/letsRingItUp');
+			break;
+		case "Mathementum contour":
+			res.redirect('/mathementumContour');
+			break;
+		case "Mechathalon":
+			res.redirect('/mechathalon');
+			break;
+		case "Mindsweeper":
+			res.redirect('/mindsweeper');
+			break;
+		case "Omnium artium magister":
+			res.redirect('/omniumArtiumMagister');
+			break;
+		case "Project exhibition":
+			res.redirect('/projectExhibition');
+			break;
+		case "Race for glory":
+			res.redirect('/raceForGlory');
+			break;
+		case "Robo cup":
+			res.redirect('/roboCup');
+			break;
+		case "School Duels":
+			res.redirect('/schoolDuels');
+			break;
+		case "Sherlocked":
+			res.redirect('/sherlocked');
+			break;
+		case "Targo":
+			res.redirect('/targo');
+			break;
+		case "Tech roadies":
+			res.redirect('/techRoadies');
+			break;
+		case "The sphinx quiz":
+			res.redirect('/theSphinxQuiz');
+			break;
+		default:
+			res.redirect('/eventReg');
+			break;
+	}
 });
-
-
 
 app.use((req, res, next) => {
 	res.status(404).render('404');
