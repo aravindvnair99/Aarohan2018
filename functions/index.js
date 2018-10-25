@@ -79,9 +79,9 @@ app.post('/onEventSelect', (req, res) => {
 	var event = req.body.eventName;
 	switch (event) {
 		case "beingPoirot":
-			
+			res.redirect('/beingPoirot')
 			break;
-	
+		case "project"
 		default:
 			break;
 	}
@@ -154,6 +154,11 @@ app.post('/onStudentReg', (req, res) => {
 	}
 	res.redirect('/studentReg');
 });
+
+app.post('/eventRegistration', (req,res) => {
+
+
+})
 
 app.post('/onEventReg', (req, res) => {
 	var i;
