@@ -153,13 +153,11 @@ app.post('/onStudentReg', (req, res) => {
 
 app.post('/onEventReg', (req, res) => {
 	var i;
+	var eve;
 	var eventName = req.body.eventName;
-	var count = req.body.count;
-	console.log(count);
 	console.log(eventName);
 	db.collection("events").doc(eventName).get().then((doc) => {
 		if (doc.exists) {
-			var eve;
 			i = doc.data().Max;
 			switch (i) {
 				case 1:
@@ -179,6 +177,7 @@ app.post('/onEventReg', (req, res) => {
 						Student2: req.body.Student2,
 						Student3: req.body.Student3
 					}
+					console.log("Works");
 					break;
 				case 4:
 					eve = {
@@ -211,7 +210,10 @@ app.post('/onEventReg', (req, res) => {
 					console.log("Error in switch case.");
 					break;
 			}
-			db.collection("events").doc(eventName).collection("Groups").set(eve);
+			var c = retrieveCount();
+			// console.log(c);
+			// db.collection("events").doc("Being poirot").collection("Groups").doc(c).set({"name":Abhi});
+			// console.log(c+"hii")
 			return (doc.data());
 		} else {
 			throw new Error(err);
@@ -219,8 +221,32 @@ app.post('/onEventReg', (req, res) => {
 	}).catch((err) => {
 		console.error(err);
 	});
+	function retrieveCount(){
+		var count;
+		console.log("outside")
+		db.collection("events").doc(eventName).get().then((doc) => {
+			if (doc.exists) {
+				console.log("inside")
+				count = doc.data().count;
+				count = count + 1;
+				db.collection("events").doc(eventName).update({"count": count})
+				addgroup(count)
+				console.log(count)
+				return count;
+			}else{
+				throw new Error("Error");
+			}
+		}).catch((err) =>{
+			return(err);
+		} )
+	}
+	function addgroup(count){
+		db.collection("events").doc(eventName).collection("Groups").doc(count).set(eve);
+	}
 	res.redirect('/eventReg');
 });
+
+
 
 app.use((req, res, next) => {
 	res.status(404).render('404');
