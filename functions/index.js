@@ -68,7 +68,7 @@ app.get('/viewSchools', (req, res) => {
 });
 
 app.get("/beingPoirot", (req, res) => {
-	res.render('beingPoirot');
+	res.render('beingpoirot');
 });
 
 app.get("/projectExhibition", (req, res) => {
@@ -79,10 +79,13 @@ app.post('/onEventSelect', (req, res) => {
 	var event = req.body.eventName;
 	switch (event) {
 		case "beingPoirot":
-			res.redirect('/beingPoirot')
+			res.redirect('/beingPoirot');
 			break;
-		case "project"
+		case "projectExhibition":
+			res.redirect('/projectExhibition');
+			break;
 		default:
+			res.redirect('/eventReg');
 			break;
 	}
 });
@@ -133,8 +136,8 @@ app.post('/onStudentReg', (req, res) => {
 	sch.get().then((doc) => {
 		if (doc.exists) {
 			checkuid();
-			return(doc);
-		}else{
+			return (doc);
+		} else {
 			throw new Error("School doesn't exist");
 		}
 	}).catch((err) => {
@@ -155,7 +158,7 @@ app.post('/onStudentReg', (req, res) => {
 	res.redirect('/studentReg');
 });
 
-app.post('/eventRegistration', (req,res) => {
+app.post('/eventRegistration', (req, res) => {
 
 
 })
