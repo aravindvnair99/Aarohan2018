@@ -1,4 +1,5 @@
 <% include nav.ejs %>
+
 <head>
 	<title>Student Registration Form</title>
 </head>
@@ -11,6 +12,13 @@
 				<form action="/onStudentReg" method="POST">
 					<div class="card-content">
 						<h4 style="color: #faae29;">Student Registration</h4><br>
+						<div class="input-field">
+							<select id="schoolName" name="schoolName" required>
+								<option disabled selected></option>
+							</select>
+							<label for="schoolName">School Name</label>
+						</div>
+
 						<div class="input-field">
 							<div class="input-field">
 								<input name="uid" id="uid" type="text" class="validate" maxlength="4" minlength="4" required>
@@ -48,7 +56,31 @@
 		</div>
 	</div>
 </div>
+<script>
+	var db = firebase.firestore();
+	db.collection("Schools").get().then((querySnapshot) => {
+		var i =1;
+		querySnapshot.forEach((doc) => {
+			console.log(doc.id)
+			document.getElementById("schoolName").options[i] =new Option(doc.id);
+			i++;
+			// var select = document.getElementById('schoolName');
+			// var opt = document.createElement('option');
+			// opt.value = doc.id;
+			// opt.innerHTML = doc.id;
+			// select.appendChild(opt);
 
+			// var g = document.createElement('option');
+			// g.id = doc.id;
+			// g.value = doc.id;
+			// container = document.getElementById('schoolName')
+			// container.appendChild(g);
+		});
+		return;
+	}).catch((err) => {
+		console.log(err);
+	});
+</script>
 <!-- <form action="/onStudentReg" method="POST">
 		<div class="card-content">
 			<h4 style="color: #faae29;">Student Registration</h4><br>

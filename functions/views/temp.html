@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script type="text/javascript">
+    var created = 0;
+
+        function displayAccordingly() {
+
+            if (created == 1) {
+                removeDrop();
+            }
+
+            //Call mainMenu the main dropdown menu
+            var mainMenu = document.getElementById('mainMenu');
+
+            //Create the new dropdown menu
+            var whereToPut = document.getElementById('myDiv');
+            var newDropdown = document.createElement('select');
+            newDropdown.setAttribute('id',"newDropdownMenu");
+            whereToPut.appendChild(newDropdown);
+
+            if (mainMenu.value == "fruit") { //The person chose fruit
+
+                //Add an option called "Apple"
+                var optionApple=document.createElement("option");
+                optionApple.text="Apple";
+                newDropdown.add(optionApple,newDropdown.options[null]);
+
+                //Add an option called "Banana"
+                var optionBanana=document.createElement("option");
+                optionBanana.text="Banana";
+                newDropdown.add(optionBanana,newDropdown.options[null]);
+
+            } else if (mainMenu.value == "vegetable") { //The person chose vegetabes
+
+                //Add an option called "Spinach"
+                var optionSpinach=document.createElement("option");
+                optionSpinach.text="Spinach";
+                newDropdown.add(optionSpinach,newDropdown.options[null]);
+
+                //Add an option called "Zucchini"
+                var optionZucchini=document.createElement("option");
+                optionZucchini.text="Zucchini";
+                newDropdown.add(optionZucchini,newDropdown.options[null]);
+
+            }
+
+            created = 1
+
+        }
+
+        function removeDrop() {
+            var d = document.getElementById('myDiv');
+
+            var oldmenu = document.getElementById('newDropdownMenu');
+
+            d.removeChild(oldmenu);
+        }
+    </script>
+    </head>
+    <body>
+        <select id="mainMenu" onchange="displayAccordingly()">
+        <option value="">--</option>
+        <option value="fruit">Fruit</option>
+        <option value="vegetable">Vegetable</option>
+        </select>
+        <div id="myDiv"></div>
+    </body>
+
+</html>

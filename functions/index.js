@@ -181,7 +181,6 @@ app.post('/onEventReg', (req, res) => {
 						Student2: req.body.Student2,
 						Student3: req.body.Student3
 					}
-					console.log("Works");
 					break;
 				case 4:
 					eve = {
@@ -215,7 +214,7 @@ app.post('/onEventReg', (req, res) => {
 					break;
 			}
 			console.log(eve);
-			db.collection("events").doc("Being poirot").collection("Groups").add(eve);
+			db.collection("events").doc(eventName).collection("Groups").add(eve);
 			return (doc.data());
 		} else {
 			throw new Error(err);
