@@ -71,6 +71,10 @@ app.get("/beingPoirot", (req, res) => {
 	res.render('beingPoirot');
 });
 
+app.get("/projectExhibition", (req, res) => {
+	res.render('projectExhibition');
+});
+
 app.post('/onEventSelect', (req, res) => {
 	var event = req.body.eventName;
 	switch (event) {

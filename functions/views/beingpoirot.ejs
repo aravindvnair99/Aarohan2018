@@ -17,18 +17,9 @@
 						<div class="input-field">
 							<input id="eventName" name="eventName" value="Being poirot" type="hidden" class="validate" required>
 						</div><br>
-						<div class="input-field">
-							<input id="Student1" name="Student1" type="text" class="validate" required>
-							<label for="Student1">Student 1</label>
-						</div>
-						<div class="input-field">
-							<input id="Student2" name="Student2" type="text" class="validate" required>
-							<label for="STudent2">Student 2</label>
-						</div>
-						<div class="input-field">
-							<input id="Student3" name="Student3" type="text" class="validate" required>
-							<label for="Student3">Student 3</label>
-						</div>
+						<% include Student1.ejs %>
+						<% include Student2.ejs %>
+						<% include Student3.ejs %>
 						<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
