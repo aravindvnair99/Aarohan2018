@@ -210,10 +210,8 @@ app.post('/onEventReg', (req, res) => {
 					console.log("Error in switch case.");
 					break;
 			}
-			var c = retrieveCount();
-			// console.log(c);
-			// db.collection("events").doc("Being poirot").collection("Groups").doc(c).set({"name":Abhi});
-			// console.log(c+"hii")
+			console.log(eve);
+			db.collection("events").doc("Being poirot").collection("Groups").add(eve);
 			return (doc.data());
 		} else {
 			throw new Error(err);
@@ -221,28 +219,6 @@ app.post('/onEventReg', (req, res) => {
 	}).catch((err) => {
 		console.error(err);
 	});
-	function retrieveCount(){
-		var count;
-		console.log("outside")
-		db.collection("events").doc(eventName).get().then((doc) => {
-			if (doc.exists) {
-				console.log("inside")
-				count = doc.data().count;
-				count = count + 1;
-				db.collection("events").doc(eventName).update({"count": count})
-				addgroup(count)
-				console.log(count)
-				return count;
-			}else{
-				throw new Error("Error");
-			}
-		}).catch((err) =>{
-			return(err);
-		} )
-	}
-	function addgroup(count){
-		db.collection("events").doc(eventName).collection("Groups").doc(count).set(eve);
-	}
 	res.redirect('/eventReg');
 });
 
