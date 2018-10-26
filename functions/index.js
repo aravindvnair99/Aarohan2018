@@ -31,7 +31,26 @@ app.get("/schoolReg", (req, res) => {
 	res.render('schoolReg');
 });
 app.get("/studentReg", (req, res) => {
-	res.render('studentReg');
+	var i = 0;
+	var ob, obj;
+	var school = new Array();
+	db.collection("Schools").get().then((querySnapshot) => {
+		ob = querySnapshot;
+		querySnapshot.forEach((childSnapshot) => {
+			school[i] = childSnapshot.id;
+			console.log(childSnapshot.id);
+			// console.log(school[i]);
+			i++;
+		});
+		obj = Object.assign({}, school);
+		console.log(obj);
+		res.render('studentReg', { obj });
+		return;
+	}).catch((err) => {
+		console.log(err);
+	});
+
+	
 });
 app.get("/eventReg", (req, res) => {
 	res.render('eventReg');
@@ -232,7 +251,7 @@ app.post('/onStudentReg', (req, res) => {
 	var name = req.body.studentName;
 	var gender = req.body.gender;
 	var category = req.body.category;
-	var schoolName = "test";
+	var schoolName = req.body.schoolName;
 	var ob = {
 		studentName: name,
 		gender: gender,
