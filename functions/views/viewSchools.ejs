@@ -9,24 +9,11 @@
 					<h4 style="color: #faae29">Schools Registered</h4>
 					<br>
 					<ul class="collapsible popout" data-collapsible="accordion">
-						<% for(var i=0;i<Object.keys(viewschools).length;i++) { %>
+						<% for(var i=0;i<Object.keys(obj).length;i++) { %>
 						<li>
 							<div class="collapsible-header"><i class="material-icons">school</i>
-								<%= viewschools[i].parent %>
+								<%= obj[i] %>
 							</div>
-
-							<div class="collapsible-body">
-								<% for (key in viewschools[i].child.Students){ %>
-								<span>
-									<p style="size: 20px;">
-										<%= key %> :
-										<%= viewschools[i].child.Students[key] %>
-									</p>
-								</span>
-								<br>
-								<% } %>
-							</div>
-						</li>
 						<% }%>
 					</ul>
 				</div>

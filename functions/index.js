@@ -32,7 +32,7 @@ app.get("/schoolReg", (req, res) => {
 });
 app.get("/studentReg", (req, res) => {
 	var i = 0;
-	var ob, obj;
+	var obj;
 	var school = new Array();
 	db.collection("Schools").get().then((querySnapshot) => {
 		ob = querySnapshot;
@@ -50,7 +50,7 @@ app.get("/studentReg", (req, res) => {
 		console.log(err);
 	});
 
-	
+
 });
 app.get("/eventReg", (req, res) => {
 	res.render('eventReg');
@@ -73,17 +73,35 @@ app.get("/notif", (req, res) => {
 });
 
 app.get('/viewSchools', (req, res) => {
-	var schoolName = new Array();
+	var i = 0;
+	var obj;
+	var school = new Array();
 	db.collection("Schools").get().then((querySnapshot) => {
-		querySnapshot.forEach((doc) => {
-			schoolName = doc.data();
-			console.log(schoolName);
-			console.log(doc.id, " => ", doc.data());
+		ob = querySnapshot;
+		querySnapshot.forEach((childSnapshot) => {
+			school[i] = childSnapshot.id;
+			console.log(childSnapshot.id);
+			// console.log(school[i]);
+			i++;
 		});
+		obj = Object.assign({}, school);
+		console.log(obj);
+		res.render('viewSchools', { obj });
 		return;
 	}).catch((err) => {
 		console.log(err);
 	});
+	// var schoolName = new Array();
+	// db.collection("Schools").get().then((querySnapshot) => {
+	// 	querySnapshot.forEach((doc) => {
+	// 		schoolName = doc.data();
+	// 		console.log(schoolName);
+	// 		console.log(doc.id, " => ", doc.data());
+	// 	});
+	// 	return;
+	// }).catch((err) => {
+	// 	console.log(err);
+	// });
 });
 
 app.get("/statistics", (req, res) => {
@@ -259,7 +277,7 @@ app.post('/onStudentReg', (req, res) => {
 		studentName: name,
 		gender: gender,
 		category: category,
-		schoolName : schoolName,
+		schoolName: schoolName,
 	};
 	var sch = db.collection("Schools").doc(schoolName);
 	var ch = sch.collection("Students").doc(uid);
@@ -286,13 +304,13 @@ app.post('/onStudentReg', (req, res) => {
 			console.error(err);
 		});
 	}
-	function checkstud(){
+	function checkstud() {
 		db.collection("Students").get().then((doc2) => {
-			if(doc2.exists){
+			if (doc2.exists) {
 				return doc2;
-			}else{
+			} else {
 				db.collection("Students").doc(uid).set(ob);
-				return("Added in Students collection")
+				return ("Added in Students collection")
 			}
 		}).catch((err) => {
 			console.log(err);
