@@ -275,14 +275,27 @@ app.post('/onStudentReg', (req, res) => {
 	function checkuid() {
 		ch.get().then((doc1) => {
 			if (doc1.exists) {
-				return (doc1);
+				return doc1;
 			} else {
+				checkstud()
 				db.collection("Schools").doc(schoolName).collection("Students").doc(uid).set(ob);
-				return ("Added");
+				return ("Added in Schools collection under students");
 			}
 		}).catch((err) => {
 			console.error(err);
 		});
+	}
+	function checkstud(){
+		db.collection("Students").get().then((doc2) => {
+			if(doc2.exists){
+				return doc2;
+			}else{
+				db.collection("Students").doc(uid).set(ob);
+				return("Added in Students collection")
+			}
+		}).catch((err) => {
+			console.log(err);
+		})
 	}
 	res.redirect('/studentReg');
 });
