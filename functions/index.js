@@ -86,6 +86,9 @@ app.get('/viewSchools', (req, res) => {
 	});
 });
 
+app.get("/statistics", (req, res) => {
+	res.render('statistics');
+});
 app.get("/beingPoirot", (req, res) => {
 	res.render('beingpoirot');
 });
