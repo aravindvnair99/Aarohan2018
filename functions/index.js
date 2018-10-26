@@ -77,7 +77,6 @@ app.get('/viewSchools', (req, res) => {
 	var obj;
 	var school = new Array();
 	db.collection("Schools").get().then((querySnapshot) => {
-		ob = querySnapshot;
 		querySnapshot.forEach((childSnapshot) => {
 			school[i] = childSnapshot.id;
 			console.log(childSnapshot.id);
