@@ -259,6 +259,7 @@ app.post('/onStudentReg', (req, res) => {
 		studentName: name,
 		gender: gender,
 		category: category,
+		schoolName : schoolName,
 	};
 	var sch = db.collection("Schools").doc(schoolName);
 	var ch = sch.collection("Students").doc(uid);

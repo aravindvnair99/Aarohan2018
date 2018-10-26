@@ -44,6 +44,9 @@
                 man.innerText = male;
             }
         });
+        var studRef = db.collection("Students");
+        var query = studRef.where("gender", "==", "Male");
+        console.log(query);
 
     </script>
     <%include foot.ejs %>
