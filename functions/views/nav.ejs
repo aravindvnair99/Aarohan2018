@@ -21,25 +21,25 @@
 	<script src="/__/firebase/5.5.5/firebase-firestore.js"></script>
 	<script src="/__/firebase/init.js"></script>
 	<script type="text/javascript">
-		var IdealTimeOut = 900000; //15 minutes
-		var idleSecondsTimer = null;
-		var idleSecondsCounter = 0;
-		document.onclick = function () { idleSecondsCounter = 0; };
-		document.onmousemove = function () { idleSecondsCounter = 0; };
-		document.onkeypress = function () { idleSecondsCounter = 0; };
-		idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
-
-		function CheckIdleTime() {
-			idleSecondsCounter++;
-			var oPanel = document.getElementById("timeOut");
-			if (oPanel) {
-				oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
-			}
-			if (idleSecondsCounter >= IdealTimeOut) {
-				window.clearInterval(idleSecondsTimer);
-				alert("Your Session has expired. Please login again.");
-				firebase.auth().signOut();
-			}
+		var timeoutWarning = 840000; // Display warning in 14 Mins.
+		var timeoutNow = 900000; // Warning has been shown, give the user 1 minute to interact
+		var warningTimer, timeoutTimer;
+		function StartWarningTimer() {
+			warningTimer = setTimeout("IdleWarning()", timeoutWarning);
+		}
+		function ResetTimeOutTimer() {
+			clearTimeout(timeoutTimer);
+			StartWarningTimer();
+			$("#timeout").dialog('close');
+		}
+		function IdleWarning() {
+			clearTimeout(warningTimer);
+			timeoutTimer = setTimeout("signOut()", timeoutNow);
+			$("#timeout").dialog({
+				modal: true
+			});
+			// Add code in the #timeout element to call ResetTimeOutTimer() if
+			// the "Stay Logged In" button is clicked
 		}
 		function signOut() {
 			firebase.auth().signOut();
@@ -47,15 +47,12 @@
 		function initApp() {
 			firebase.auth().onAuthStateChanged(function (user) {
 				if (user) {
-					if (CheckIdleTime() > 900000) {
+					StartWarningTimer();
+					var d = new Date();
+					if ((d.getTime() - Date.parse(user.metadata.lastSignInTime)) > 900000) {
 						alert("Please login again. Session expired.")
 						firebase.auth().signOut();
 					}
-					//var d = new Date();
-					// if ((d.getTime() - Date.parse(user.metadata.lastSignInTime)) > 900000) {
-					// alert("Please login again. Session expired.")
-					// firebase.auth().signOut();
-					// }
 					var displayName = user.displayName;
 					var email = user.email;
 					var uid = user.uid;
@@ -68,7 +65,7 @@
 				}
 			});
 		}
-		window.onpaint = initApp();
+		window.onload = initApp();
 	</script>
 </head>
 
@@ -93,7 +90,7 @@
 					<div class="divider"></div>
 				</li>
 				<li><a class="waves-effect" href="#"><i class="material-icons">developer_mode</i>Developers</a></li>
-				<li><a class="waves-effect" onclick="signOut()"><i class="material-icons">arrow_back</i>signOut</a></li>
+				<li><a class="waves-effect" onclick="signOut()"><i class="material-icons">arrow_back</i>Logout</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
 		</nav>
