@@ -12,7 +12,14 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 	<link typr="text/css" rel="stylesheet" href="css/home.css">
-	<title>Aarohan Registration</title>
+	<title>Aarohan 2018</title>
+	<meta name="author" content="Aravind V Nair, Abhishek Sai">
+	<meta property="og:title" content="Aarohan 2018" />
+	<meta property="og:url" content="https://aarohan-reg.firebaseapp.com" />
+	<meta property="og:image" content="/android-chrome-256x256.png" />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="og:description" content="Aarohan Registration Dashboard" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,43 +40,41 @@
 			} else {
 				var email = document.getElementById('username').value;
 				var password = document.getElementById('password').value;
-				if (email.length < 4) {
-					alert('Please enter an email address.');
+				if (email.length < 12) {
+					Materialize.toast('Please enter a valid email address.', 1250);
 					return;
 				}
-				if (password.length < 4) {
-					alert('Please enter a password.');
+				if (password.length < 6) {
+					Materialize.toast('Please enter a valid password', 1250);
 					return;
 				}
 				firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
 					var errorCode = error.code;
 					var errorMessage = error.message;
 					if (errorCode === 'auth/wrong-password') {
-						alert('Wrong password.');
+						Materialize.toast('Wrong password', 1250);
+					} else if (errorCode === 'auth/user-not-found') {
+						Materialize.toast('User not found', 1250);
 					} else {
-						alert(errorMessage);
+						Materialize.toast(errorMessage, 1500);
 					}
-					console.log(error);
 				});
 			}
 		}
 		function initApp() {
 			firebase.auth().onAuthStateChanged(function (user) {
 				if (user) {
+					Materialize.toast('Signing in...', 1000);
 					var displayName = user.displayName;
 					var email = user.email;
 					window.location = "/";
 				} else {
-					// User is signed out.
+					Materialize.toast('Login to continue', 1250);
 				}
 			});
 		}
-		window.onpaint = initApp();
+		window.onload = initApp();
 	</script>
 </head>
 
 <body>
-	<header>
-		<nav>
-		</nav>
-	</header>
