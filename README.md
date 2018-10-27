@@ -14,8 +14,9 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 # :family: Team
 
-* **Abhishek Sai** - *Frontend and backend* - [Abhishek-Sai](https://github.com/Abhishek-Sai)
+* **Abhishek Sai** - *Frontend and Backend* - [Abhishek-Sai](https://github.com/Abhishek-Sai)
 * **Aravind V. Nair** - *Frontend and Backend* - [AravindVNair99](https://github.com/aravindvnair99)
+* **Vineeth Chandran** - *Frontend* - [vineeth-cnbr](https://github.com/vineeth-cnbr)
 
 See the full list of [contributors](https://github.com/aravindvnair99/Aarohan2018/graphs/contributors) who participated in this project and statistics.
 
