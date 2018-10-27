@@ -36,7 +36,6 @@
 		var eventName = document.getElementById("eventName").value;
 		var student1 = document.getElementById("Student1").value;
 		var student2 = document.getElementById("Student2").value;
-		var student3 = document.getElementById("Student3").value;
 		db.collection("events").doc(eventName).collection("Students").doc(student1).get().then((doc) => {
 			if (doc.exists) {
 				Materialize.toast("Student already exists", 1500);
@@ -49,14 +48,6 @@
 			if (doc.exists) {
 				Materialize.toast("Student already exists", 1500);
 				document.getElementById("Student2").value = '';
-			}
-		}).catch((err) => {
-			console.log(err);
-		});
-		db.collection("events").doc(eventName).collection("Students").doc(student3).get().then((doc) => {
-			if (doc.exists) {
-				Materialize.toast("Student already exists", 1500);
-				document.getElementById("Student3").value = '';
 			}
 		}).catch((err) => {
 			console.log(err);
