@@ -334,12 +334,15 @@ app.post('/onEventReg', (req, res) => {
 					eve = {
 						Student1: req.body.Student1
 					}
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
 					break;
 				case 2:
 					eve = {
 						Student1: req.body.Student1,
 						Student2: req.body.Student2,
 					}
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
 					break;
 				case 3:
 					eve = {
@@ -347,6 +350,9 @@ app.post('/onEventReg', (req, res) => {
 						Student2: req.body.Student2,
 						Student3: req.body.Student3
 					}
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
 					break;
 				case 4:
 					eve = {
@@ -355,6 +361,10 @@ app.post('/onEventReg', (req, res) => {
 						Student3: req.body.Student3,
 						Student4: req.body.Student4
 					}
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
 					break;
 				case 5:
 					eve = {
@@ -364,6 +374,11 @@ app.post('/onEventReg', (req, res) => {
 						Student4: req.body.Student4,
 						Student5: req.body.Student5
 					}
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student5).set({});
 					break;
 				case 6:
 					eve = {
@@ -374,6 +389,12 @@ app.post('/onEventReg', (req, res) => {
 						Student5: req.body.Student5,
 						Student6: req.body.Student6
 					}
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student5).set({});
+					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student).set({});
 					break;
 				default:
 					console.log("Error in switch case.");
@@ -394,13 +415,13 @@ app.post('/onEventReg', (req, res) => {
 		case "Circuitrix":
 			res.redirect('/circuitrix');
 			break;
-		case "Code bound":
+		case "Code Bound":
 			res.redirect('/codeBound');
 			break;
 		case "Esprit de corps":
 			res.redirect('/espritDeCorps');
 			break;
-		case "Final destination":
+		case "Final Destination":
 			res.redirect('/finalDestination');
 			break;
 		case "Kerbal space program":
