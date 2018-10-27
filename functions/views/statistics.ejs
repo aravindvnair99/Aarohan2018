@@ -88,6 +88,7 @@
 		</div>
 	</div>
 	<script>
+		window.alert('This page shows live updates. Refresh or reload is not required.');
 		var db = firebase.firestore();
 		db.collection("Schools").onSnapshot(snap => {
 			document.getElementById("schools").innerText = snap.size;
