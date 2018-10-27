@@ -33,79 +33,9 @@ app.get("/login", (req, res) => {
 app.get("/schoolReg", (req, res) => {
 	res.render('schoolReg');
 });
-app.get("/studentReg", (req, res) => {
-	var i = 0;
-	var obj;
-	var school = new Array();
-	db.collection("Schools").get().then((querySnapshot) => {
-		ob = querySnapshot;
-		querySnapshot.forEach((childSnapshot) => {
-			school[i] = childSnapshot.id;
-			console.log(childSnapshot.id);
-			// console.log(school[i]);
-			i++;
-		});
-		obj = Object.assign({}, school);
-		console.log(obj);
-		res.render('studentReg', { obj });
-		return;
-	}).catch((err) => {
-		console.log(err);
-	});
-
-
-});
 app.get("/eventReg", (req, res) => {
 	res.render('eventReg');
 });
-app.get("/notif", (req, res) => {
-	if (isThere) {
-		var uids = new Array();
-		var id = req.query.uid;
-		getPrevilage((uids) => {
-			var arrayLength = uids.length;
-			for (var i = 0; i < arrayLength; i++) {
-				if (uids[i] === id) {
-					res.render('notification');
-				}
-			}
-		});
-	} else {
-		res.render('schoolError');
-	}
-});
-
-app.get('/viewSchools', (req, res) => {
-	var i = 0;
-	var obj;
-	var school = new Array();
-	db.collection("Schools").get().then((querySnapshot) => {
-		querySnapshot.forEach((childSnapshot) => {
-			school[i] = childSnapshot.id;
-			console.log(childSnapshot.id);
-			// console.log(school[i]);
-			i++;
-		});
-		obj = Object.assign({}, school);
-		console.log(obj);
-		res.render('viewSchools', { obj });
-		return;
-	}).catch((err) => {
-		console.log(err);
-	});
-	// var schoolName = new Array();
-	// db.collection("Schools").get().then((querySnapshot) => {
-	// 	querySnapshot.forEach((doc) => {
-	// 		schoolName = doc.data();
-	// 		console.log(schoolName);
-	// 		console.log(doc.id, " => ", doc.data());
-	// 	});
-	// 	return;
-	// }).catch((err) => {
-	// 	console.log(err);
-	// });
-});
-
 app.get("/statistics", (req, res) => {
 	res.render('statistics');
 });
@@ -168,6 +98,37 @@ app.get("/techRoadies", (req, res) => {
 });
 app.get("/theSphinxQuiz", (req, res) => {
 	res.render('theSphinxQuiz');
+});
+
+app.get("/studentReg", (req, res) => {
+	var i = 0, obj, school = new Array();
+	db.collection("Schools").get().then((querySnapshot) => {
+		ob = querySnapshot;
+		querySnapshot.forEach((childSnapshot) => {
+			school[i] = childSnapshot.id;
+			i++;
+		});
+		obj = Object.assign({}, school);
+		res.render('studentReg', { obj });
+		return;
+	}).catch((err) => {
+		console.log(err);
+	});
+});
+
+app.get('/viewSchools', (req, res) => {
+	var i = 0, obj, school = new Array();
+	db.collection("Schools").get().then((querySnapshot) => {
+		querySnapshot.forEach((childSnapshot) => {
+			school[i] = childSnapshot.id;
+			i++;
+		});
+		obj = Object.assign({}, school);
+		res.render('viewSchools', { obj });
+		return;
+	}).catch((err) => {
+		console.log(err);
+	});
 });
 
 app.post('/onEventSelect', (req, res) => {
@@ -321,21 +282,12 @@ app.post('/onStudentReg', (req, res) => {
 	res.redirect('/studentReg');
 });
 
-app.post('/eventRegistration', (req, res) => {
-})
-
 app.post('/onEventReg', (req, res) => {
 	var i, eve, eventName = req.body.eventName;
 	db.collection("events").doc(eventName).get().then((doc) => {
 		if (doc.exists) {
 			i = doc.data().Max;
 			switch (i) {
-				case 1:
-					eve = {
-						Student1: req.body.Student1
-					}
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
-					break;
 				case 2:
 					eve = {
 						Student1: req.body.Student1,
@@ -365,20 +317,6 @@ app.post('/onEventReg', (req, res) => {
 					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
 					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
 					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
-					break;
-				case 5:
-					eve = {
-						Student1: req.body.Student1,
-						Student2: req.body.Student2,
-						Student3: req.body.Student3,
-						Student4: req.body.Student4,
-						Student5: req.body.Student5
-					}
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student5).set({});
 					break;
 				case 6:
 					eve = {

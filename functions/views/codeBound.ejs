@@ -1,10 +1,4 @@
 <% include nav.ejs %>
-
-<head>
-	<title>Event Registration Form</title>
-
-</head>
-
 <div class="container">
 	<div class="row"></div>
 	<div class="row">
@@ -20,18 +14,18 @@
 						</div>
 						<% include Student1.ejs %>
 						<% include Student2.ejs %>
-					<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
-					<div class="card-action">
-						<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
-							<i class="material-icons right">send</i>
-						</button>
-					</div>
+						<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
+						<div class="card-action">
+							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
+								<i class="material-icons right">send</i>
+							</button>
+						</div>
 
-					<div class="input-field">
-						<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
-						<label class="active" for="t1"></label>
-					</div>
-					<div id="container" />
+						<div class="input-field">
+							<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
+							<label class="active" for="t1"></label>
+						</div>
+						<div id="container" />
 				</form>
 			</div>
 		</div>
