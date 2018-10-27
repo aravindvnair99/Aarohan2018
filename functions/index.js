@@ -24,6 +24,9 @@ var db = admin.firestore();
 app.get("/", (req, res) => {
 	res.render('index');
 });
+app.get("/Developers", (req, res) => {
+	res.render('developers');
+});
 app.get("/login", (req, res) => {
 	res.render('login');
 });

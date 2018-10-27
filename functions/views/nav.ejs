@@ -2,6 +2,13 @@
 <html>
 
 <head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128233760-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'UA-128233760-1');
+	</script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 	<link typr="text/css" rel="stylesheet" href="css/home.css">
@@ -60,7 +67,6 @@
 					a.href = "/notif?uid=" + uid;
 					document.getElementById("accountName").innerHTML = email;
 				} else {
-					alert("Signed Out");
 					window.location = "/login";
 				}
 			});
@@ -89,7 +95,7 @@
 				<li>
 					<div class="divider"></div>
 				</li>
-				<li><a class="waves-effect" href="#"><i class="material-icons">developer_mode</i>Developers</a></li>
+				<li><a class="waves-effect" href="/Developers"><i class="material-icons">developer_mode</i>Developers</a></li>
 				<li><a class="waves-effect" onclick="signOut()"><i class="material-icons">arrow_back</i>Logout</a></li>
 			</ul>
 			<a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>

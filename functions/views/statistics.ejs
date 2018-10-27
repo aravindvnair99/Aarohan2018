@@ -1,178 +1,176 @@
 <% include nav.ejs %>
 <div class="container" id="statisticsContainer">
-    <div class="row"></div>
-    <div id="statistics-page" class="row">
-        <div class="col s12 m2 l4">
-        </div>
-        <div class="col s12 m8 l4 z-depth-4 card-panel">
-            <div class="row ">
-                <h4 class="center-align">Statistics</h4>
-            </div>
-            <div class="row margin">
-                <div class="col s12">
-                    Number of Schools :
-                    <span id="school">
+	<div class="row"></div>
+	<div id="statistics-page" class="row">
+		<div class="col s12 m2 l4">
+		</div>
+		<div class="col s12 m8 l4 z-depth-4 card-panel">
+			<div class="row ">
+				<h4 class="center-align">Statistics</h4>
+			</div>
+			<div class="row margin">
+				<div class="col s12">
+					Number of Schools :
+					<span id="school">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12">
+					Number of Students :
+					<span id="students">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12">
+					Male Count :
+					<span id="male">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12">
+					Male Junior :
+					<span id="malejun">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12">
+					Male Senior :
+					<span id="malesen">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12">
+					Female Count :
+					<span id="female">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12">
+					Female Junior :
+					<span id="femalejun">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12">
+					Female Senior :
+					<span id="femalesen">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
 
-                    </span>
-                </div>
-            </div>
-            <div class="row margin">
-                <div class="col s12">
-                    Number of Students :
-                    <span id="students">
+		</div>
+	</div>
+	<script>
+		var db = firebase.firestore();
+		db.collection("Schools").get().then(snap => {
+			size = snap.size
+			console.log(size);
+			var sch = document.getElementById("school");
+			sch.innerText = size;
+		});
+		db.collection("Students").get().then(snap => {
+			size = snap.size
+			console.log(size);
+			var stu = document.getElementById("students");
+			stu.innerText = size;
+		});
+		db.collection("Students").where("gender", "==", "Male")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					size = querySnapshot.size;
+					var male = document.getElementById("male");
+					male.innerText = size;
+				});
+			})
+			.catch(function (error) {
+				console.log("Error getting documents: ", error);
+			});
 
-                    </span>
-                </div>
-            </div>
-            <div class="row margin">
-                <div class="col s12">
-                    Male Count :
-                    <span id="male">
-                    </span>
-                </div>
-            </div>
-            <div class="col s12 m2 l4">
-                <!-- Note that "m4 l3" was added -->
-            </div>
-            <div class="row margin">
-                <div class="col s12">
-                    Male Junior :
-                    <span id="malejun">
-                    </span>
-                </div>
-            </div>
-            <div class="col s12 m2 l4">
-                <!-- Note that "m4 l3" was added -->
-            </div>
-            <div class="row margin">
-                <div class="col s12">
-                    Male Senior :
-                    <span id="malesen">
-                    </span>
-                </div>
-            </div>
-            <div class="col s12 m2 l4">
-                <!-- Note that "m4 l3" was added -->
-            </div>
-            <div class="row margin">
-                <div class="col s12">
-                    Female Count :
-                    <span id="female">
-                    </span>
-                </div>
-            </div>
-            <div class="col s12 m2 l4">
-                <!-- Note that "m4 l3" was added -->
-            </div>
-            <div class="row margin">
-                <div class="col s12">
-                    Female Junior :
-                    <span id="femalejun">
-                    </span>
-                </div>
-            </div>
-            <div class="col s12 m2 l4">
-                <!-- Note that "m4 l3" was added -->
-            </div>
-            <div class="row margin">
-                <div class="col s12">
-                    Female Senior :
-                    <span id="femalesen">
-                    </span>
-                </div>
-            </div>
-            <div class="col s12 m2 l4">
-                <!-- Note that "m4 l3" was added -->
-            </div>
-
-        </div>
-    </div>
-    <script>
-        var db = firebase.firestore();
-        db.collection("Schools").get().then(snap => {
-            size = snap.size
-            console.log(size);
-            var sch = document.getElementById("school");
-            sch.innerText = size;
-        });
-        db.collection("Students").get().then(snap => {
-            size = snap.size
-            console.log(size);
-            var stu = document.getElementById("students");
-            stu.innerText = size;
-        });
-        db.collection("Students").where("gender", "==", "Male")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    size = querySnapshot.size;
-                    var male = document.getElementById("male");
-                    male.innerText = size;
-                });
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
-            });
-
-        db.collection("Students").where("gender", "==", "Male").where("category", "==", "Junior")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    size = querySnapshot.size;
-                    var malej = document.getElementById("malejun");
-                    malej.innerText = size;
-                });
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
-            });
-        db.collection("Students").where("gender", "==", "Male").where("category", "==", "Senior")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    size = querySnapshot.size;
-                    var males = document.getElementById("malesen");
-                    males.innerText = size;
-                });
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
-            });
-        db.collection("Students").where("gender", "==", "Female")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    size = querySnapshot.size;
-                    var female = document.getElementById("female");
-                    female.innerText = size;
-                });
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
-            });
-        db.collection("Students").where("gender", "==", "Female").where("category", "==", "Junior")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    size = querySnapshot.size;
-                    var femalej = document.getElementById("femalejun");
-                    femalej.innerText = size;
-                });
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
-            });
-        db.collection("Students").where("gender", "==", "Female").where("category", "==", "Senior")
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    size = querySnapshot.size;
-                    var females = document.getElementById("femalesen");
-                    females.innerText = size;
-                });
-            })
-            .catch(function (error) {
-                console.log("Error getting documents: ", error);
-            });
-    </script>
-    <%include foot.ejs %>
+		db.collection("Students").where("gender", "==", "Male").where("category", "==", "Junior")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					size = querySnapshot.size;
+					var malej = document.getElementById("malejun");
+					malej.innerText = size;
+				});
+			})
+			.catch(function (error) {
+				console.log("Error getting documents: ", error);
+			});
+		db.collection("Students").where("gender", "==", "Male").where("category", "==", "Senior")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					size = querySnapshot.size;
+					var males = document.getElementById("malesen");
+					males.innerText = size;
+				});
+			})
+			.catch(function (error) {
+				console.log("Error getting documents: ", error);
+			});
+		db.collection("Students").where("gender", "==", "Female")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					size = querySnapshot.size;
+					var female = document.getElementById("female");
+					female.innerText = size;
+				});
+			})
+			.catch(function (error) {
+				console.log("Error getting documents: ", error);
+			});
+		db.collection("Students").where("gender", "==", "Female").where("category", "==", "Junior")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					size = querySnapshot.size;
+					var femalej = document.getElementById("femalejun");
+					femalej.innerText = size;
+				});
+			})
+			.catch(function (error) {
+				console.log("Error getting documents: ", error);
+			});
+		db.collection("Students").where("gender", "==", "Female").where("category", "==", "Senior")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					size = querySnapshot.size;
+					var females = document.getElementById("femalesen");
+					females.innerText = size;
+				});
+			})
+			.catch(function (error) {
+				console.log("Error getting documents: ", error);
+			});
+	</script>
+	<%include foot.ejs %>
