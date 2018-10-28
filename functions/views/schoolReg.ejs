@@ -44,7 +44,8 @@
 <script>
 	var db = firebase.firestore();
 	function check() {
-		var schoolName = document.getElementById("schoolName").value;
+		var schoolName = "ARHN" + document.getElementById("schoolName").value;
+		console.log(schoolName);
 		db.collection("Schools").doc(schoolName).get().then((doc) => {
 			if (doc.exists) {
 				Materialize.toast("School already exists", 1500);

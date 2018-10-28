@@ -26,7 +26,7 @@
 
 						<div class="input-field">
 							<div class="input-field">
-								<input name="uid" id="uid" type="text" class="validate" maxlength="4" minlength="4" required>
+								<input name="uid" id="uid" onchange="checkStud()" type="text" class="validate" maxlength="4" minlength="4" required>
 								<label class="active" for="uid">Aarohan ID</label>
 							</div>
 						</div>
@@ -61,71 +61,20 @@
 		</div>
 	</div>
 </div>
-<script>
-	console.log(school);
-</script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
- <script>
-	var db = firebase.firestore();
-	var i = 0;
-	var school = new Array();
-	db.collection("Schools").get().then((querySnapshot) => {
-		querySnapshot.forEach((childSnapshot) => {
-			school[i] = childSnapshot.id;
-			console.log(childSnapshot.id);
-			console.log(school[i]);
-			$.each(school, function (school, school) {
-				$('#schoolName').append($("<option/>", {
-					value: school[i],
-					text: school[i]
-				}));
-			});
-			i++;
-		});
-		return;
-	}).catch((err) => {
-		console.log(err);
-	});
-</script> -->
-<!-- <form action="/onStudentReg" method="POST">
-		<div class="card-content">
-			<h4 style="color: #faae29;">Student Registration</h4><br>
-			<div class="input-field">
-				<input name="uid" onclick="putARHN()" id="uid" type="text" class="validate" required>
-				<label class="active" for="uid">Aaorhan ID</label>
-			</div>
-			<div class="input-field">
-				<input value="" id="t1" name="schoolId" type="text" class="validate" required>
-				<label class="active" for="t1">School Id</label>
-			</div>
-			<div class="input-field">
-				<input value="" id="t1" name="studentName" type="text" class="validate" required>
-				<label class="active" for="t1">Student Name</label>
-			</div>
-
-			<div class="input-field">
-				<select name="gender" required>
-					<option disabled selected></option>
-					<option>Male</option>
-					<option>Female</option>
-				</select>
-				<label>Gender</label>
-			</div>
-
-			<div class="input-field">
-				<select name="category" required>
-					<option disabled selected></option>
-					<option>Junior</option>
-					<option>Senior</option>
-				</select>
-				<label>Category</label>
-			</div>
-			<div class="card-action">
-				<button class="btn -waves-effect waves-light" type="submit" name="action">Submit
-					<i class="material-icons right">send</i>
-				</button>
-			</div>
-	</form> -->
-
-
 <%include foot.ejs %>
+<script>
+	var db = firebase.firestore();
+	function checkStud() {
+		
+		var studName = "ARHN" + document.getElementById("uid").value;
+		console.log(studName);
+		db.collection("Students").doc(studName).get().then((doc) => {
+			if (doc.exists) {
+				Materialize.toast("Student already exists", 1500);
+				document.getElementById("uid").value = '';
+			}
+		}).catch((err) => {
+			console.log(err);
+		});
+	}
+</script>
