@@ -40,7 +40,7 @@ app.get("/statistics", (req, res) => {
 	res.render('statistics');
 });
 app.get("/beingPoirot", (req, res) => {
-	res.render('beingpoirot');
+	res.render('beingPoirot');
 });
 app.get("/circuitrix", (req, res) => {
 	res.render('circuitrix');
