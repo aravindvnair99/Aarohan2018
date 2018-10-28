@@ -1,7 +1,7 @@
 <% include nav.ejs %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
-		if (user.email === "race@aarohan.org" || "admin@aarohan.org") {
+		if (user.email === "race@aarohan.org" || user.email === "admin@aarohan.org" || user.email === "core@aarohan.org") {
 			// Correct user
 		} else {
 			Materialize.toast("Access denied", 1000);
