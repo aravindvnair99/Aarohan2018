@@ -1,4 +1,14 @@
 <% include nav.ejs %>
+<script>
+	firebase.auth().onAuthStateChanged(function (user) {
+		if (user.email === "school@aarohan.org" || "admin@aarohan.org") {
+			// Correct user
+		} else {
+			Materialize.toast("Access denied", 1000);
+			window.location = "/eventReg";
+		}
+	});
+</script>
 
 <head>
 	<title>Event Registration Form</title>
