@@ -58,4 +58,14 @@
 			console.log(err);
 		});
 	}
+	function checkUser() {
+		if (firebase.auth().currentUser.email === "being@aarohan.org") {
+			console.log("succ");
+			res.redirect('/beingPoirot');
+		} else {
+			console.log("fail");
+			res.redirect('/eventReg');
+		}
+	}
+	window.onload = checkUser();
 </script>
