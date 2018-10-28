@@ -1,4 +1,14 @@
 <% include nav.ejs %>
+<script>
+	firebase.auth().onAuthStateChanged(function (user) {
+		if (user.email === "being@aarohan.org" || "admin@aarohan.org") {
+			// Correct user
+		} else {
+			Materialize.toast("Access denied", 1000);
+			window.location = "/eventReg";
+		}
+	});
+</script>
 <div class="container">
 	<div class="row"></div>
 	<div class="row">
@@ -58,14 +68,4 @@
 			console.log(err);
 		});
 	}
-	function checkUser() {
-		if (firebase.auth().currentUser.email === "being@aarohan.org") {
-			console.log("succ");
-			res.redirect('/beingPoirot');
-		} else {
-			console.log("fail");
-			res.redirect('/eventReg');
-		}
-	}
-	window.onload = checkUser();
 </script>
