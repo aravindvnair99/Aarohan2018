@@ -1,6 +1,6 @@
 # :office: Aarohan 2018
 
-An event dashboard made originally for Aarohan at Amrita University based on HTML, CSS, JS, Node.js, Firebase.
+An event dashboard made originally for Aarohan at Amrita University based on HTML5, CSS3, Materialize, JS, Node.js, Express.js Firebase Hosting, Firebase Cloud Functions, Firebase Authentication, Firebase Cloud Firestore.
 
 # :computer: How to contribute?
 
@@ -10,13 +10,15 @@ Please read [CONTRIBUTING.md](https://github.com/aravindvnair99/Aarohan2018/blob
 
 # :scroll: License
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT license - see the [LICENSE](LICENSE) file for details.
 
 # :family: Team
 
-* **Abhishek Sai** - *Frontend and Backend* - [Abhishek-Sai](https://github.com/Abhishek-Sai)
-* **Aravind V. Nair** - *Frontend and Backend* - [AravindVNair99](https://github.com/aravindvnair99)
-* **Vineeth Chandran** - *Frontend* - [vineeth-cnbr](https://github.com/vineeth-cnbr)
+* **Abhishek Sai** - *Front-end and Back-end* - [Abhishek-Sai](https://github.com/Abhishek-Sai)
+* **Aravind V. Nair** - *Front-end, Back-end and Security* - [AravindVNair99](https://github.com/aravindvnair99)
+* **Vineeth Chandran** - *UI* - [vineeth-cnbr](https://github.com/vineeth-cnbr)
+* **Rahul Kamath** - *Testing* - [RahulNK3498](https://github.com/RahulNK3498)
+* **Arjun Kedlaya** - *Testing* - [neophobe](https://github.com/neophobe)
 
 See the full list of [contributors](https://github.com/aravindvnair99/Aarohan2018/graphs/contributors) who participated in this project and statistics.
 
@@ -34,7 +36,7 @@ Check the [changelog here](https://github.com/aravindvnair99/Aarohan2018/commits
 
 # :memo: I found some bugs or issues. Where do I report?
 
-Report [here](https://github.com/aravindvnair99/Aarohan2018/issues/new) in detail answering these questions:
+Report [here](https://github.com/aravindvnair99/Aarohan2018/issues/new/choose) in detail answering these questions:
 
 * What steps did you take to make the bug appear?
 * How can the bug be fixed? (In case you know)
