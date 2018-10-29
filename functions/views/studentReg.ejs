@@ -36,7 +36,8 @@
 
 						<div class="input-field">
 							<div class="input-field">
-								<input name="uid" id="uid" onchange="checkStud()" type="text" class="validate" maxlength="4" minlength="4" required>
+								<input name="uid" id="uid" onchange="checkStud()" type="text" class="validate" maxlength="4" minlength="4"
+								 required>
 								<label class="active" for="uid">Aarohan ID</label>
 							</div>
 						</div>
@@ -75,7 +76,7 @@
 <script>
 	var db = firebase.firestore();
 	function checkStud() {
-		
+
 		var studName = "ARHN" + document.getElementById("uid").value;
 		console.log(studName);
 		db.collection("Students").doc(studName).get().then((doc) => {
