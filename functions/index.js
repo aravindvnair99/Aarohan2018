@@ -99,6 +99,40 @@ app.get("/techRoadies", (req, res) => {
 app.get("/theSphinxQuiz", (req, res) => {
 	res.render('theSphinxQuiz');
 });
+app.get("/search", (req, res) => {
+	db.collection("students").doc().get().then((querySnapshot) => {
+		querySnapshot.forEach((childSnapshot) => {
+			console.log(childSnapshot.id);
+		});
+		res.send('Done');
+		return;
+	}).catch((err) => {
+		console.log(err);
+	});
+});
+
+app.get("/count", (req, res) => {
+	var i =0;
+	db.collection("events").doc("Mechathalon").collection("Groups").get().then((querySnapshot) => {
+		querySnapshot.forEach((childSnapshot) => {
+			i++;
+		});
+		res.send(JSON.stringify(i));
+		return;
+	}).catch((err) => {
+		res.send(err);
+	});
+	// db.collection("students").doc("Mechathalon").collection("Groups").get().then((querySnapshot) => {
+	// 	querySnapshot.forEach((childSnapshot) => {
+	// 		i++;
+	// 		console.log(childSnapshot.id);
+	// 	});
+	// 	res.send(JSON.stringify(i));
+	// 	return;
+	// }).catch((err) => {
+	// 	console.log(err);
+	// });
+});
 
 app.get("/studentReg", (req, res) => {
 	var i = 0, obj, school = new Array();
@@ -297,14 +331,28 @@ app.post('/onEventReg', (req, res) => {
 					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
 					break;
 				case 3:
-					eve = {
-						Student1: req.body.Student1,
-						Student2: req.body.Student2,
-						Student3: req.body.Student3
+					if (req.body.Student2 === "" && req.body.Student3 === "") {
+						eve = {
+							Student1: req.body.Student1
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+					} else if (req.body.Student3 === "") {
+						eve = {
+							Student1: req.body.Student1,
+							Student2: req.body.Student2
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+					} else {
+						eve = {
+							Student1: req.body.Student1,
+							Student2: req.body.Student2,
+							Student3: req.body.Student3
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
 					}
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
 					break;
 				case 4:
 					eve = {
