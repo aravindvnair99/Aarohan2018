@@ -16,9 +16,10 @@ This project is licensed under the MIT license - see the [LICENSE](LICENSE) file
 
 * **Abhishek Sai** - *Front-end and Back-end* - [Abhishek-Sai](https://github.com/Abhishek-Sai)
 * **Aravind V. Nair** - *Front-end, Back-end and Security* - [AravindVNair99](https://github.com/aravindvnair99)
-* **Vineeth Chandran** - *UI* - [vineeth-cnbr](https://github.com/vineeth-cnbr)
-* **Rahul Kamath** - *Testing* - [RahulNK3498](https://github.com/RahulNK3498)
 * **Arjun Kedlaya** - *Testing* - [neophobe](https://github.com/neophobe)
+* **Rahul Kamath** - *Testing* - [RahulNK3498](https://github.com/RahulNK3498)
+
+Check out Aarohan 2017 code [here](https://github.com/vineeth-cnbr/Aarohan-Registration) made by **Vineeth Chandran** - [vineeth-cnbr](https://github.com/vineeth-cnbr)
 
 See the full list of [contributors](https://github.com/aravindvnair99/Aarohan2018/graphs/contributors) who participated in this project and statistics.
 
