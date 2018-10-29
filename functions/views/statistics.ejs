@@ -1,7 +1,7 @@
 <% include nav.ejs %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
-		if (user.email === "staff@aarohan.org" || user.email === "admin@aarohan.org" || user.email === "core@aarohan.org") {
+		if (user.email === "admin@aarohan.org") {
 			// Correct user
 		} else {
 			Materialize.toast("Access denied", 1000);
@@ -95,6 +95,183 @@
 			<div class="col s12 m2 l4">
 				<!-- Note that "m4 l3" was added -->
 			</div>
+
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row ">
+				<h4>&ThickSpace;Event Groups</h4>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Being Poirot :
+					<span id="beingPoirot">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Code Bound :
+					<span id="codeBound">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Circuitrix :
+					<span id="circuitrix">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Esprit de Corps :
+					<span id="esprit">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Final Destination :
+					<span id="final">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Kerbal Space Program :
+					<span id="kerbal">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Lakshya :
+					<span id="lakshya">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Let's ring it up :
+					<span id="lets">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Mathementum Contour :
+					<span id="mathementum">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Mechathlon :
+					<span id="mechathalon">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Mindsweeper :
+					<span id="mind">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Omnium Artium Magister :
+					<span id="omnium">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Project Exhibition :
+					<span id="project">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Race for Glory :
+					<span id="race">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Robo Cup :
+					<span id="robo">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					School Duels :
+					<span id="school">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Sherlocked :
+					<span id="sherlocked">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Targo :
+					<span id="targo">
+					</span>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					Tech Roadies :
+					<span id="tech">
+					</span>
+				</div>
+			</div>
+			<div class="col s12 m2 l4">
+				<!-- Note that "m4 l3" was added -->
+			</div>
+			<div class="row margin">
+				<div class="col s12 center-align">
+					The Sphinx quiz :
+					<span id="sphinx">
+					</span>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script>
@@ -142,5 +319,127 @@
 			}), function (error) {
 				console.log("Error getting documents: ", error);
 			};
+		db.collection("events").doc("Being poirot").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("beingPoirot").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Circuitrix").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("circuitrix").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Code bound").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("codeBound").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Esprit de corps").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("esprit").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Final destination").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("final").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Kerbal Space Program").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("kerbal").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Lakshya").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("laksya").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Let's ring it up").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("lets").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Mathementum contour").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("mathementum").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Mechathalon").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("mechathalon").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Mindsweeper").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("mind").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Omnium artium magister").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("omnium").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Project exhibition").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("project").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Race for Glory").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("race").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Robo cup").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("robo").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("School Duels").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("school").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Sherlocked").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("sherlocked").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Targo").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("targo").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("Tech roadies").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("tech").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+			db.collection("events").doc("The Sphinx Quiz").collection("Groups")
+			.onSnapshot(querySnapshot => {
+				document.getElementById("sphinx").innerText = querySnapshot.size;
+			}), function (error) {
+				console.log("Error getting documents: ", error);
+			};
+
+			
 	</script>
 	<%include foot.ejs %>
