@@ -20,11 +20,20 @@
 						<h4 style="color: #faae29">Event Registration</h4><br>
 						<div class="input-field">
 							<input id="eventName" name="eventName" value="Circuitrix" type="hidden" class="hidden" required>
-							<label for="t1"></label>
+							<label for="eventName"></label>
 						</div>
-						<% include Student1.ejs %>
-						<% include Student2.ejs %>
-						<% include Student3.ejs %>
+						<div class="input-field">
+							<input id="Student1" onchange="check()" name="Student1" type="text" maxlength="4" minlength="4" class="validate" required>
+							<label for="Student1">Student 1</label>
+						</div>
+						<div class="input-field">
+							<input id="Student2" onchange="check()" name="Student2" type="text" maxlength="4" minlength="4" class="validate">
+							<label for="Student2">Student 2</label>
+						</div>
+						<div class="input-field">
+							<input id="Student3" onchange="check()" name="Student3" type="text" maxlength="4" minlength="4" class="validate">
+							<label for="Student3">Student 3</label>
+						</div>
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action">Submit
 								<i class="material-icons right">send</i>
