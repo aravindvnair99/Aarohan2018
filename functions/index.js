@@ -112,7 +112,7 @@ app.get("/search", (req, res) => {
 });
 
 app.get("/count", (req, res) => {
-	var i =0;
+	var i = 0;
 	db.collection("events").doc("Mechathalon").collection("Groups").get().then((querySnapshot) => {
 		querySnapshot.forEach((childSnapshot) => {
 			i++;
@@ -122,16 +122,6 @@ app.get("/count", (req, res) => {
 	}).catch((err) => {
 		res.send(err);
 	});
-	// db.collection("students").doc("Mechathalon").collection("Groups").get().then((querySnapshot) => {
-	// 	querySnapshot.forEach((childSnapshot) => {
-	// 		i++;
-	// 		console.log(childSnapshot.id);
-	// 	});
-	// 	res.send(JSON.stringify(i));
-	// 	return;
-	// }).catch((err) => {
-	// 	console.log(err);
-	// });
 });
 
 app.get("/studentReg", (req, res) => {
@@ -367,20 +357,67 @@ app.post('/onEventReg', (req, res) => {
 					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
 					break;
 				case 6:
-					eve = {
-						Student1: req.body.Student1,
-						Student2: req.body.Student2,
-						Student3: req.body.Student3,
-						Student4: req.body.Student4,
-						Student5: req.body.Student5,
-						Student6: req.body.Student6
+					if (req.body.Student2 === "" && req.body.Student3 === "" && req.body.Student4 === "" && req.body.Student5 === "" && req.body.Student6 === "") {
+						eve = {
+							Student1: req.body.Student1
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+					} else if (req.body.Student3 === "" && req.body.Student4 === "" && req.body.Student5 === "" && req.body.Student6 === "") {
+						eve = {
+							Student1: req.body.Student1,
+							Student2: req.body.Student2
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+					} else if (req.body.Student4 === "" && req.body.Student5 === "" && req.body.Student6 === "") {
+						eve = {
+							Student1: req.body.Student1,
+							Student2: req.body.Student2,
+							Student3: req.body.Student3
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
+					} else if (req.body.Student5 === "" && req.body.Student6 === "") {
+						eve = {
+							Student1: req.body.Student1,
+							Student2: req.body.Student2,
+							Student3: req.body.Student3,
+							Student4: req.body.Student4
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
+					} else if (req.body.Student6 === "") {
+						eve = {
+							Student1: req.body.Student1,
+							Student2: req.body.Student2,
+							Student3: req.body.Student3,
+							Student4: req.body.Student4,
+							Student5: req.body.Student5
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student5).set({});
+					} else {
+						eve = {
+							Student1: req.body.Student1,
+							Student2: req.body.Student2,
+							Student3: req.body.Student3,
+							Student4: req.body.Student4,
+							Student5: req.body.Student5,
+							Student6: req.body.Student6
+						}
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student5).set({});
+						db.collection("events").doc(eventName).collection("Students").doc(req.body.Student6).set({});
 					}
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student1).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student2).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student3).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student4).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student5).set({});
-					db.collection("events").doc(eventName).collection("Students").doc(req.body.Student).set({});
 					break;
 				default:
 					console.log("Error in switch case.");
