@@ -10,11 +10,6 @@
 	});
 </script>
 
-<head>
-	<title>Event Registration Form</title>
-
-</head>
-
 <div class="container">
 	<div class="row"></div>
 	<div class="row">
@@ -31,7 +26,6 @@
 						</div>
 						<% include Student1.ejs %>
 						<% include Student2.ejs %>
-						<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
 								<i class="material-icons right">send</i>
@@ -42,7 +36,7 @@
 							<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
 							<label class="active" for="t1"></label>
 						</div>
-						<div id="container" />
+					</div>
 				</form>
 			</div>
 		</div>
@@ -63,11 +57,29 @@
 		}).catch((err) => {
 			console.log(err);
 		});
+		db.collection("Students").doc("ARHN" + student1).get().then((doc) => {
+			if (doc.exists) {
+				document.getElementById("lb1").innerText = doc.data().studentName;
+			}
+			else
+				document.getElementById("lb1").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+		}).catch((err) => {
+			console.log(err);
+		});
 		db.collection("events").doc(eventName).collection("Students").doc(student2).get().then((doc) => {
 			if (doc.exists) {
 				Materialize.toast("Student already exists", 1500);
 				document.getElementById("Student2").value = '';
 			}
+		}).catch((err) => {
+			console.log(err);
+		});
+		db.collection("Students").doc("ARHN" + student2).get().then((doc) => {
+			if (doc.exists) {
+				document.getElementById("lb2").innerText = doc.data().studentName;
+			}
+			else
+				document.getElementById("lb2").innerText = 'Student not registered. Contact Aravind or Abhishek.';
 		}).catch((err) => {
 			console.log(err);
 		});

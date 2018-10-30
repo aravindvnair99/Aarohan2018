@@ -25,37 +25,32 @@
 						</div>
 						<div class="input-field">
 							<input id="Student1" onchange="check()" name="Student1" type="text" maxlength="4" minlength="4" class="validate">
-							<label for="Student1">Student 1</label>
+							<label id="lb1" for="Student1">Student 1</label>
 						</div>
 						<div class="input-field">
 							<input id="Student2" onchange="check()" name="Student2" type="text" maxlength="4" minlength="4" class="validate">
-							<label for="Student2">Student 2</label>
+							<label id="lb2" for="Student2">Student 2</label>
 						</div>
 						<div class="input-field">
 							<input id="Student3" onchange="check()" name="Student3" type="text" maxlength="4" minlength="4" class="validate">
-							<label for="Student3">Student 3</label>
+							<label id="lb3" for="Student3">Student 3</label>
 						</div>
 						<div class="input-field">
 							<input id="Student4" onchange="check()" name="Student4" type="text" maxlength="4" minlength="4" class="validate">
-							<label for="Student4">Student 4</label>
+							<label id="lb4" for="Student4">Student 4</label>
 						</div>
 						<div class="input-field">
 							<input id="Student5" onchange="check()" name="Student5" type="text" maxlength="4" minlength="4" class="validate">
-							<label for="Student5">Student 5</label>
+							<label id="lb5" for="Student5">Student 5</label>
 						</div>
 						<div class="input-field">
 							<input id="Student6" onchange="check()" name="Student6" type="text" maxlength="4" minlength="4" class="validate">
-							<label for="Student6">Student 6</label>
+							<label id="lb6" for="Student6">Student 6</label>
 						</div>
-						<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
 								<i class="material-icons right">send</i>
 							</button>
-						</div>
-						<div class="input-field">
-							<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
-							<label class="active" for="t1"></label>
 						</div>
 				</form>
 			</div>
@@ -81,11 +76,29 @@
 		}).catch((err) => {
 			console.log(err);
 		});
+		db.collection("Students").doc("ARHN" + student1).get().then((doc) => {
+			if (doc.exists) {
+				document.getElementById("lb1").innerText = doc.data().studentName;
+			}
+			else
+				document.getElementById("lb1").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+		}).catch((err) => {
+			console.log(err);
+		});
 		db.collection("events").doc(eventName).collection("Students").doc(student2).get().then((doc) => {
 			if (doc.exists) {
 				Materialize.toast("Student already exists", 1500);
 				document.getElementById("Student2").value = '';
 			}
+		}).catch((err) => {
+			console.log(err);
+		});
+		db.collection("Students").doc("ARHN" + student2).get().then((doc) => {
+			if (doc.exists) {
+				document.getElementById("lb2").innerText = doc.data().studentName;
+			}
+			else
+				document.getElementById("lb2").innerText = 'Student not registered. Contact Aravind or Abhishek.';
 		}).catch((err) => {
 			console.log(err);
 		});
@@ -97,11 +110,29 @@
 		}).catch((err) => {
 			console.log(err);
 		});
+		db.collection("Students").doc("ARHN" + student3).get().then((doc) => {
+			if (doc.exists) {
+				document.getElementById("lb3").innerText = doc.data().studentName;
+			}
+			else
+				document.getElementById("lb3").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+		}).catch((err) => {
+			console.log(err);
+		});
 		db.collection("events").doc(eventName).collection("Students").doc(student4).get().then((doc) => {
 			if (doc.exists) {
 				Materialize.toast("Student already exists", 1500);
 				document.getElementById("Student4").value = '';
 			}
+		}).catch((err) => {
+			console.log(err);
+		});
+		db.collection("Students").doc("ARHN" + student4).get().then((doc) => {
+			if (doc.exists) {
+				document.getElementById("lb4").innerText = doc.data().studentName;
+			}
+			else
+				document.getElementById("lb4").innerText = 'Student not registered. Contact Aravind or Abhishek.';
 		}).catch((err) => {
 			console.log(err);
 		});
@@ -113,11 +144,29 @@
 		}).catch((err) => {
 			console.log(err);
 		});
+		db.collection("Students").doc("ARHN" + student5).get().then((doc) => {
+			if (doc.exists) {
+				document.getElementById("lb5").innerText = doc.data().studentName;
+			}
+			else
+				document.getElementById("lb5").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+		}).catch((err) => {
+			console.log(err);
+		});
 		db.collection("events").doc(eventName).collection("Students").doc(student6).get().then((doc) => {
 			if (doc.exists) {
 				Materialize.toast("Student already exists", 1500);
 				document.getElementById("Student6").value = '';
 			}
+		}).catch((err) => {
+			console.log(err);
+		});
+		db.collection("Students").doc("ARHN" + student6).get().then((doc) => {
+			if (doc.exists) {
+				document.getElementById("lb6").innerText = doc.data().studentName;
+			}
+			else
+				document.getElementById("lb6").innerText = 'Student not registered. Contact Aravind or Abhishek.';
 		}).catch((err) => {
 			console.log(err);
 		});
