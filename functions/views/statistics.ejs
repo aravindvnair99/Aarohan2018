@@ -345,7 +345,7 @@
 			}), function (error) {
 				console.log("Error getting documents: ", error);
 			};
-		db.collection("events").doc("Kerbal space Program").collection("Groups")
+		db.collection("events").doc("Kerbal space program").collection("Groups")
 			.onSnapshot(querySnapshot => {
 				document.getElementById("kerbal").innerText = querySnapshot.size;
 			}), function (error) {
