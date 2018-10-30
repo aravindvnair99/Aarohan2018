@@ -54,6 +54,15 @@
 		}).catch((err) => {
 			console.log(err);
 		});
+		db.collection("Students").doc("ARHN" + student1).get().then((doc) => {
+            if (doc.exists) {
+                document.getElementById("lb1").innerText = doc.data().studentName;
+            }
+            else
+                document.getElementById("lb1").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+        }).catch((err) => {
+            console.log(err);
+        });
 		db.collection("events").doc(eventName).collection("Students").doc(student2).get().then((doc) => {
 			if (doc.exists) {
 				Materialize.toast("Student already exists", 1500);
@@ -62,6 +71,15 @@
 		}).catch((err) => {
 			console.log(err);
 		});
+		db.collection("Students").doc("ARHN" + student2).get().then((doc) => {
+            if (doc.exists) {
+                document.getElementById("lb2").innerText = doc.data().studentName;
+            }
+            else
+                document.getElementById("lb2").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+        }).catch((err) => {
+            console.log(err);
+        });
 	}
 </script>
 <%include foot.ejs %>

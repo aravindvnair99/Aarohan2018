@@ -10,11 +10,6 @@
 	});
 </script>
 
-<head>
-	<title>Event Registration Form</title>
-
-</head>
-
 <div class="container">
 	<div class="row"></div>
 	<div class="row">
@@ -31,54 +26,20 @@
 						<% include Student1.ejs %>
 						<% include Student2.ejs %>
 						<% include Student3.ejs %>
-						<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
 								<i class="material-icons right">send</i>
 							</button>
 						</div>
-
 						<div class="input-field">
 							<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
 							<label class="active" for="t1"></label>
 						</div>
-						<div id="container" />
+					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
 <%include foot.ejs %>
-<script>
-	var db = firebase.firestore();
-	function check() {
-		var eventName = document.getElementById("eventName").value;
-		var student1 = document.getElementById("Student1").value;
-		var student2 = document.getElementById("Student2").value;
-		var student3 = document.getElementById("Student3").value;
-		db.collection("events").doc(eventName).collection("Students").doc(student1).get().then((doc) => {
-			if (doc.exists) {
-				Materialize.toast("Student already exists", 1500);
-				document.getElementById("Student1").value = '';
-			}
-		}).catch((err) => {
-			console.log(err);
-		});
-		db.collection("events").doc(eventName).collection("Students").doc(student2).get().then((doc) => {
-			if (doc.exists) {
-				Materialize.toast("Student already exists", 1500);
-				document.getElementById("Student2").value = '';
-			}
-		}).catch((err) => {
-			console.log(err);
-		});
-		db.collection("events").doc(eventName).collection("Students").doc(student3).get().then((doc) => {
-			if (doc.exists) {
-				Materialize.toast("Student already exists", 1500);
-				document.getElementById("Student3").value = '';
-			}
-		}).catch((err) => {
-			console.log(err);
-		});
-	}
-</script>
+<%include eventVerification.ejs%>

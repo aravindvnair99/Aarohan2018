@@ -1,0 +1,60 @@
+<script>
+    var db = firebase.firestore();
+    function check() {
+        var eventName = document.getElementById("eventName").value;
+        var student1 = document.getElementById("Student1").value;
+        var student2 = document.getElementById("Student2").value;
+        var student3 = document.getElementById("Student3").value;
+        db.collection("events").doc(eventName).collection("Students").doc(student1).get().then((doc) => {
+            if (doc.exists) {
+                Materialize.toast("Student already exists", 1500);
+                document.getElementById("Student1").value = '';
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+        db.collection("Students").doc("ARHN" + student1).get().then((doc) => {
+            if (doc.exists) {
+                document.getElementById("lb1").innerText = doc.data().studentName;
+            }
+            else
+                document.getElementById("lb1").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+        }).catch((err) => {
+            console.log(err);
+        });
+        db.collection("events").doc(eventName).collection("Students").doc(student2).get().then((doc) => {
+            if (doc.exists) {
+                Materialize.toast("Student already exists", 1500);
+                document.getElementById("Student2").value = '';
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+        db.collection("Students").doc("ARHN" + student2).get().then((doc) => {
+            if (doc.exists) {
+                document.getElementById("lb2").innerText = doc.data().studentName;
+            }
+            else
+                document.getElementById("lb2").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+        }).catch((err) => {
+            console.log(err);
+        });
+        db.collection("events").doc(eventName).collection("Students").doc(student3).get().then((doc) => {
+            if (doc.exists) {
+                Materialize.toast("Student already exists", 1500);
+                document.getElementById("Student3").value = '';
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+        db.collection("Students").doc("ARHN" + student3).get().then((doc) => {
+            if (doc.exists) {
+                document.getElementById("lb3").innerText = doc.data().studentName;
+            }
+            else
+                document.getElementById("lb3").innerText = 'Student not registered. Contact Aravind or Abhishek.';
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+</script>
