@@ -31,7 +31,6 @@
 						<% include Student1.ejs %>
 						<% include Student2.ejs %>
 						<% include Student3.ejs %>
-						<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
 								<i class="material-icons right">send</i>
@@ -42,103 +41,11 @@
 							<input .value=count id="t1" name="schoolId" type="hidden" class="validate" required>
 							<label class="active" for="t1"></label>
 						</div>
-						<div id="container" />
+					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<script defer src="/__/firebase/5.5.5/firebase-app.js"></script>
-<script defer src="/__/firebase/5.5.5/firebase-firestore.js"></script>
-<script defer src="/__/firebase/init.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
-	/*function addFields() {
-		var e = document.getElementById('nameEvent');
-		var eventName = e.options[e.selectedIndex].value;
-		console.log(eventName);
-		console.log("CHecking");
-		firebase.firestore().collection("events").doc(eventName).get().then((doc) => {
-			if (doc.exists) {
-				max = doc.data().Max;
-				min = doc.data().Min;
-				count = doc.data().count;
-				console.log(max);
-				if (max == min) {
-					while (container.hasChildNodes()) {
-						container.removeChild(container.lastChild);
-					}
-					for (i = 1; i <= max; i++) {
-						container.appendChild(document.createTextNode("Student " + (i) + " "));
-						var input = document.createElement("input");
-						input.type = "text";
-						input.name = "Student" + i;
-						container.appendChild(input);
-						container.appendChild(document.createElement("br"));
-					}
-				}
-				else {
-					while (container.hasChildNodes()) {
-						container.removeChild(container.lastChild);
-					}
-					number = max;
-					for (i = 1; i <= max; i++) {
-						container.appendChild(document.createTextNode("Student " + (i) + " "));
-						var input = document.createElement("input");
-						input.type = "text";
-						input.name = "Student" + i;
-						container.appendChild(input);
-						container.appendChild(document.createElement("br"));
-					}
-				}
-				return (doc.data());
-			} else {
-				throw new Error("Event does not exist");
-			}
-		}).catch((err) => {
-			console.log(err);
-		});
-	} */
-	$('#form').on('keyup keypress', function (e) {
-		var keyCode = e.keyCode || e.which;
-		if (keyCode === 13) {
-			e.preventDefault();
-			return false;
-		}
-	});
-</script>
-
-<%include foot.ejs %>
-<script>
-	var db = firebase.firestore();
-	function check() {
-		var eventName = document.getElementById("eventName").value;
-		var student1 = document.getElementById("Student1").value;
-		var student2 = document.getElementById("Student2").value;
-		var student3 = document.getElementById("Student3").value;
-		db.collection("events").doc(eventName).collection("Students").doc(student1).get().then((doc) => {
-			if (doc.exists) {
-				Materialize.toast("Student already exists", 1500);
-				document.getElementById("Student1").value = '';
-			}
-		}).catch((err) => {
-			console.log(err);
-		});
-		db.collection("events").doc(eventName).collection("Students").doc(student2).get().then((doc) => {
-			if (doc.exists) {
-				Materialize.toast("Student already exists", 1500);
-				document.getElementById("Student2").value = '';
-			}
-		}).catch((err) => {
-			console.log(err);
-		});
-		db.collection("events").doc(eventName).collection("Students").doc(student3).get().then((doc) => {
-			if (doc.exists) {
-				Materialize.toast("Student already exists", 1500);
-				document.getElementById("Student3").value = '';
-			}
-		}).catch((err) => {
-			console.log(err);
-		});
-	}
-</script>
+<%include foot.ejs%>
+<%include eventVerification.ejs%>
