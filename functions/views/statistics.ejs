@@ -345,7 +345,7 @@
 			}), function (error) {
 				console.log("Error getting documents: ", error);
 			};
-		db.collection("events").doc("Kerbal Space Program").collection("Groups")
+		db.collection("events").doc("Kerbal space Program").collection("Groups")
 			.onSnapshot(querySnapshot => {
 				document.getElementById("kerbal").innerText = querySnapshot.size;
 			}), function (error) {
@@ -353,7 +353,7 @@
 			};
 		db.collection("events").doc("Lakshya").collection("Groups")
 			.onSnapshot(querySnapshot => {
-				document.getElementById("laksya").innerText = querySnapshot.size;
+				document.getElementById("lakshya").innerText = querySnapshot.size;
 			}), function (error) {
 				console.log("Error getting documents: ", error);
 			};
@@ -393,7 +393,7 @@
 			}), function (error) {
 				console.log("Error getting documents: ", error);
 			};
-		db.collection("events").doc("Race for Glory").collection("Groups")
+		db.collection("events").doc("Race for glory").collection("Groups")
 			.onSnapshot(querySnapshot => {
 				document.getElementById("race").innerText = querySnapshot.size;
 			}), function (error) {
@@ -429,7 +429,7 @@
 			}), function (error) {
 				console.log("Error getting documents: ", error);
 			};
-		db.collection("events").doc("The Sphinx Quiz").collection("Groups")
+		db.collection("events").doc("The sphinx quiz").collection("Groups")
 			.onSnapshot(querySnapshot => {
 				document.getElementById("sphinx").innerText = querySnapshot.size;
 			}), function (error) {
