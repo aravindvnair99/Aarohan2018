@@ -1,6 +1,6 @@
 {
 	"name": "aarohan2018",
-	"version": "3.1.1",
+	"version": "3.2.0",
 	"description": "Code for Aarohan 2018 (10th edition of Aarohan)",
 	"main": "index.js",
 	"scripts": {
@@ -12,11 +12,9 @@
 		"logs": "firebase functions:log"
 	},
 	"dependencies": {
-		"acorn": "^6.0.5",
 		"body-parser": "^1.18.3",
 		"ejs": "^2.6.1",
 		"express": "^4.16.4",
-		"firebase": "^5.7.3",
 		"firebase-admin": "^6.5.0",
 		"firebase-functions": "^2.1.0"
 	},
