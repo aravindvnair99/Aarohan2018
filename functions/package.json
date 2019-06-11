@@ -1,6 +1,6 @@
 {
 	"name": "aarohan2018",
-	"version": "3.3.0",
+	"version": "3.4.0",
 	"description": "Code for Aarohan 2018 (10th edition of Aarohan)",
 	"main": "index.js",
 	"scripts": {
@@ -12,15 +12,15 @@
 		"logs": "firebase functions:log"
 	},
 	"dependencies": {
-		"body-parser": "^1.18.3",
+		"body-parser": "^1.19.0",
 		"ejs": "^2.6.1",
-		"express": "^4.16.4",
-		"firebase-admin": "^7.0.0",
-		"firebase-functions": "^2.2.0"
+		"express": "^4.17.1",
+		"firebase-admin": "^7.4.0",
+		"firebase-functions": "^2.3.1"
 	},
 	"devDependencies": {
-		"eslint": "^5.13.0",
-		"eslint-plugin-promise": "^4.0.1"
+		"eslint": "^5.16.0",
+		"eslint-plugin-promise": "^4.1.1"
 	},
 	"private": true
 }
