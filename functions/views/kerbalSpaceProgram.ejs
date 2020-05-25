@@ -1,4 +1,4 @@
-<% include nav.ejs %>
+<%- include('nav') %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user.email === "kerbal@aarohan.org" || user.email === "admin@aarohan.org" || user.email === "core@aarohan.org") {
@@ -24,8 +24,8 @@
 							<label for="t1">
 							</label>
 						</div>
-						<% include Student1.ejs %>
-						<% include Student2.ejs %>
+						<%- include('Student1') %>
+						<%- include('Student2') %>
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
 								<i class="material-icons right">send</i>
@@ -42,7 +42,7 @@
 		</div>
 	</div>
 </div>
-<%include foot.ejs %>
+<%- include('foot') %>
 <script>
 	var db = firebase.firestore();
 	function check() {

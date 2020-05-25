@@ -1,4 +1,4 @@
-<% include nav.ejs %>
+<%- include('nav') %>
 <div class="container">
 <div class="row"></div>
 <div class="row">
@@ -11,7 +11,7 @@
                       <input name="uid" placeholder="ARHNXXXX" onclick="putARHN(uid)" id="uid" type="text" class="validate" required>
                       <label class="active" for="uid">Aaorhan ID</label>
                     </div>
-            </div>    
+            </div>
             <div class="card-action">
                     <button class="btn -waves-effect waves-light" type="submit" name="action">View Student Details
                         <i class="material-icons right">send</i>
@@ -20,7 +20,7 @@
         </form>
     </div>
     </div>
-    
+
     <div class="col s12 l4">
         <div class="card">
         <div class="card-content">
@@ -38,13 +38,13 @@
             <% } %>
             </li>
         </ul>
-            
+
 
         </div>
         </div>
-    
+
     </div>
-    
+
     <div class="col s12 l4">
     <div class="card">
         <form onsubmit="return isValidForm1()" action="/student_edit" method="POST">
@@ -58,7 +58,7 @@
                       <input  value="" id="t1" name="name" type="text" class="validate" required>
                       <label class="active" for="t1">Student Name</label>
                     </div>
-                
+
                     <div class="input-field">
                     <select name="gender" required>
                       <option disabled selected></option>
@@ -67,7 +67,7 @@
                     </select>
                     <label>Gender</label>
                     </div>
-                
+
                     <div class="input-field">
                     <select name="category" required>
                       <option disabled selected></option>
@@ -76,7 +76,7 @@
                     </select>
                     <label>Category</label>
                     </div>
-                
+
                     <div class="input-field">
                     <select name="school" required>
                         <option value="" disabled selected></option>
@@ -143,4 +143,4 @@
 </script>
 
 
-<%include foot.ejs %>
+<%- include('foot') %>

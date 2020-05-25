@@ -1,4 +1,4 @@
-<% include nav.ejs %>
+<%- include('nav') %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user.email === "staff@aarohan.org" || user.email === "admin@aarohan.org" || user.email === "core@aarohan.org") {
@@ -8,7 +8,7 @@
 			window.location = "/eventReg";
 		}
 	});
-</script>      
+</script>
 <div class="row"></div>
 <div class="row">
 	<div class="col l3"></div>
@@ -29,4 +29,4 @@
 		</div>
 	</div>
 </div>
-<%include foot.ejs %>
+<%- include('foot') %>

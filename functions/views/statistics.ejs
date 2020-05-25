@@ -1,4 +1,4 @@
-<% include nav.ejs %>
+<%- include('nav') %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user.email === "admin@aarohan.org" || user.email === "core@aarohan.org") {
@@ -433,4 +433,4 @@
 				console.log("Error getting documents: ", error);
 			};
 	</script>
-	<%include foot.ejs %>
+	<%- include('foot') %>

@@ -1,4 +1,4 @@
-<% include nav.ejs %>
+<%- include('nav') %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user.email === "circuitrix@aarohan.org" || user.email === "admin@aarohan.org" || user.email === "core@aarohan.org") {
@@ -45,5 +45,5 @@
 		</div>
 	</div>
 </div>
-<%include foot.ejs %>
-<%include eventVerification.ejs%>
+<%- include('foot') %>
+<%- include('eventVerification') %>

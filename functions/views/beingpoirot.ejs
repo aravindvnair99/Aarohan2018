@@ -1,4 +1,4 @@
-<% include nav.ejs %>
+<%- include('nav') %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user.email === "being@aarohan.org" || user.email === "admin@aarohan.org" || user.email === "core@aarohan.org") {
@@ -21,9 +21,9 @@
 						<div class="input-field">
 							<input id="eventName" name="eventName" value="Being poirot" type="hidden" class="validate" required>
 						</div><br>
-						<% include Student1.ejs %>
-						<% include Student2.ejs %>
-						<% include Student3.ejs %>
+						<%- include('Student1') %>
+						<%- include('Student2') %>
+						<%- include('Student3') %>
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action">Submit
 								<i class="material-icons right">send</i>
@@ -35,5 +35,5 @@
 		</div>
 	</div>
 </div>
-<%include foot.ejs%>
-<%include eventVerification.ejs%>
+<%- include('foot') %>
+<%- include('eventVerification') %>

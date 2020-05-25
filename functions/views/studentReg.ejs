@@ -1,4 +1,4 @@
-<% include nav.ejs %>
+<%- include('nav') %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user.email === "staff@aarohan.org" || user.email === "admin@aarohan.org" || user.email === "core@aarohan.org" || user.email === "desk1@aarohan.org" || user.email === "desk2@aarohan.org" || user.email === "desk3@aarohan.org" || user.email === "desk4@aarohan.org" || user.email === "desk5@aarohan.org" || user.email === "desk6@aarohan.org" || user.email === "desk7@aarohan.org" || user.email === "desk8@aarohan.org" || user.email === "desk9@aarohan.org" || user.email === "desk10@aarohan.org" || user.email === "desk11@aarohan.org" || user.email === "desk12@aarohan.org" || user.email === "desk13@aarohan.org") {
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 </div>
-<%include foot.ejs %>
+<%- include('foot') %>
 <script>
 	var db = firebase.firestore();
 	function checkStud() {

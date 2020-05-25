@@ -1,4 +1,4 @@
-<% include nav.ejs %>
+<%- include('nav') %>
 <script>
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user.email === "mechathalon@aarohan.org" || user.email === "admin@aarohan.org" || user.email === "core@aarohan.org") {
@@ -28,10 +28,10 @@
 							<input id="eventName" name="eventName" value="Mechathalon" type="hidden" class="hidden" required>
 							<label for="t1">
 							</label>
-							<% include Student1.ejs %>
-							<% include Student2.ejs %>
-							<% include Student3.ejs %>
-							<% include Student4.ejs %>
+							<%- include('Student1') %>
+							<%- include('Student2') %>
+							<%- include('Student3') %>
+							<%- include('Student4') %>
 						<!-- <a id="filldetails" onclick="addFields()">Fill Details</a> -->
 						<div class="card-action">
 							<button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Registered', 400)">Submit
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 </div>
-<%include foot.ejs %>
+<%- include('foot') %>
 <script>
 	var db = firebase.firestore();
 	function check() {

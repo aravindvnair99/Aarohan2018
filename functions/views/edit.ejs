@@ -1,4 +1,4 @@
-<% include nav.ejs%>
+<%- include('nav') %>
 <div class="container">
 	<div class="row">
 		<div class="col s12 m6 l6">
@@ -27,7 +27,7 @@
 		</div>
 	</div>
 </div>
-<% include foot.ejs%>
+<%- include('foot') %>
 <script>
 	$(document).ready(function () {
 		$(".card").click(function () {
