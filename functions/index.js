@@ -1,256 +1,256 @@
-const functions = require('firebase-functions'),
-	express = require('express'),
+const functions = require("firebase-functions"),
+	express = require("express"),
 	app = express(),
-	bodyParser = require('body-parser'),
-	admin = require('firebase-admin');
+	bodyParser = require("body-parser"),
+	admin = require("firebase-admin");
 
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 
 app.use(bodyParser.json());
 app.use(
 	bodyParser.urlencoded({
-		extended: true
+		extended: true,
 	})
 );
 
-app.set('views', './views');
-app.set('view engine', 'ejs');
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 var db = admin.firestore();
 
-app.get('/', (req, res) => {
-	res.render('index');
+app.get("/", (req, res) => {
+	res.render("index");
 });
-app.get('/Developers', (req, res) => {
-	res.render('developers');
+app.get("/Developers", (req, res) => {
+	res.render("developers");
 });
-app.get('/login', (req, res) => {
-	res.render('login');
+app.get("/login", (req, res) => {
+	res.render("login");
 });
-app.get('/schoolReg', (req, res) => {
-	res.render('schoolReg');
+app.get("/schoolReg", (req, res) => {
+	res.render("schoolReg");
 });
-app.get('/eventReg', (req, res) => {
-	res.render('eventReg');
+app.get("/eventReg", (req, res) => {
+	res.render("eventReg");
 });
-app.get('/statistics', (req, res) => {
-	res.render('statistics');
+app.get("/statistics", (req, res) => {
+	res.render("statistics");
 });
-app.get('/beingPoirot', (req, res) => {
-	res.render('beingPoirot');
+app.get("/beingPoirot", (req, res) => {
+	res.render("beingPoirot");
 });
-app.get('/circuitrix', (req, res) => {
-	res.render('circuitrix');
+app.get("/circuitrix", (req, res) => {
+	res.render("circuitrix");
 });
-app.get('/codeBound', (req, res) => {
-	res.render('codeBound');
+app.get("/codeBound", (req, res) => {
+	res.render("codeBound");
 });
-app.get('/espritDeCorps', (req, res) => {
-	res.render('espritDeCorps');
+app.get("/espritDeCorps", (req, res) => {
+	res.render("espritDeCorps");
 });
-app.get('/finalDestination', (req, res) => {
-	res.render('finalDestination');
+app.get("/finalDestination", (req, res) => {
+	res.render("finalDestination");
 });
-app.get('/kerbalSpaceProgram', (req, res) => {
-	res.render('kerbalSpaceProgram');
+app.get("/kerbalSpaceProgram", (req, res) => {
+	res.render("kerbalSpaceProgram");
 });
-app.get('/lakshya', (req, res) => {
-	res.render('lakshya');
+app.get("/lakshya", (req, res) => {
+	res.render("lakshya");
 });
-app.get('/letsRingItUp', (req, res) => {
-	res.render('letsRingItUp');
+app.get("/letsRingItUp", (req, res) => {
+	res.render("letsRingItUp");
 });
-app.get('/mathementumContour', (req, res) => {
-	res.render('mathementumContour');
+app.get("/mathementumContour", (req, res) => {
+	res.render("mathementumContour");
 });
-app.get('/mechathalon', (req, res) => {
-	res.render('mechathalon');
+app.get("/mechathalon", (req, res) => {
+	res.render("mechathalon");
 });
-app.get('/mindsweeper', (req, res) => {
-	res.render('mindsweeper');
+app.get("/mindsweeper", (req, res) => {
+	res.render("mindsweeper");
 });
-app.get('/omniumArtiumMagister', (req, res) => {
-	res.render('omniumArtiumMagister');
+app.get("/omniumArtiumMagister", (req, res) => {
+	res.render("omniumArtiumMagister");
 });
-app.get('/projectExhibition', (req, res) => {
-	res.render('projectExhibition');
+app.get("/projectExhibition", (req, res) => {
+	res.render("projectExhibition");
 });
-app.get('/raceForGlory', (req, res) => {
-	res.render('raceForGlory');
+app.get("/raceForGlory", (req, res) => {
+	res.render("raceForGlory");
 });
-app.get('/roboCup', (req, res) => {
-	res.render('roboCup');
+app.get("/roboCup", (req, res) => {
+	res.render("roboCup");
 });
-app.get('/schoolDuels', (req, res) => {
-	res.render('schoolDuels');
+app.get("/schoolDuels", (req, res) => {
+	res.render("schoolDuels");
 });
-app.get('/sherlocked', (req, res) => {
-	res.render('sherlocked');
+app.get("/sherlocked", (req, res) => {
+	res.render("sherlocked");
 });
-app.get('/targo', (req, res) => {
-	res.render('targo');
+app.get("/targo", (req, res) => {
+	res.render("targo");
 });
-app.get('/techRoadies', (req, res) => {
-	res.render('techRoadies');
+app.get("/techRoadies", (req, res) => {
+	res.render("techRoadies");
 });
-app.get('/theSphinxQuiz', (req, res) => {
-	res.render('theSphinxQuiz');
+app.get("/theSphinxQuiz", (req, res) => {
+	res.render("theSphinxQuiz");
 });
-app.get('/search', (req, res) => {
-	db.collection('students')
+app.get("/search", (req, res) => {
+	db.collection("students")
 		.doc()
 		.get()
-		.then(querySnapshot => {
-			querySnapshot.forEach(childSnapshot => {
+		.then((querySnapshot) => {
+			querySnapshot.forEach((childSnapshot) => {
 				console.log(childSnapshot.id);
 			});
-			res.send('Done');
+			res.send("Done");
 			return;
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log(err);
 		});
 });
 
-app.get('/count', (req, res) => {
+app.get("/count", (req, res) => {
 	var i = 0;
-	db.collection('events')
-		.doc('Mechathalon')
-		.collection('Groups')
+	db.collection("events")
+		.doc("Mechathalon")
+		.collection("Groups")
 		.get()
-		.then(querySnapshot => {
-			querySnapshot.forEach(childSnapshot => {
+		.then((querySnapshot) => {
+			querySnapshot.forEach((childSnapshot) => {
 				i++;
 			});
 			res.send(JSON.stringify(i));
 			return;
 		})
-		.catch(err => {
+		.catch((err) => {
 			res.send(err);
 		});
 });
 
-app.get('/studentReg', (req, res) => {
+app.get("/studentReg", (req, res) => {
 	var i = 0,
 		obj,
 		school = new Array();
-	db.collection('Schools')
+	db.collection("Schools")
 		.get()
-		.then(querySnapshot => {
+		.then((querySnapshot) => {
 			ob = querySnapshot;
-			querySnapshot.forEach(childSnapshot => {
+			querySnapshot.forEach((childSnapshot) => {
 				school[i] = childSnapshot.id;
 				i++;
 			});
 			obj = Object.assign({}, school);
-			res.render('studentReg', { obj });
+			res.render("studentReg", { obj });
 			return;
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log(err);
 		});
 });
 
-app.get('/viewSchools', (req, res) => {
+app.get("/viewSchools", (req, res) => {
 	var i = 0,
 		obj,
 		school = new Array();
-	db.collection('Schools')
+	db.collection("Schools")
 		.get()
-		.then(querySnapshot => {
-			querySnapshot.forEach(childSnapshot => {
+		.then((querySnapshot) => {
+			querySnapshot.forEach((childSnapshot) => {
 				school[i] = childSnapshot.id;
 				i++;
 			});
 			obj = Object.assign({}, school);
-			res.render('viewSchools', { obj });
+			res.render("viewSchools", { obj });
 			return;
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log(err);
 		});
 });
 
-app.post('/onEventSelect', (req, res) => {
+app.post("/onEventSelect", (req, res) => {
 	var event = req.body.eventName;
 	switch (event) {
-		case 'beingPoirot':
-			res.redirect('/beingPoirot');
+		case "beingPoirot":
+			res.redirect("/beingPoirot");
 			break;
-		case 'circuitrix':
-			res.redirect('/circuitrix');
+		case "circuitrix":
+			res.redirect("/circuitrix");
 			break;
-		case 'codeBound':
-			res.redirect('/codeBound');
+		case "codeBound":
+			res.redirect("/codeBound");
 			break;
-		case 'espritDeCorps':
-			res.redirect('/espritDeCorps');
+		case "espritDeCorps":
+			res.redirect("/espritDeCorps");
 			break;
-		case 'finalDestination':
-			res.redirect('/finalDestination');
+		case "finalDestination":
+			res.redirect("/finalDestination");
 			break;
-		case 'kerbalSpaceProgram':
-			res.redirect('/kerbalSpaceProgram');
+		case "kerbalSpaceProgram":
+			res.redirect("/kerbalSpaceProgram");
 			break;
-		case 'lakshya':
-			res.redirect('/lakshya');
+		case "lakshya":
+			res.redirect("/lakshya");
 			break;
-		case 'letsRingItUp':
-			res.redirect('/letsRingItUp');
+		case "letsRingItUp":
+			res.redirect("/letsRingItUp");
 			break;
-		case 'mathementumContour':
-			res.redirect('/mathementumContour');
+		case "mathementumContour":
+			res.redirect("/mathementumContour");
 			break;
-		case 'mechathalon':
-			res.redirect('/mechathalon');
+		case "mechathalon":
+			res.redirect("/mechathalon");
 			break;
-		case 'mindsweeper':
-			res.redirect('/mindsweeper');
+		case "mindsweeper":
+			res.redirect("/mindsweeper");
 			break;
-		case 'omniumArtiumMagister':
-			res.redirect('/omniumArtiumMagister');
+		case "omniumArtiumMagister":
+			res.redirect("/omniumArtiumMagister");
 			break;
-		case 'projectExhibition':
-			res.redirect('/projectExhibition');
+		case "projectExhibition":
+			res.redirect("/projectExhibition");
 			break;
-		case 'raceForGlory':
-			res.redirect('/raceForGlory');
+		case "raceForGlory":
+			res.redirect("/raceForGlory");
 			break;
-		case 'roboCup':
-			res.redirect('/roboCup');
+		case "roboCup":
+			res.redirect("/roboCup");
 			break;
-		case 'schoolDuels':
-			res.redirect('/schoolDuels');
+		case "schoolDuels":
+			res.redirect("/schoolDuels");
 			break;
-		case 'sherlocked':
-			res.redirect('/sherlocked');
+		case "sherlocked":
+			res.redirect("/sherlocked");
 			break;
-		case 'targo':
-			res.redirect('/targo');
+		case "targo":
+			res.redirect("/targo");
 			break;
-		case 'techRoadies':
-			res.redirect('/techRoadies');
+		case "techRoadies":
+			res.redirect("/techRoadies");
 			break;
-		case 'theSphinxQuiz':
-			res.redirect('/theSphinxQuiz');
+		case "theSphinxQuiz":
+			res.redirect("/theSphinxQuiz");
 			break;
 		default:
-			res.redirect('/eventReg');
+			res.redirect("/eventReg");
 			break;
 	}
 });
 
-app.post('/onSchoolReg', (req, res) => {
+app.post("/onSchoolReg", (req, res) => {
 	var schoolName = req.body.schoolName;
 	var facultyName = req.body.facultyName;
 	var email = req.body.email;
 	var mobile = req.body.mobile;
 	var cheque = req.body.cheque;
-	var sch = db.collection('Schools').doc(schoolName);
+	var sch = db.collection("Schools").doc(schoolName);
 	sch.get()
-		.then(doc => {
+		.then((doc) => {
 			if (doc.exists) {
-				console.warn(schoolName + ' already exists.');
+				console.warn(schoolName + " already exists.");
 				return;
 			} else {
 				var ob = {
@@ -259,23 +259,21 @@ app.post('/onSchoolReg', (req, res) => {
 					Faculty: {
 						ContactNo: mobile,
 						EmailID: email,
-						Name: facultyName
-					}
+						Name: facultyName,
+					},
 				};
-				db.collection('Schools')
-					.doc(schoolName)
-					.set(ob);
+				db.collection("Schools").doc(schoolName).set(ob);
 				return;
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.log(err);
 		});
-	res.redirect('/schoolReg');
+	res.redirect("/schoolReg");
 });
 
-app.post('/onStudentReg', (req, res) => {
-	var uid = 'ARHN' + req.body.uid;
+app.post("/onStudentReg", (req, res) => {
+	var uid = "ARHN" + req.body.uid;
 	var name = req.body.studentName;
 	var gender = req.body.gender;
 	var category = req.body.category;
@@ -284,12 +282,12 @@ app.post('/onStudentReg', (req, res) => {
 		studentName: name,
 		gender: gender,
 		category: category,
-		schoolName: schoolName
+		schoolName: schoolName,
 	};
-	var sch = db.collection('Schools').doc(schoolName);
-	var ch = sch.collection('Students').doc(uid);
+	var sch = db.collection("Schools").doc(schoolName);
+	var ch = sch.collection("Students").doc(uid);
 	sch.get()
-		.then(doc => {
+		.then((doc) => {
 			if (doc.exists) {
 				checkuid();
 				return doc;
@@ -297,122 +295,120 @@ app.post('/onStudentReg', (req, res) => {
 				throw new Error("School doesn't exist");
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.error(err);
 		});
 	function checkuid() {
 		ch.get()
-			.then(doc1 => {
+			.then((doc1) => {
 				if (doc1.exists) {
 					return doc1;
 				} else {
 					checkstud();
-					db.collection('Schools')
+					db.collection("Schools")
 						.doc(schoolName)
-						.collection('Students')
+						.collection("Students")
 						.doc(uid)
 						.set(ob);
-					return 'Added in Schools collection under students';
+					return "Added in Schools collection under students";
 				}
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.error(err);
 			});
 	}
 	function checkstud() {
-		db.collection('Students')
+		db.collection("Students")
 			.get()
-			.then(doc2 => {
+			.then((doc2) => {
 				if (doc2.exists) {
 					return doc2;
 				} else {
-					db.collection('Students')
-						.doc(uid)
-						.set(ob);
-					return 'Added in Students collection';
+					db.collection("Students").doc(uid).set(ob);
+					return "Added in Students collection";
 				}
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(err);
 			});
 	}
-	res.redirect('/studentReg');
+	res.redirect("/studentReg");
 });
 
-app.post('/onEventReg', (req, res) => {
+app.post("/onEventReg", (req, res) => {
 	var i,
 		eve,
 		eventName = req.body.eventName;
-	db.collection('events')
+	db.collection("events")
 		.doc(eventName)
 		.get()
-		.then(doc => {
+		.then((doc) => {
 			if (doc.exists) {
 				i = doc.data().Max;
 				switch (i) {
 					case 2:
 						eve = {
 							Student1: req.body.Student1,
-							Student2: req.body.Student2
+							Student2: req.body.Student2,
 						};
-						db.collection('events')
+						db.collection("events")
 							.doc(eventName)
-							.collection('Students')
+							.collection("Students")
 							.doc(req.body.Student1)
 							.set({});
-						db.collection('events')
+						db.collection("events")
 							.doc(eventName)
-							.collection('Students')
+							.collection("Students")
 							.doc(req.body.Student2)
 							.set({});
 						break;
 					case 3:
 						if (
-							req.body.Student2 === '' &&
-							req.body.Student3 === ''
+							req.body.Student2 === "" &&
+							req.body.Student3 === ""
 						) {
 							eve = {
-								Student1: req.body.Student1
+								Student1: req.body.Student1,
 							};
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student1)
 								.set({});
-						} else if (req.body.Student3 === '') {
+						} else if (req.body.Student3 === "") {
 							eve = {
 								Student1: req.body.Student1,
-								Student2: req.body.Student2
+								Student2: req.body.Student2,
 							};
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student1)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student2)
 								.set({});
 						} else {
 							eve = {
 								Student1: req.body.Student1,
 								Student2: req.body.Student2,
-								Student3: req.body.Student3
+								Student3: req.body.Student3,
 							};
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student1)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student2)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student3)
 								.set({});
 						}
@@ -422,151 +418,151 @@ app.post('/onEventReg', (req, res) => {
 							Student1: req.body.Student1,
 							Student2: req.body.Student2,
 							Student3: req.body.Student3,
-							Student4: req.body.Student4
+							Student4: req.body.Student4,
 						};
-						db.collection('events')
+						db.collection("events")
 							.doc(eventName)
-							.collection('Students')
+							.collection("Students")
 							.doc(req.body.Student1)
 							.set({});
-						db.collection('events')
+						db.collection("events")
 							.doc(eventName)
-							.collection('Students')
+							.collection("Students")
 							.doc(req.body.Student2)
 							.set({});
-						db.collection('events')
+						db.collection("events")
 							.doc(eventName)
-							.collection('Students')
+							.collection("Students")
 							.doc(req.body.Student3)
 							.set({});
-						db.collection('events')
+						db.collection("events")
 							.doc(eventName)
-							.collection('Students')
+							.collection("Students")
 							.doc(req.body.Student4)
 							.set({});
 						break;
 					case 6:
 						if (
-							req.body.Student2 === '' &&
-							req.body.Student3 === '' &&
-							req.body.Student4 === '' &&
-							req.body.Student5 === '' &&
-							req.body.Student6 === ''
-						) {
-							eve = {
-								Student1: req.body.Student1
-							};
-							db.collection('events')
-								.doc(eventName)
-								.collection('Students')
-								.doc(req.body.Student1)
-								.set({});
-						} else if (
-							req.body.Student3 === '' &&
-							req.body.Student4 === '' &&
-							req.body.Student5 === '' &&
-							req.body.Student6 === ''
+							req.body.Student2 === "" &&
+							req.body.Student3 === "" &&
+							req.body.Student4 === "" &&
+							req.body.Student5 === "" &&
+							req.body.Student6 === ""
 						) {
 							eve = {
 								Student1: req.body.Student1,
-								Student2: req.body.Student2
 							};
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student1)
 								.set({});
-							db.collection('events')
-								.doc(eventName)
-								.collection('Students')
-								.doc(req.body.Student2)
-								.set({});
 						} else if (
-							req.body.Student4 === '' &&
-							req.body.Student5 === '' &&
-							req.body.Student6 === ''
+							req.body.Student3 === "" &&
+							req.body.Student4 === "" &&
+							req.body.Student5 === "" &&
+							req.body.Student6 === ""
 						) {
 							eve = {
 								Student1: req.body.Student1,
 								Student2: req.body.Student2,
-								Student3: req.body.Student3
 							};
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student1)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student2)
 								.set({});
-							db.collection('events')
-								.doc(eventName)
-								.collection('Students')
-								.doc(req.body.Student3)
-								.set({});
 						} else if (
-							req.body.Student5 === '' &&
-							req.body.Student6 === ''
+							req.body.Student4 === "" &&
+							req.body.Student5 === "" &&
+							req.body.Student6 === ""
 						) {
 							eve = {
 								Student1: req.body.Student1,
 								Student2: req.body.Student2,
 								Student3: req.body.Student3,
-								Student4: req.body.Student4
 							};
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student1)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student2)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student3)
 								.set({});
-							db.collection('events')
-								.doc(eventName)
-								.collection('Students')
-								.doc(req.body.Student4)
-								.set({});
-						} else if (req.body.Student6 === '') {
+						} else if (
+							req.body.Student5 === "" &&
+							req.body.Student6 === ""
+						) {
 							eve = {
 								Student1: req.body.Student1,
 								Student2: req.body.Student2,
 								Student3: req.body.Student3,
 								Student4: req.body.Student4,
-								Student5: req.body.Student5
 							};
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student1)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student2)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student3)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student4)
 								.set({});
-							db.collection('events')
+						} else if (req.body.Student6 === "") {
+							eve = {
+								Student1: req.body.Student1,
+								Student2: req.body.Student2,
+								Student3: req.body.Student3,
+								Student4: req.body.Student4,
+								Student5: req.body.Student5,
+							};
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
+								.doc(req.body.Student1)
+								.set({});
+							db.collection("events")
+								.doc(eventName)
+								.collection("Students")
+								.doc(req.body.Student2)
+								.set({});
+							db.collection("events")
+								.doc(eventName)
+								.collection("Students")
+								.doc(req.body.Student3)
+								.set({});
+							db.collection("events")
+								.doc(eventName)
+								.collection("Students")
+								.doc(req.body.Student4)
+								.set({});
+							db.collection("events")
+								.doc(eventName)
+								.collection("Students")
 								.doc(req.body.Student5)
 								.set({});
 						} else {
@@ -576,125 +572,125 @@ app.post('/onEventReg', (req, res) => {
 								Student3: req.body.Student3,
 								Student4: req.body.Student4,
 								Student5: req.body.Student5,
-								Student6: req.body.Student6
+								Student6: req.body.Student6,
 							};
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student1)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student2)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student3)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student4)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student5)
 								.set({});
-							db.collection('events')
+							db.collection("events")
 								.doc(eventName)
-								.collection('Students')
+								.collection("Students")
 								.doc(req.body.Student6)
 								.set({});
 						}
 						break;
 					default:
-						console.log('Error in switch case.');
+						console.log("Error in switch case.");
 						break;
 				}
-				db.collection('events')
+				db.collection("events")
 					.doc(eventName)
-					.collection('Groups')
+					.collection("Groups")
 					.add(eve);
 				return doc.data();
 			} else {
 				throw new Error(err);
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			console.error(err);
 		});
 	switch (eventName) {
-		case 'Being poirot':
-			res.redirect('/beingPoirot');
+		case "Being poirot":
+			res.redirect("/beingPoirot");
 			break;
-		case 'Circuitrix':
-			res.redirect('/circuitrix');
+		case "Circuitrix":
+			res.redirect("/circuitrix");
 			break;
-		case 'Code Bound':
-			res.redirect('/codeBound');
+		case "Code Bound":
+			res.redirect("/codeBound");
 			break;
-		case 'Esprit de corps':
-			res.redirect('/espritDeCorps');
+		case "Esprit de corps":
+			res.redirect("/espritDeCorps");
 			break;
-		case 'Final Destination':
-			res.redirect('/finalDestination');
+		case "Final Destination":
+			res.redirect("/finalDestination");
 			break;
-		case 'Kerbal space program':
-			res.redirect('/kerbalSpaceProgram');
+		case "Kerbal space program":
+			res.redirect("/kerbalSpaceProgram");
 			break;
-		case 'Lakshya':
-			res.redirect('/lakshya');
+		case "Lakshya":
+			res.redirect("/lakshya");
 			break;
 		case "Let's ring it up":
-			res.redirect('/letsRingItUp');
+			res.redirect("/letsRingItUp");
 			break;
-		case 'Mathementum contour':
-			res.redirect('/mathementumContour');
+		case "Mathementum contour":
+			res.redirect("/mathementumContour");
 			break;
-		case 'Mechathalon':
-			res.redirect('/mechathalon');
+		case "Mechathalon":
+			res.redirect("/mechathalon");
 			break;
-		case 'Mindsweeper':
-			res.redirect('/mindsweeper');
+		case "Mindsweeper":
+			res.redirect("/mindsweeper");
 			break;
-		case 'Omnium artium magister':
-			res.redirect('/omniumArtiumMagister');
+		case "Omnium artium magister":
+			res.redirect("/omniumArtiumMagister");
 			break;
-		case 'Project exhibition':
-			res.redirect('/projectExhibition');
+		case "Project exhibition":
+			res.redirect("/projectExhibition");
 			break;
-		case 'Race for glory':
-			res.redirect('/raceForGlory');
+		case "Race for glory":
+			res.redirect("/raceForGlory");
 			break;
-		case 'Robo cup':
-			res.redirect('/roboCup');
+		case "Robo cup":
+			res.redirect("/roboCup");
 			break;
-		case 'School Duels':
-			res.redirect('/schoolDuels');
+		case "School Duels":
+			res.redirect("/schoolDuels");
 			break;
-		case 'Sherlocked':
-			res.redirect('/sherlocked');
+		case "Sherlocked":
+			res.redirect("/sherlocked");
 			break;
-		case 'Targo':
-			res.redirect('/targo');
+		case "Targo":
+			res.redirect("/targo");
 			break;
-		case 'Tech roadies':
-			res.redirect('/techRoadies');
+		case "Tech roadies":
+			res.redirect("/techRoadies");
 			break;
-		case 'The sphinx quiz':
-			res.redirect('/theSphinxQuiz');
+		case "The sphinx quiz":
+			res.redirect("/theSphinxQuiz");
 			break;
 		default:
-			res.redirect('/eventReg');
+			res.redirect("/eventReg");
 			break;
 	}
 });
 
 app.use((req, res, next) => {
-	res.status(404).render('404');
+	res.status(404).render("404");
 });
 
 exports.app = functions.https.onRequest(app);
