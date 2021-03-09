@@ -17,85 +17,85 @@ app.set("view engine", "ejs");
 
 const db = admin.firestore();
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
 	res.render("index");
 });
-app.get("/Developers", (req, res) => {
+app.get("/Developers", (_req, res) => {
 	res.render("developers");
 });
-app.get("/login", (req, res) => {
+app.get("/login", (_req, res) => {
 	res.render("login");
 });
-app.get("/schoolReg", (req, res) => {
+app.get("/schoolReg", (_req, res) => {
 	res.render("schoolReg");
 });
-app.get("/eventReg", (req, res) => {
+app.get("/eventReg", (_req, res) => {
 	res.render("eventReg");
 });
-app.get("/statistics", (req, res) => {
+app.get("/statistics", (_req, res) => {
 	res.render("statistics");
 });
-app.get("/beingPoirot", (req, res) => {
+app.get("/beingPoirot", (_req, res) => {
 	res.render("beingPoirot");
 });
-app.get("/circuitrix", (req, res) => {
+app.get("/circuitrix", (_req, res) => {
 	res.render("circuitrix");
 });
-app.get("/codeBound", (req, res) => {
+app.get("/codeBound", (_req, res) => {
 	res.render("codeBound");
 });
-app.get("/espritDeCorps", (req, res) => {
+app.get("/espritDeCorps", (_req, res) => {
 	res.render("espritDeCorps");
 });
-app.get("/finalDestination", (req, res) => {
+app.get("/finalDestination", (_req, res) => {
 	res.render("finalDestination");
 });
-app.get("/kerbalSpaceProgram", (req, res) => {
+app.get("/kerbalSpaceProgram", (_req, res) => {
 	res.render("kerbalSpaceProgram");
 });
-app.get("/lakshya", (req, res) => {
+app.get("/lakshya", (_req, res) => {
 	res.render("lakshya");
 });
-app.get("/letsRingItUp", (req, res) => {
+app.get("/letsRingItUp", (_req, res) => {
 	res.render("letsRingItUp");
 });
-app.get("/mathementumContour", (req, res) => {
+app.get("/mathementumContour", (_req, res) => {
 	res.render("mathementumContour");
 });
-app.get("/mechathalon", (req, res) => {
+app.get("/mechathalon", (_req, res) => {
 	res.render("mechathalon");
 });
-app.get("/mindsweeper", (req, res) => {
+app.get("/mindsweeper", (_req, res) => {
 	res.render("mindsweeper");
 });
-app.get("/omniumArtiumMagister", (req, res) => {
+app.get("/omniumArtiumMagister", (_req, res) => {
 	res.render("omniumArtiumMagister");
 });
-app.get("/projectExhibition", (req, res) => {
+app.get("/projectExhibition", (_req, res) => {
 	res.render("projectExhibition");
 });
-app.get("/raceForGlory", (req, res) => {
+app.get("/raceForGlory", (_req, res) => {
 	res.render("raceForGlory");
 });
-app.get("/roboCup", (req, res) => {
+app.get("/roboCup", (_req, res) => {
 	res.render("roboCup");
 });
-app.get("/schoolDuels", (req, res) => {
+app.get("/schoolDuels", (_req, res) => {
 	res.render("schoolDuels");
 });
-app.get("/sherlocked", (req, res) => {
+app.get("/sherlocked", (_req, res) => {
 	res.render("sherlocked");
 });
-app.get("/targo", (req, res) => {
+app.get("/targo", (_req, res) => {
 	res.render("targo");
 });
-app.get("/techRoadies", (req, res) => {
+app.get("/techRoadies", (_req, res) => {
 	res.render("techRoadies");
 });
-app.get("/theSphinxQuiz", (req, res) => {
+app.get("/theSphinxQuiz", (_req, res) => {
 	res.render("theSphinxQuiz");
 });
-app.get("/search", (req, res) => {
+app.get("/search", (_req, res) => {
 	db.collection("students")
 		.doc()
 		.get()
@@ -111,7 +111,7 @@ app.get("/search", (req, res) => {
 		});
 });
 
-app.get("/count", (req, res) => {
+app.get("/count", (_req, res) => {
 	let i = 0;
 	db.collection("events")
 		.doc("Mechathalon")
@@ -129,7 +129,7 @@ app.get("/count", (req, res) => {
 		});
 });
 
-app.get("/studentReg", (req, res) => {
+app.get("/studentReg", (_req, res) => {
 	let i = 0;
 	let obj;
 	const school = [];
@@ -149,7 +149,7 @@ app.get("/studentReg", (req, res) => {
 		});
 });
 
-app.get("/viewSchools", (req, res) => {
+app.get("/viewSchools", (_req, res) => {
 	let i = 0;
 	let obj;
 	const school = [];
@@ -691,7 +691,7 @@ app.post("/onEventReg", (req, res) => {
 	}
 });
 
-app.use((req, res, next) => {
+app.use((_req, res, _next) => {
 	res.status(404).render("404");
 });
 
