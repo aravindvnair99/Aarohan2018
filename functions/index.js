@@ -170,72 +170,7 @@ app.get("/viewSchools", (_req, res) => {
 });
 
 app.post("/onEventSelect", (req, res) => {
-	const event = req.body.eventName;
-	switch (event) {
-		case "beingPoirot":
-			res.redirect("/beingPoirot");
-			break;
-		case "circuitrix":
-			res.redirect("/circuitrix");
-			break;
-		case "codeBound":
-			res.redirect("/codeBound");
-			break;
-		case "espritDeCorps":
-			res.redirect("/espritDeCorps");
-			break;
-		case "finalDestination":
-			res.redirect("/finalDestination");
-			break;
-		case "kerbalSpaceProgram":
-			res.redirect("/kerbalSpaceProgram");
-			break;
-		case "lakshya":
-			res.redirect("/lakshya");
-			break;
-		case "letsRingItUp":
-			res.redirect("/letsRingItUp");
-			break;
-		case "mathementumContour":
-			res.redirect("/mathementumContour");
-			break;
-		case "mechathalon":
-			res.redirect("/mechathalon");
-			break;
-		case "mindsweeper":
-			res.redirect("/mindsweeper");
-			break;
-		case "omniumArtiumMagister":
-			res.redirect("/omniumArtiumMagister");
-			break;
-		case "projectExhibition":
-			res.redirect("/projectExhibition");
-			break;
-		case "raceForGlory":
-			res.redirect("/raceForGlory");
-			break;
-		case "roboCup":
-			res.redirect("/roboCup");
-			break;
-		case "schoolDuels":
-			res.redirect("/schoolDuels");
-			break;
-		case "sherlocked":
-			res.redirect("/sherlocked");
-			break;
-		case "targo":
-			res.redirect("/targo");
-			break;
-		case "techRoadies":
-			res.redirect("/techRoadies");
-			break;
-		case "theSphinxQuiz":
-			res.redirect("/theSphinxQuiz");
-			break;
-		default:
-			res.redirect("/eventReg");
-			break;
-	}
+	res.redirect(`/${req.body.eventName}`);
 });
 
 app.post("/onSchoolReg", (req, res) => {
