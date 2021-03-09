@@ -1,6 +1,6 @@
 {
 	"name": "aarohan2018",
-	"version": "3.5.2",
+	"version": "3.6.0",
 	"description": "Code for Aarohan 2018 (10th edition of Aarohan)",
 	"main": "index.js",
 	"scripts": {
