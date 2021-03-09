@@ -133,11 +133,10 @@ app.get("/count", (req, res) => {
 app.get("/studentReg", (req, res) => {
 	let i = 0;
 	let obj;
-	const school = new Array();
+	const school = [];
 	db.collection("Schools")
 		.get()
 		.then((querySnapshot) => {
-			ob = querySnapshot;
 			querySnapshot.forEach((childSnapshot) => {
 				school[i] = childSnapshot.id;
 				i++;
@@ -154,7 +153,7 @@ app.get("/studentReg", (req, res) => {
 app.get("/viewSchools", (req, res) => {
 	let i = 0;
 	let obj;
-	const school = new Array();
+	const school = [];
 	db.collection("Schools")
 		.get()
 		.then((querySnapshot) => {
@@ -298,6 +297,9 @@ app.post("/onStudentReg", (req, res) => {
 		.catch((err) => {
 			console.error(err);
 		});
+	/**
+	 * checkuid
+	 */
 	function checkuid() {
 		ch.get()
 			.then((doc1) => {
@@ -317,6 +319,9 @@ app.post("/onStudentReg", (req, res) => {
 				console.error(err);
 			});
 	}
+	/**
+	 * checkstud
+	 */
 	function checkstud() {
 		db.collection("Students")
 			.get()
@@ -615,8 +620,6 @@ app.post("/onEventReg", (req, res) => {
 					.collection("Groups")
 					.add(eve);
 				return doc.data();
-			} else {
-				throw new Error(err);
 			}
 		})
 		.catch((err) => {
