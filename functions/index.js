@@ -1,14 +1,13 @@
 const functions = require("firebase-functions");
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const admin = require("firebase-admin");
 
 admin.initializeApp();
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(
-	bodyParser.urlencoded({
+	express.urlencoded({
 		extended: true,
 	})
 );
