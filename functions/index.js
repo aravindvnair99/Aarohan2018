@@ -1,8 +1,8 @@
-const functions = require("firebase-functions"),
-	express = require("express"),
-	app = express(),
-	bodyParser = require("body-parser"),
-	admin = require("firebase-admin");
+const functions = require("firebase-functions");
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const admin = require("firebase-admin");
 
 admin.initializeApp();
 
@@ -16,7 +16,7 @@ app.use(
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-var db = admin.firestore();
+const db = admin.firestore();
 
 app.get("/", (req, res) => {
 	res.render("index");
@@ -113,7 +113,7 @@ app.get("/search", (req, res) => {
 });
 
 app.get("/count", (req, res) => {
-	var i = 0;
+	let i = 0;
 	db.collection("events")
 		.doc("Mechathalon")
 		.collection("Groups")
@@ -131,9 +131,9 @@ app.get("/count", (req, res) => {
 });
 
 app.get("/studentReg", (req, res) => {
-	var i = 0,
-		obj,
-		school = new Array();
+	let i = 0;
+	let obj;
+	const school = new Array();
 	db.collection("Schools")
 		.get()
 		.then((querySnapshot) => {
@@ -143,7 +143,7 @@ app.get("/studentReg", (req, res) => {
 				i++;
 			});
 			obj = Object.assign({}, school);
-			res.render("studentReg", { obj });
+			res.render("studentReg", {obj});
 			return;
 		})
 		.catch((err) => {
@@ -152,9 +152,9 @@ app.get("/studentReg", (req, res) => {
 });
 
 app.get("/viewSchools", (req, res) => {
-	var i = 0,
-		obj,
-		school = new Array();
+	let i = 0;
+	let obj;
+	const school = new Array();
 	db.collection("Schools")
 		.get()
 		.then((querySnapshot) => {
@@ -163,7 +163,7 @@ app.get("/viewSchools", (req, res) => {
 				i++;
 			});
 			obj = Object.assign({}, school);
-			res.render("viewSchools", { obj });
+			res.render("viewSchools", {obj});
 			return;
 		})
 		.catch((err) => {
@@ -172,7 +172,7 @@ app.get("/viewSchools", (req, res) => {
 });
 
 app.post("/onEventSelect", (req, res) => {
-	var event = req.body.eventName;
+	const event = req.body.eventName;
 	switch (event) {
 		case "beingPoirot":
 			res.redirect("/beingPoirot");
@@ -241,19 +241,19 @@ app.post("/onEventSelect", (req, res) => {
 });
 
 app.post("/onSchoolReg", (req, res) => {
-	var schoolName = req.body.schoolName;
-	var facultyName = req.body.facultyName;
-	var email = req.body.email;
-	var mobile = req.body.mobile;
-	var cheque = req.body.cheque;
-	var sch = db.collection("Schools").doc(schoolName);
+	const schoolName = req.body.schoolName;
+	const facultyName = req.body.facultyName;
+	const email = req.body.email;
+	const mobile = req.body.mobile;
+	const cheque = req.body.cheque;
+	const sch = db.collection("Schools").doc(schoolName);
 	sch.get()
 		.then((doc) => {
 			if (doc.exists) {
 				console.warn(schoolName + " already exists.");
 				return;
 			} else {
-				var ob = {
+				const ob = {
 					cheque: cheque,
 					schoolName: schoolName,
 					Faculty: {
@@ -273,19 +273,19 @@ app.post("/onSchoolReg", (req, res) => {
 });
 
 app.post("/onStudentReg", (req, res) => {
-	var uid = "ARHN" + req.body.uid;
-	var name = req.body.studentName;
-	var gender = req.body.gender;
-	var category = req.body.category;
-	var schoolName = req.body.schoolName;
-	var ob = {
+	const uid = "ARHN" + req.body.uid;
+	const name = req.body.studentName;
+	const gender = req.body.gender;
+	const category = req.body.category;
+	const schoolName = req.body.schoolName;
+	const ob = {
 		studentName: name,
 		gender: gender,
 		category: category,
 		schoolName: schoolName,
 	};
-	var sch = db.collection("Schools").doc(schoolName);
-	var ch = sch.collection("Students").doc(uid);
+	const sch = db.collection("Schools").doc(schoolName);
+	const ch = sch.collection("Students").doc(uid);
 	sch.get()
 		.then((doc) => {
 			if (doc.exists) {
@@ -336,9 +336,9 @@ app.post("/onStudentReg", (req, res) => {
 });
 
 app.post("/onEventReg", (req, res) => {
-	var i,
-		eve,
-		eventName = req.body.eventName;
+	let i;
+	let eve;
+	const eventName = req.body.eventName;
 	db.collection("events")
 		.doc(eventName)
 		.get()
