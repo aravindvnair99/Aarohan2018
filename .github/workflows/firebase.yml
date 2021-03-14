@@ -1,8 +1,7 @@
 name: Firebase CD
 on:
-  push:
-    branches:
-      - main
+  release:
+  workflow_dispatch:
 
 jobs:
   deploy:
